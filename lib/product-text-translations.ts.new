@@ -1,0 +1,117 @@
+import type { Language } from "@/lib/translations"
+
+type TranslationEntry = Record<Language, string>
+
+const textMap: Record<string, TranslationEntry> = {
+  "Free Trial": {
+    en: "Free Trial",
+    es: "Prueba gratis",
+    de: "Kostenlose Testversion",
+    nl: "Gratis proef",
+  },
+  "Free Trial — ¡GRATIS!": {
+    en: "Free Trial — FREE!",
+    es: "Free Trial — ¡GRATIS!",
+    de: "Kostenlose Testversion — GRATIS!",
+    nl: "Gratis proef — GRATIS!",
+  },
+}
+
+const normalizeText = (text: string) => text.trim().replace(/\s+/g, " ").replace(/[.]+$/g, "")
+
+const withTrailingPeriod = (original: string, translated: string) =>
+  /\.$/.test(original.trim()) ? `${translated}.` : translated
+
+const translateByMap = (text: string, language: Language) => {
+  const normalized = normalizeText(text)
+  const entry = textMap[normalized]
+  if (!entry) return text
+  return withTrailingPeriod(text, entry[language])
+}
+
+const formatCores = (value: string, language: Language) => {
+  const n = Number(value)
+  if (Number.isNaN(n)) return value
+  if (language === "es") return `${n} Núcleo${n === 1 ? "" : "s"}`
+  if (language === "de") return `${n} Kern${n === 1 ? "" : "e"}`
+  if (language === "nl") return `${n} Kern${n === 1 ? "" : "en"}`
+  return `${n} Core${n === 1 ? "" : "s"}`
+}
+
+const formatVcpuCores = (value: string, language: Language) => {
+  const n = Number(value)
+  if (Number.isNaN(n)) return value
+  if (language === "es") return `${n} núcleos vCPU`
+  if (language === "de") return `${n} vCPU-Kerne`
+  if (language === "nl") return `${n} vCPU-kernen`
+  return `${n} vCPU Cores`
+}
+
+const formatRam = (value: string, language: Language, ddr5 = false) => {
+  if (language === "es") return `${value}GB${ddr5 ? " DDR5" : " RAM"}`
+  if (language === "de") return `${value} GB${ddr5 ? " DDR5" : " RAM"}`
+  if (language === "nl") return `${value} GB${ddr5 ? " DDR5" : " RAM"}`
+  return `${value} GB${ddr5 ? " DDR5" : " RAM"}`
+}
+
+const formatStorage = (value: string, language: Language, nvme = false) => {
+  if (language === "es") return `${value}GB almacenamiento${nvme ? " NVME" : ""}`
+  if (language === "de") return `${value} GB ${nvme ? "NVMe" : ""} Speicher`.trim()
+  if (language === "nl") return `${value} GB ${nvme ? "NVMe" : ""} opslag`.trim()
+  return `${value} GB ${nvme ? "NVMe" : ""} Storage`.trim()
+}
+
+export const translateProductText = (text: string, language: Language) => {
+  if (!text) return text
+  const mapped = translateByMap(text, language)
+  if (mapped !== text) return mapped
+
+  const normalized = normalizeText(text)
+  const replaced = normalized
+    .replace(/Coste de Instalación/gi, language === "en" ? "Installation Fee" : language === "de" ? "Installationsgebühr" : "Installatiekosten")
+    .replace(/Mensual/gi, language === "en" ? "Monthly" : language === "de" ? "Monatlich" : "Maandelijks")
+    .replace(/Localización/gi, language === "en" ? "Location" : language === "de" ? "Standort" : "Locatie")
+    .replace(/Ubicación/gi, language === "en" ? "Location" : language === "de" ? "Standort" : "Locatie")
+    .replace(/Alemania/gi, language === "en" ? "Germany" : language === "de" ? "Deutschland" : "Duitsland")
+    .replace(/Finlandia/gi, language === "en" ? "Finland" : language === "de" ? "Finnland" : "Finland")
+    .replace(/Ancho de Banda/gi, language === "en" ? "Bandwidth" : language === "de" ? "Bandbreite" : "Bandbreedte")
+    .replace(/Ilimitado/gi, language === "en" ? "Unlimited" : language === "de" ? "Unbegrenzt" : "Onbeperkt")
+
+  return withTrailingPeriod(text, replaced)
+}
+
+export const translatePlanFeature = (text: string, language: Language) => {
+  if (!text) return text
+
+  const mapped = translateByMap(text, language)
+  if (mapped !== text) return mapped
+
+  const normalized = normalizeText(text)
+  const trailingPeriod = /\.$/.test(text.trim())
+
+  const coreMatch = normalized.match(/^(\d+)\s?(Core|Cores|Núcleo|Núcleos)$/i)
+  if (coreMatch) {
+    return withTrailingPeriod(text, formatCores(coreMatch[1], language))
+  }
+
+  const vcpuMatch = normalized.match(/^(\d+)\s?(vCPU|vCore)s?$/i)
+  if (vcpuMatch) {
+    return withTrailingPeriod(text, formatVcpuCores(vcpuMatch[1], language))
+  }
+
+  const ramMatch = normalized.match(/^(\d+(?:[.,]\d+)?)\s?GB\s?(?:RAM|DDR4|DDR5)(?:\s?ECC)?$/i)
+  if (ramMatch) {
+    const value = ramMatch[1].replace(",", ".")
+    const usesDDR5 = /DDR5/i.test(normalized)
+    return withTrailingPeriod(text, formatRam(value, language, usesDDR5))
+  }
+
+  const storageMatch = normalized.match(/^(\d+(?:[.,]\d+)?)\s?GB\s?(?:almacenamiento|Storage)(?:\s?NVME|\s?NVMe)?$/i)
+  if (storageMatch) {
+    const value = storageMatch[1].replace(",", ".")
+    const usesNvme = /NVME|NVMe/i.test(normalized)
+    return withTrailingPeriod(text, formatStorage(value, language, usesNvme))
+  }
+
+  return translateProductText(text, language)
+}
