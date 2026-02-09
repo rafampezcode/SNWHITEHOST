@@ -13,7 +13,7 @@ export default function AssettoCorsaPage() {
     {
       name: "AS - Plan Rookie - US",
       description: "Mensual",
-      priceEUR: 9.00,
+      priceEUR: 7.70,
       priceUSD: 9.0,
       features: [
         "3GB DDR5.",
@@ -35,7 +35,7 @@ export default function AssettoCorsaPage() {
     {
       name: "AS - Plan Expert Pilot - US",
       description: "Mensual",
-      priceEUR: 25.00,
+      priceEUR: 21.35,
       priceUSD: 25.0,
       features: [
         "8GB DDR5.",
@@ -56,7 +56,7 @@ export default function AssettoCorsaPage() {
     {
       name: "AS - Plan Engineer - US",
       description: "Mensual",
-      priceEUR: 35.00,
+      priceEUR: 30.00,
       priceUSD: 35.0,
       features: [
         "12GB DDR5.",

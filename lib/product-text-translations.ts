@@ -59,6 +59,31 @@ const textMap: Record<string, TranslationEntry> = {
     de: "MJ - Kostenloser Server",
     nl: "MJ - Gratis server",
   },
+  // Plan names - Terraria
+  "T - Servidor Gratis": {
+    en: "T - Free Server",
+    es: "T - Servidor Gratis",
+    de: "T - Kostenloser Server",
+    nl: "T - Gratis server",
+  },
+  "T - Plan Botín Raro": {
+    en: "T - Rare Loot Plan",
+    es: "T - Plan Botín Raro",
+    de: "T - Seltener Beute Plan",
+    nl: "T - Zeldzame Buit Plan",
+  },
+  "T - Plan El Tesoro": {
+    en: "T - The Treasure Plan",
+    es: "T - Plan El Tesoro",
+    de: "T - Der Schatz Plan",
+    nl: "T - De Schat Plan",
+  },
+  "T - Plan Magia pura": {
+    en: "T - Pure Magic Plan",
+    es: "T - Plan Magia pura",
+    de: "T - Reine Magie Plan",
+    nl: "T - Pure Magie Plan",
+  },
   "MJ - Plan Madera": {
     en: "MJ - Wood Plan",
     es: "MJ - Plan Madera",
@@ -125,6 +150,24 @@ const textMap: Record<string, TranslationEntry> = {
     es: "2 Núcleos",
     de: "2 Kerne",
     nl: "2 Cores",
+  },
+  "1 Núcleo": {
+    en: "1 Core",
+    es: "1 Núcleo",
+    de: "1 Kern",
+    nl: "1 Core",
+  },
+  "Terraria - 1GB RAM": {
+    en: "Terraria - 1GB RAM",
+    es: "Terraria - 1GB RAM",
+    de: "Terraria - 1GB RAM",
+    nl: "Terraria - 1GB RAM",
+  },
+  "9 Disponible": {
+    en: "9 Available",
+    es: "9 Disponible",
+    de: "9 Verfugbar",
+    nl: "9 Beschikbaar",
   },
   "2GB de memoria RAM": {
     en: "2GB of RAM",
@@ -1314,7 +1357,7 @@ const textMap: Record<string, TranslationEntry> = {
     nl: "AMD RYZEN 9 7950X3D",
   },
   "Frecuencia: 4.2 GHz hasta 5.7GHz": {
-    en: "Frequency: 4.2 GHz to 5.7GHz",
+    en: "Frequency: 4.2 GHz to 5.7 GHz",
     es: "Frecuencia: 4.2 GHz hasta 5.7GHz",
     de: "Frequenz: 4,2 GHz bis 5,7 GHz",
     nl: "Frequentie: 4,2 GHz tot 5,7 GHz",
@@ -1324,6 +1367,18 @@ const textMap: Record<string, TranslationEntry> = {
     es: "20GB almacenamiento NVMe",
     de: "20GB NVMe Speicher",
     nl: "20GB NVMe opslag",
+  },
+  "Localización: Alemania": {
+    en: "Location: Germany",
+    es: "Localización: Alemania",
+    de: "Standort: Deutschland",
+    nl: "Locatie: Duitsland",
+  },
+  "Soporte 24/7": {
+    en: "24/7 Support",
+    es: "Soporte 24/7",
+    de: "24/7 Support",
+    nl: "24/7 Ondersteuning",
   },
   "4 GB de RAM DDR5": {
     en: "4 GB DDR5 RAM",
@@ -1367,9 +1422,9 @@ const textMap: Record<string, TranslationEntry> = {
     de: "128 GB NVMe Speicher",
     nl: "128 GB NVMe opslag",
   },
-  "8 GB DDR5 RAM": {
+  "8 GB de RAM DDR5": {
     en: "8 GB DDR5 RAM",
-    es: "8 GB DDR5 RAM",
+    es: "8 GB de RAM DDR5",
     de: "8 GB DDR5 RAM",
     nl: "8 GB DDR5 RAM",
   },
@@ -1378,6 +1433,66 @@ const textMap: Record<string, TranslationEntry> = {
     es: "4 núcleos virtuales",
     de: "4 Virtuelle Kerne",
     nl: "4 Virtuele cores",
+  },
+  "180 GB de almacenamiento NVMe": {
+    en: "180 GB NVMe Storage",
+    es: "180 GB de almacenamiento NVMe",
+    de: "180 GB NVMe Speicher",
+    nl: "180 GB NVMe opslag",
+  },
+  "12 GB de RAM DDR5": {
+    en: "12 GB DDR5 RAM",
+    es: "12 GB de RAM DDR5",
+    de: "12 GB DDR5 RAM",
+    nl: "12 GB DDR5 RAM",
+  },
+  "256 GB de almacenamiento NVMe": {
+    en: "256 GB NVMe Storage",
+    es: "256 GB de almacenamiento NVMe",
+    de: "256 GB NVMe Speicher",
+    nl: "256 GB NVMe opslag",
+  },
+  "16 GB de RAM DDR5": {
+    en: "16 GB DDR5 RAM",
+    es: "16 GB de RAM DDR5",
+    de: "16 GB DDR5 RAM",
+    nl: "16 GB DDR5 RAM",
+  },
+  "6 núcleos virtuales": {
+    en: "6 Virtual Cores",
+    es: "6 núcleos virtuales",
+    de: "6 Virtuelle Kerne",
+    nl: "6 Virtuele cores",
+  },
+  "320 GB de almacenamiento NVMe": {
+    en: "320 GB NVMe Storage",
+    es: "320 GB de almacenamiento NVMe",
+    de: "320 GB NVMe Speicher",
+    nl: "320 GB NVMe opslag",
+  },
+  "24 GB de RAM DDR5": {
+    en: "24 GB DDR5 RAM",
+    es: "24 GB de RAM DDR5",
+    de: "24 GB DDR5 RAM",
+    nl: "24 GB DDR5 RAM",
+  },
+  "8 núcleos virtuales": {
+    en: "8 Virtual Cores",
+    es: "8 núcleos virtuales",
+    de: "8 Virtuelle Kerne",
+    nl: "8 Virtuele cores",
+  },
+  "480 GB de almacenamiento NVMe": {
+    en: "480 GB NVMe Storage",
+    es: "480 GB de almacenamiento NVMe",
+    de: "480 GB NVMe Speicher",
+    nl: "480 GB NVMe opslag",
+  },
+  "Ubicación: Alemania": {
+    en: "Location: Germany",
+    es: "Ubicación: Alemania",
+    de: "Standort: Deutschland",
+    nl: "Locatie: Duitsland",
   },
   "AMD Ryzen 9 7950X3D (4.2–5.7 GHz)": {
     en: "AMD Ryzen 9 7950X3D (4.2–5.7 GHz)",
@@ -2426,14 +2541,86 @@ export const translateProductText = (text: string, language: Language) => {
 
   const normalized = normalizeText(text)
   const replaced = normalized
-    .replace(/Coste de Instalación/gi, language === "en" ? "Installation Fee" : language === "de" ? "Installationsgebühr" : "Installatiekosten")
-    .replace(/Mensual/gi, language === "en" ? "Monthly" : language === "de" ? "Monatlich" : "Maandelijks")
-    .replace(/Localización/gi, language === "en" ? "Location" : language === "de" ? "Standort" : "Locatie")
-    .replace(/Ubicación/gi, language === "en" ? "Location" : language === "de" ? "Standort" : "Locatie")
-    .replace(/Alemania/gi, language === "en" ? "Germany" : language === "de" ? "Deutschland" : "Duitsland")
-    .replace(/Finlandia/gi, language === "en" ? "Finland" : language === "de" ? "Finnland" : "Finland")
-    .replace(/Ancho de Banda/gi, language === "en" ? "Bandwidth" : language === "de" ? "Bandbreite" : "Bandbreedte")
-    .replace(/Ilimitado/gi, language === "en" ? "Unlimited" : language === "de" ? "Unbegrenzt" : "Onbeperkt")
+    .replace(
+      /Coste de Instalación/gi,
+      language === "en"
+        ? "Installation Fee"
+        : language === "de"
+          ? "Installationsgebühr"
+          : language === "nl"
+            ? "Installatiekosten"
+            : "Coste de Instalación"
+    )
+    .replace(
+      /Mensual/gi,
+      language === "en"
+        ? "Monthly"
+        : language === "de"
+          ? "Monatlich"
+          : language === "nl"
+            ? "Maandelijks"
+            : "Mensual"
+    )
+    .replace(
+      /Localización/gi,
+      language === "en"
+        ? "Location"
+        : language === "de"
+          ? "Standort"
+          : language === "nl"
+            ? "Locatie"
+            : "Localización"
+    )
+    .replace(
+      /Ubicación/gi,
+      language === "en"
+        ? "Location"
+        : language === "de"
+          ? "Standort"
+          : language === "nl"
+            ? "Locatie"
+            : "Ubicación"
+    )
+    .replace(
+      /Alemania/gi,
+      language === "en"
+        ? "Germany"
+        : language === "de"
+          ? "Deutschland"
+          : language === "nl"
+            ? "Duitsland"
+            : "Alemania"
+    )
+    .replace(
+      /Finlandia/gi,
+      language === "en"
+        ? "Finland"
+        : language === "de"
+          ? "Finnland"
+          : language === "nl"
+            ? "Finland"
+            : "Finlandia"
+    )
+    .replace(
+      /Ancho de Banda/gi,
+      language === "en"
+        ? "Bandwidth"
+        : language === "de"
+          ? "Bandbreite"
+          : language === "nl"
+            ? "Bandbreedte"
+            : "Ancho de Banda"
+    )
+    .replace(
+      /Ilimitado/gi,
+      language === "en"
+        ? "Unlimited"
+        : language === "de"
+          ? "Unbegrenzt"
+          : language === "nl"
+            ? "Onbeperkt"
+            : "Ilimitado"
+    )
 
   return withTrailingPeriod(text, replaced)
 }

@@ -14,8 +14,10 @@ export default function TerrariaPage() {
       name: "T - Servidor Gratis",
       description: "Free Trial",
       priceEUR: 0,
+      priceUSD: 0,
+      priceLabel: "¡GRATIS!",
       features: [
-        "1GB RAM",
+        "Terraria - 1GB RAM",
         "1 Núcleo",
         "5GB Almacenamiento",
         "Slots Ilimitados",
@@ -25,13 +27,15 @@ export default function TerrariaPage() {
         "Plugins",
         "Pterodactyl Panel",
         "Soporte 24/7",
+        "9 Disponible",
       ],
-      href: `${CLIENT_URL}/index.php?rp=/store/terraria`,
+      href: "https://clients.snwhitehosting.com/cart.php?a=checkout",
     },
     {
       name: "T - Plan Botín Raro",
-      description: "Entrada",
+      description: t.products.terraria?.planDescriptions?.entry || "Entry",
       priceEUR: 1.75,
+      priceUSD: 3.00,
       features: [
         "2GB RAM",
         "1 Núcleo",
@@ -44,12 +48,13 @@ export default function TerrariaPage() {
         "Pterodactyl Panel",
         "Soporte 24/7",
       ],
-      href: `${CLIENT_URL}/index.php?rp=/store/terraria`,
+      href: "https://clients.snwhitehosting.com/cart.php?a=confproduct&i=0",
     },
     {
       name: "T - Plan El Tesoro",
-      description: "Recomendado",
+      description: t.products.terraria?.planDescriptions?.recommended || "Recommended",
       priceEUR: 3.45,
+      priceUSD: 4.00,
       features: [
         "3GB RAM",
         "1 Núcleo",
@@ -62,13 +67,14 @@ export default function TerrariaPage() {
         "Pterodactyl Panel",
         "Soporte 24/7",
       ],
-      href: `${CLIENT_URL}/index.php?rp=/store/terraria`,
+      href: "https://clients.snwhitehosting.com/cart.php?a=confproduct&i=1",
       popular: true,
     },
     {
       name: "T - Plan Magia pura",
-      description: "Para grupos grandes",
+      description: t.products.terraria?.planDescriptions?.large || "For large groups",
       priceEUR: 5.25,
+      priceUSD: 6.00,
       features: [
         "4GB RAM",
         "2 Núcleos",
@@ -81,59 +87,59 @@ export default function TerrariaPage() {
         "Pterodactyl Panel",
         "Soporte 24/7",
       ],
-      href: `${CLIENT_URL}/index.php?rp=/store/terraria`,
+      href: "https://clients.snwhitehosting.com/cart.php?a=confproduct&i=2",
     },
   ]
 
   const features: ProductFeature[] = [
     {
       icon: Sword,
-      title: "Mod Support",
-      description: "Full support for Terraria mods and plugins",
+      title: t.products.terraria?.features?.modSupportTitle || "Mod Support",
+      description: t.products.terraria?.features?.modSupportDesc || "Full support for Terraria mods and plugins",
     },
     {
       icon: Cpu,
-      title: "Dedicated Resources",
-      description: "Guaranteed CPU and RAM for optimal performance",
+      title: t.products.terraria?.features?.resourcesTitle || "Dedicated Resources",
+      description: t.products.terraria?.features?.resourcesDesc || "Guaranteed CPU and RAM for optimal performance",
     },
     {
       icon: Users,
-      title: "Unlimited Players",
-      description: "Host unlimited players on your server",
+      title: t.products.terraria?.features?.playersTitle || "Unlimited Players",
+      description: t.products.terraria?.features?.playersDesc || "Host unlimited players on your server",
     },
     {
       icon: Shield,
-      title: "DDoS Protection",
-      description: "Advanced protection against attacks",
+      title: t.products.terraria?.features?.ddosTitle || "DDoS Protection",
+      description: t.products.terraria?.features?.ddosDesc || "Advanced protection against attacks",
     },
     {
       icon: Zap,
-      title: "Instant Setup",
-      description: "Ready to play in minutes",
+      title: t.products.terraria?.features?.setupTitle || "Instant Setup",
+      description: t.products.terraria?.features?.setupDesc || "Ready to play in minutes",
     },
     {
       icon: Headphones,
-      title: "24/7 Support",
-      description: "Expert support team always available",
+      title: t.products.terraria?.features?.supportTitle || "24/7 Support",
+      description: t.products.terraria?.features?.supportDesc || "Expert support team always available",
     },
   ]
 
   const faqs = [
     {
-      question: "Can I install mods on Terraria servers?",
-      answer: "Yes, Terraria servers support mods and plugins to enhance your gameplay experience.",
+      question: t.products.terraria?.faqs?.q1 || "Can I install mods on Terraria servers?",
+      answer: t.products.terraria?.faqs?.a1 || "Yes, Terraria servers support mods and plugins to enhance your gameplay experience.",
     },
     {
-      question: "How many players can I host?",
-      answer: "You can host unlimited players, limited only by your server resources.",
+      question: t.products.terraria?.faqs?.q2 || "How many players can I host?",
+      answer: t.products.terraria?.faqs?.a2 || "You can host unlimited players, limited only by your server resources.",
     },
     {
-      question: "What is included in the plans?",
-      answer: "All plans include Pterodactyl Panel, database access, FTP, automatic backups, and 24/7 support.",
+      question: t.products.terraria?.faqs?.q3 || "What is included in the plans?",
+      answer: t.products.terraria?.faqs?.a3 || "All plans include Pterodactyl Panel, database access, FTP, automatic backups, and 24/7 support.",
     },
     {
-      question: "Can I upgrade my server?",
-      answer: "Yes, you can upgrade anytime from your control panel with instant activation.",
+      question: t.products.terraria?.faqs?.q4 || "Can I upgrade my server?",
+      answer: t.products.terraria?.faqs?.a4 || "Yes, you can upgrade anytime from your control panel with instant activation.",
     },
   ]
 

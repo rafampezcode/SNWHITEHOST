@@ -6,7 +6,9 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "eslint .",
-    "start": "next start"
+    "start": "next start",
+    "config:commit": "node scripts/commit-config.js",
+    "config:push": "node scripts/commit-config.js --push"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

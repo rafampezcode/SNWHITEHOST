@@ -18,6 +18,7 @@ export interface ProductPlan {
   name: string
   priceEUR: number
   priceUSD?: number
+  priceLabel?: string
   installationEUR?: number
   installationUSD?: number
   description?: string
@@ -48,6 +49,8 @@ interface ProductPageLayoutProps {
   faqs?: { question: string; answer: string }[]
   benefits?: string[]
   techSpecs?: { label: string; value: string }[]
+  hideQuickBenefits?: boolean
+  hideHeroButtons?: boolean
 }
 
 const getQuickBenefits = (t: any) => [
@@ -68,6 +71,8 @@ export function ProductPageLayout({
   faqs,
   benefits,
   techSpecs,
+  hideQuickBenefits = false,
+  hideHeroButtons = false,
 }: ProductPageLayoutProps) {
   const { t, language } = useLanguage()
   const { currency, formatPrice } = useCurrency()
@@ -99,29 +104,32 @@ export function ProductPageLayout({
                   {translateProductText(description, language)}
                 </p>
                 
-                {/* Quick Benefits */}
-                <div className="mt-8 grid grid-cols-2 gap-4">
-                  {getQuickBenefits(t).map((benefit) => (
-                    <div key={benefit.label} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <benefit.icon className="h-4 w-4 text-primary" />
-                      <span>{benefit.label}</span>
-                    </div>
-                  ))}
-                </div>
+                {!hideQuickBenefits && (
+                  <div className="mt-8 grid grid-cols-2 gap-4">
+                    {getQuickBenefits(t).map((benefit) => (
+                      <div key={benefit.label} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <benefit.icon className="h-4 w-4 text-primary" />
+                        <span>{benefit.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <Button size="lg" asChild>
-                    <a href="#pricing">
-                      {t.productPage?.seeAllPlans || "See Plans"}
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </a>
-                  </Button>
-                  <Button size="lg" variant="outline" className="bg-transparent" asChild>
-                    <a href="#features">
-                      {t.features?.title || "Features"}
-                    </a>
-                  </Button>
-                </div>
+                {!hideHeroButtons && (
+                  <div className="mt-8 flex flex-wrap gap-4">
+                    <Button size="lg" asChild>
+                      <a href="#pricing">
+                        {t.productPage?.seeAllPlans || "See Plans"}
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </a>
+                    </Button>
+                    <Button size="lg" variant="outline" className="bg-transparent" asChild>
+                      <a href="#features">
+                        {t.features?.title || "Features"}
+                      </a>
+                    </Button>
+                  </div>
+                )}
               </div>
               
               {/* Hero visual */}
@@ -216,9 +224,11 @@ export function ProductPageLayout({
                     <CardTitle className="text-xl text-foreground">{translateProductText(plan.name, language)}</CardTitle>
                     <div className="mt-4">
                       <span className="text-3xl font-bold text-foreground">
-                        {currency === "USD" && plan.priceUSD != null
-                          ? formatUSDPrice(plan.priceUSD)
-                          : formatPrice(plan.priceEUR)}
+                        {plan.priceLabel
+                          ? translateProductText(plan.priceLabel, language)
+                          : currency === "USD" && plan.priceUSD != null
+                            ? formatUSDPrice(plan.priceUSD)
+                            : formatPrice(plan.priceEUR)}
                       </span>
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
@@ -289,6 +299,7 @@ export function ProductPageLayout({
         )}
 
         {/* Features Section */}
+        {features.length > 0 && (
         <section id="features" className="py-20 bg-background">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -316,6 +327,7 @@ export function ProductPageLayout({
             </div>
           </div>
         </section>
+        )}
 
         {/* Benefits Section */}
         {benefits && benefits.length > 0 && (

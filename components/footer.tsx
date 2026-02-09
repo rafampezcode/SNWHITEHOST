@@ -55,6 +55,7 @@ const supportLinks = [
 
 const legalLinks = [
   { key: "privacyPolicy", href: "/privacy-policy" },
+  { key: "termsAndConditions", href: "/general-terms-of-service" },
 ]
 
 const businessLinks = [
@@ -169,21 +170,11 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Legal y Empresa */}
+          {/* Empresa */}
           <div>
             <h4 className="mb-4 font-semibold text-foreground">{(t.footerSections as any).business}</h4>
             <ul className="space-y-2">
               {businessLinks.map((link) => (
-                <li key={link.key}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
-                  >
-                    {(t.footerSections as any)[link.key]}
-                  </a>
-                </li>
-              ))}
-              {legalLinks.map((link) => (
                 <li key={link.key}>
                   <a
                     href={link.href}
@@ -211,7 +202,7 @@ export function Footer() {
             </div>
           </div>
           
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
+          <div className="flex flex-wrap items-center justify-center gap-6 mb-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Shield className="h-4 w-4 text-green-500" />
               <span>{t.trustBadges.moneyBack}</span>
@@ -220,6 +211,23 @@ export function Footer() {
               <Clock className="h-4 w-4 text-primary" />
               <span>{t.trustBadges.uptime}</span>
             </div>
+          </div>
+
+          {/* Privacy Policy & Terms */}
+          <div className="flex items-center justify-center gap-4">
+            {legalLinks.map((link, index) => (
+              <React.Fragment key={link.key}>
+                <a
+                  href={link.href}
+                  className="text-sm text-muted-foreground transition-colors hover:text-primary underline"
+                >
+                  {(t.footerSections as any)[link.key]}
+                </a>
+                {index < legalLinks.length - 1 && (
+                  <span className="text-muted-foreground">•</span>
+                )}
+              </React.Fragment>
+            ))}
           </div>
         </div>
 

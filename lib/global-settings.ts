@@ -1,34 +1,15 @@
 "server-only"
 
 import { defaultGlobalSettings, type GlobalSettings } from "@/lib/global-settings-types"
-import { writeFile, readFile, mkdir } from "fs/promises"
+import { writeFile, readFile } from "fs/promises"
 import { join } from "path"
 
-const SETTINGS_KEY = "global"
-const STORAGE_DIR = join(process.cwd(), ".data")
-const STORAGE_FILE = join(STORAGE_DIR, "global-settings.json")
-
-// Check if MySQL is configured
-function isMySQLConfigured(): boolean {
-  return Boolean(
-    process.env.MYSQL_HOST &&
-    process.env.MYSQL_USER &&
-    process.env.MYSQL_DATABASE
-  )
-}
+const CONFIG_FILE = join(process.cwd(), "config.json")
 
 // File-based storage functions
-async function ensureStorageDir() {
-  try {
-    await mkdir(STORAGE_DIR, { recursive: true })
-  } catch {
-    // Directory may already exist
-  }
-}
-
 async function readFromFile(): Promise<GlobalSettings> {
   try {
-    const content = await readFile(STORAGE_FILE, "utf-8")
+    const content = await readFile(CONFIG_FILE, "utf-8")
     return normalizeGlobalSettings(JSON.parse(content))
   } catch {
     return defaultGlobalSettings
@@ -36,8 +17,12 @@ async function readFromFile(): Promise<GlobalSettings> {
 }
 
 async function writeToFile(settings: GlobalSettings): Promise<void> {
-  await ensureStorageDir()
-  await writeFile(STORAGE_FILE, JSON.stringify(settings, null, 2), "utf-8")
+  try {
+    await writeFile(CONFIG_FILE, JSON.stringify(settings, null, 2), "utf-8")
+  } catch (error) {
+    console.error("Failed to write config file:", error)
+    // Fail silently - file might be read-only in production
+  }
 }
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
@@ -89,62 +74,15 @@ function normalizeGlobalSettings(input: unknown): GlobalSettings {
   }
 }
 
-function parseSettings(value: string | null | undefined) {
-  if (!value) {
-    return defaultGlobalSettings
-  }
-
-  try {
-    return normalizeGlobalSettings(JSON.parse(value))
-  } catch {
-    return defaultGlobalSettings
-  }
-}
-
 export async function readGlobalSettings(): Promise<GlobalSettings> {
-  // Try MySQL first if configured
-  if (isMySQLConfigured()) {
-    try {
-      const { queryMysql } = await import("@/lib/mysql")
-      const rows = await queryMysql<Array<{ settings_value: string }>>(
-        "SELECT settings_value FROM global_settings WHERE settings_key = ? LIMIT 1",
-        [SETTINGS_KEY]
-      )
-
-      if (rows.length) {
-        return parseSettings(rows[0].settings_value)
-      }
-    } catch (error) {
-      console.warn("MySQL read failed, falling back to file storage:", error)
-    }
-  }
-
-  // Fallback to file storage
+  // Read from config.json file
   return readFromFile()
 }
 
 export async function writeGlobalSettings(settings: GlobalSettings) {
   const normalized = normalizeGlobalSettings(settings)
-  const payload = JSON.stringify(normalized)
-
-  // Try MySQL first if configured
-  if (isMySQLConfigured()) {
-    try {
-      const { queryMysql } = await import("@/lib/mysql")
-      await queryMysql(
-        "INSERT INTO global_settings (settings_key, settings_value) VALUES (?, ?) ON DUPLICATE KEY UPDATE settings_value = VALUES(settings_value), updated_at = CURRENT_TIMESTAMP",
-        [SETTINGS_KEY, payload]
-      )
-      
-      // Also save to file as backup
-      await writeToFile(normalized)
-      return normalized
-    } catch (error) {
-      console.warn("MySQL write failed, falling back to file storage:", error)
-    }
-  }
-
-  // Fallback to file storage
+  
+  // Write to config.json file
   await writeToFile(normalized)
   return normalized
 }

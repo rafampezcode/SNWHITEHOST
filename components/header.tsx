@@ -110,6 +110,15 @@ export function Header() {
         { icon: Briefcase, label: t.footerSections.acquisitions, desc: t.footerSections.sellPortfolio, href: "/adquisiciones" },
       ],
     },
+    {
+      key: "extras",
+      label: t.extras.title,
+      items: [
+        { icon: Globe, label: t.extras.ssl, desc: t.extras.sslDesc, href: "/extras/ssl" },
+        { icon: HardDrive, label: t.extras.storageBox, desc: t.extras.storageBoxDesc, href: "/extras/storage-box" },
+        { icon: Award, label: t.extras.licenses, desc: t.extras.licensesDesc, href: "/extras/licenses" },
+      ],
+    },
   ]
 
   return (

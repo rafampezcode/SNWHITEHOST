@@ -30,7 +30,7 @@ export default function SampPage() {
     {
       name: "Ryder Plan",
       description: "Entrada",
-      priceEUR: 2.90,
+      priceEUR: 2.50,
       priceUSD: 2.9,
       features: [
         "1 GB DDR5 RAM",
@@ -47,7 +47,7 @@ export default function SampPage() {
     {
       name: "Zero Plan",
       description: "Para servidores pequeños",
-      priceEUR: 5.82,
+      priceEUR: 5.00,
       priceUSD: 5.82,
       features: [
         "2 GB DDR5 RAM",
@@ -64,7 +64,7 @@ export default function SampPage() {
     {
       name: "Sweet Plan",
       description: "Comunidades en crecimiento",
-      priceEUR: 9.35,
+      priceEUR: 8.00,
       priceUSD: 9.35,
       features: [
         "3 GB DDR5 RAM",
@@ -82,7 +82,7 @@ export default function SampPage() {
     {
       name: "Big Smoke Plan",
       description: "Comunidades grandes",
-      priceEUR: 11.65,
+      priceEUR: 10.00,
       priceUSD: 11.65,
       features: [
         "6 GB DDR5 RAM",
@@ -99,7 +99,7 @@ export default function SampPage() {
     {
       name: "Carl Johnson Plan",
       description: "Máximo rendimiento",
-      priceEUR: 17.45,
+      priceEUR: 15.00,
       priceUSD: 17.45,
       features: [
         "8 GB DDR5 RAM",

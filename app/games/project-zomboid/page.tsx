@@ -32,7 +32,7 @@ export default function ProjectZomboidPage() {
     {
       name: "Disaster Start Plan",
       description: "For small groups",
-      priceEUR: 2.35,
+      priceEUR: 2.00,
       priceUSD: 2.35,
       features: [
         "2 GB RAM",
@@ -50,8 +50,8 @@ export default function ProjectZomboidPage() {
     {
       name: "Virus T Plan",
       description: "Great for casual play",
-      priceEUR: 5.00,
-      priceUSD: 5.0,
+      priceEUR: 4.25,
+      priceUSD: 5.00,
       features: [
         "4 GB RAM",
         "2 Cores",
@@ -69,8 +69,8 @@ export default function ProjectZomboidPage() {
     {
       name: "No Survivor Plan",
       description: "For dedicated groups",
-      priceEUR: 9.30,
-      priceUSD: 9.3,
+      priceEUR: 8.00,
+      priceUSD: 9.30,
       features: [
         "6 GB RAM",
         "3 Cores",
@@ -87,7 +87,7 @@ export default function ProjectZomboidPage() {
     {
       name: "Winter Disaster Plan",
       description: "Maximum performance",
-      priceEUR: 18.75,
+      priceEUR: 16.00,
       priceUSD: 18.75,
       features: [
         "10 GB RAM",

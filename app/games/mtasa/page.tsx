@@ -32,7 +32,7 @@ export default function MtasaPage() {
     {
       name: "MTA - Plan Palomino Creek - US",
       description: "Mensual",
-      priceEUR: 2.9,
+      priceEUR: 2.50,
       priceUSD: 2.9,
       features: [
         "1GB DDR5.",
@@ -51,7 +51,7 @@ export default function MtasaPage() {
     {
       name: "MTA - Plan Blueberry - US",
       description: "Mensual",
-      priceEUR: 5.82,
+      priceEUR: 5.00,
       priceUSD: 5.82,
       features: [
         "2GB DDR5.",
@@ -70,7 +70,7 @@ export default function MtasaPage() {
     {
       name: "MTA - Plan Las Venturas - US",
       description: "Mensual",
-      priceEUR: 9.35,
+      priceEUR: 8.00,
       priceUSD: 9.35,
       features: [
         "3GB DDR5.",
@@ -90,7 +90,7 @@ export default function MtasaPage() {
     {
       name: "MTA - Plan San Fierro - US",
       description: "Mensual",
-      priceEUR: 11.65,
+      priceEUR: 10.00,
       priceUSD: 11.65,
       features: [
         "6GB DDR5.",
@@ -109,7 +109,7 @@ export default function MtasaPage() {
     {
       name: "MTA - Plan Los Santos - US",
       description: "Mensual",
-      priceEUR: 17.45,
+      priceEUR: 15.00,
       priceUSD: 17.45,
       features: [
         "8GB DDR5.",

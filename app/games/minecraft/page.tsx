@@ -135,6 +135,7 @@ export default function MinecraftPage() {
       name: "MJ - Plan Diamante",
       description: "Máxima potencia",
       priceEUR: 29.50,
+      priceUSD: 35.0,
       features: [
         "12GB RAM",
         "6 Núcleos",
