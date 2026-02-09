@@ -22,8 +22,8 @@
     "buttonText": "Got it!"
   },
   "defaultTheme": {
-    "theme": "light",
-    "colorTheme": "blue",
-    "festiveTheme": "none"
+    "theme": "dark",
+    "colorTheme": "red",
+    "festiveTheme": "valentine"
   }
 }

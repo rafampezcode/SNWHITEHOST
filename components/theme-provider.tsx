@@ -18,91 +18,75 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-// Helper function to get initial theme from localStorage
-function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') return "light"
-  const saved = localStorage.getItem("theme") as Theme | null
-  if (saved && (saved === "light" || saved === "dark")) return saved
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
-}
-
-function getInitialColorTheme(): ColorTheme {
-  if (typeof window === 'undefined') return "blue"
-  const saved = localStorage.getItem("colorTheme") as ColorTheme | null
-  if (saved && ["blue", "green", "orange", "red", "cyan"].includes(saved)) return saved
-  return "blue"
-}
-
-function getInitialFestiveTheme(): FestiveTheme {
-  if (typeof window === 'undefined') return "none"
-  const saved = localStorage.getItem("festiveTheme") as FestiveTheme | null
-  const validFestive = ["none", "valentine", "christmas", "halloween", "easter", "blackfriday", "summer", "newyear", "stpatricks"]
-  if (saved && validFestive.includes(saved)) return saved
-  return "none"
-}
+// Default fallback values for SSR
+const DEFAULT_THEME: Theme = "light"
+const DEFAULT_COLOR_THEME: ColorTheme = "blue"
+const DEFAULT_FESTIVE_THEME: FestiveTheme = "none"
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme)
-  const [colorTheme, setColorTheme] = useState<ColorTheme>(getInitialColorTheme)
-  const [festiveTheme, setFestiveTheme] = useState<FestiveTheme>(getInitialFestiveTheme)
+  const [theme, setTheme] = useState<Theme>(DEFAULT_THEME)
+  const [colorTheme, setColorTheme] = useState<ColorTheme>(DEFAULT_COLOR_THEME)
+  const [festiveTheme, setFestiveTheme] = useState<FestiveTheme>(DEFAULT_FESTIVE_THEME)
   const [mounted, setMounted] = useState(false)
+  const [apiLoaded, setApiLoaded] = useState(false)
 
-  // Mark as mounted on client-side
+  // Load global defaults from API on mount (always, like maintenance/popups)
+  // This ensures every visitor sees the admin's global theme settings
   useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  // Fetch global default themes from API (only if user has no saved preferences)
-  useEffect(() => {
-    if (!mounted) return
-
-    const hasUserPreferences = 
-      localStorage.getItem("theme") || 
-      localStorage.getItem("colorTheme") || 
-      localStorage.getItem("festiveTheme")
-
-    // If user already has preferences, don't override with API defaults
-    if (hasUserPreferences) return
-
-    // Fetch global defaults only for new users
-    fetch("/api/settings")
-      .then((res) => res.json())
-      .then((data) => {
+    const loadGlobalDefaults = async () => {
+      try {
+        // Always fetch latest global theme settings from server (no-cache)
+        const response = await fetch("/api/settings", {
+          cache: "no-store",
+          headers: {
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            "Pragma": "no-cache",
+          },
+        })
+        const data = await response.json()
+        
         if (data?.settings?.defaultTheme) {
-          const { theme: defaultTheme, colorTheme: defaultColor, festiveTheme: defaultFestive } = data.settings.defaultTheme
+          const { theme: globalTheme, colorTheme: globalColor, festiveTheme: globalFestive } = data.settings.defaultTheme
           
-          // Only apply defaults if user hasn't set their own preferences
-          if (!localStorage.getItem("theme") && defaultTheme) {
-            setTheme(defaultTheme)
+          // Apply global defaults from server (always override on page load)
+          if (globalTheme && (globalTheme === "light" || globalTheme === "dark")) {
+            setTheme(globalTheme)
           }
-          
-          if (!localStorage.getItem("colorTheme") && defaultColor) {
-            setColorTheme(defaultColor)
+          if (globalColor && ["blue", "green", "orange", "red", "cyan"].includes(globalColor)) {
+            setColorTheme(globalColor)
           }
-
-          if (!localStorage.getItem("festiveTheme") && defaultFestive) {
-            setFestiveTheme(defaultFestive)
+          if (globalFestive && ["none", "valentine", "christmas", "halloween", "easter", "blackfriday", "summer", "newyear", "stpatricks"].includes(globalFestive)) {
+            setFestiveTheme(globalFestive)
           }
         }
-      })
-      .catch(() => {
-        // Silent fail - user already has defaults from initial state
-      })
-  }, [mounted])
+      } catch (error) {
+        // Silent fail - use defaults
+        if (process.env.NODE_ENV === "development") {
+          console.debug("Failed to load global theme defaults:", error)
+        }
+      }
+      
+      setMounted(true)
+      setApiLoaded(true)
+    }
+
+    loadGlobalDefaults()
+  }, [])
 
   // Apply theme changes to DOM and save to localStorage
   useEffect(() => {
-    if (!mounted) return
+    if (!mounted || !apiLoaded) return
     
     const root = document.documentElement
     root.classList.remove("light", "dark")
     root.classList.add(theme)
+    // Persist user preference in localStorage
     localStorage.setItem("theme", theme)
-  }, [theme, mounted])
+  }, [theme, mounted, apiLoaded])
 
-  // Apply color theme changes to DOM and save to localStorage
+  // Apply color theme changes to DOM and save to localStorage ONLY on user interaction
   useEffect(() => {
-    if (!mounted) return
+    if (!mounted || !apiLoaded) return
     
     const root = document.documentElement
     if (colorTheme === "blue") {
@@ -110,12 +94,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     } else {
       root.setAttribute("data-theme", colorTheme)
     }
+    // Save to localStorage to track user customization
     localStorage.setItem("colorTheme", colorTheme)
-  }, [colorTheme, mounted])
+  }, [colorTheme, mounted, apiLoaded])
 
-  // Apply festive theme changes to DOM and save to localStorage
+  // Apply festive theme changes to DOM and save to localStorage ONLY on user interaction
   useEffect(() => {
-    if (!mounted) return
+    if (!mounted || !apiLoaded) return
 
     const root = document.documentElement
     if (festiveTheme === "none") {
@@ -123,8 +108,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     } else {
       root.setAttribute("data-festive", festiveTheme)
     }
+    // Save to localStorage to track user customization
     localStorage.setItem("festiveTheme", festiveTheme)
-  }, [festiveTheme, mounted])
+  }, [festiveTheme, mounted, apiLoaded])
 
   // Don't block rendering - render with initial values immediately
   return (
