@@ -26,7 +26,7 @@ export default function DedicatedAmdServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Alemania",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=21`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=8`,
     },
     {
       name: "SN-421-FN",
@@ -42,7 +42,7 @@ export default function DedicatedAmdServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Finlandia",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=22`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=9`,
     },
     {
       name: "SN-422-AL",
@@ -58,7 +58,7 @@ export default function DedicatedAmdServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Alemania",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=31`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=10`,
     },
     {
       name: "SN-422-FN",
@@ -74,7 +74,7 @@ export default function DedicatedAmdServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Finlandia",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=32`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=11`,
     },
     {
       name: "SN-1202-AL",
@@ -89,7 +89,7 @@ export default function DedicatedAmdServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Alemania",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=17`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=12`,
     },
     {
       name: "SN-1202-FN",
@@ -104,7 +104,7 @@ export default function DedicatedAmdServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Finlandia",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=18`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=13`,
     },
     {
       name: "SN-1262-AL",
@@ -119,7 +119,7 @@ export default function DedicatedAmdServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Alemania",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=33`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=14`,
     },
     {
       name: "SN-1262-FN",
@@ -134,7 +134,7 @@ export default function DedicatedAmdServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Finlandia",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=34`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=15`,
     },
     {
       name: "SN-12062-AL",
@@ -149,7 +149,7 @@ export default function DedicatedAmdServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Alemania",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=35`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=16`,
     },
     {
       name: "SN-12062-FN",
@@ -164,7 +164,7 @@ export default function DedicatedAmdServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Finlandia",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=36`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=17`,
     },
   ]
 

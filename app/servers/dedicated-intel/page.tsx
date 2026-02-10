@@ -25,7 +25,7 @@ export default function DedicatedIntelServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Alemania",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=23`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=0`,
     },
     {
       name: "SN-424-FN",
@@ -40,7 +40,7 @@ export default function DedicatedIntelServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Finlandia",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=24`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=1`,
     },
     {
       name: "SN-623-AL",
@@ -55,7 +55,7 @@ export default function DedicatedIntelServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Alemania",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=25`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=2`,
     },
     {
       name: "SN-623-FN",
@@ -70,7 +70,7 @@ export default function DedicatedIntelServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Finlandia",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=26`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=3`,
     },
     {
       name: "SN-1230-AL",
@@ -85,7 +85,7 @@ export default function DedicatedIntelServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Alemania",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=27`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=4`,
     },
     {
       name: "SN-1230-FN",
@@ -100,7 +100,7 @@ export default function DedicatedIntelServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Finlandia",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=28`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=5`,
     },
     {
       name: "SN-12302-AL",
@@ -115,7 +115,7 @@ export default function DedicatedIntelServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Alemania",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=29`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=6`,
     },
     {
       name: "SN-12302-FN",
@@ -130,7 +130,7 @@ export default function DedicatedIntelServersPage() {
         "Tráfico: 1 Gbit/s Ancho de Banda - Ilimitado",
         "Localización: Finlandia",
       ],
-      href: `${CLIENT_URL}/cart.php?a=confproduct&i=30`,
+      href: `${CLIENT_URL}/cart.php?a=confproduct&i=7`,
     },
   ]
 
