@@ -14,7 +14,7 @@ export default function DedicatedAmdServersPage() {
   const plans: ProductPlan[] = [
     {
       name: "SN-421-AL",
-      priceEUR: 90.46,
+      priceEUR: 82.00,
       priceUSD: 97.70,
       installationEUR: 0.00,
       installationUSD: 0.00,
@@ -30,7 +30,7 @@ export default function DedicatedAmdServersPage() {
     },
     {
       name: "SN-421-FN",
-      priceEUR: 90.46,
+      priceEUR: 82.00,
       priceUSD: 97.70,
       installationEUR: 0.00,
       installationUSD: 0.00,
@@ -46,11 +46,11 @@ export default function DedicatedAmdServersPage() {
     },
     {
       name: "SN-422-AL",
-      priceEUR: 111.11,
+      priceEUR: 127.46,
       priceUSD: 120.00,
-      installationEUR: 0.00,
+      installationEUR: 107.00,
       installationUSD: 0.00,
-      showInstallationFee: false,
+      showInstallationFee: true,
       features: [
         "AMD Ryzen™ 7 PRO 8700GE",
         "RAM: 64 GB DDR5 ECC",
@@ -62,11 +62,11 @@ export default function DedicatedAmdServersPage() {
     },
     {
       name: "SN-422-FN",
-      priceEUR: 111.11,
+      priceEUR: 127.46,
       priceUSD: 120.00,
-      installationEUR: 0.00,
+      installationEUR: 107.00,
       installationUSD: 0.00,
-      showInstallationFee: false,
+      showInstallationFee: true,
       features: [
         "AMD Ryzen™ 7 PRO 8700GE",
         "RAM: 64 GB DDR5 ECC",
@@ -78,9 +78,9 @@ export default function DedicatedAmdServersPage() {
     },
     {
       name: "SN-1202-AL",
-      priceEUR: 231.62,
+      priceEUR: 210.00,
       priceUSD: 250.15,
-      installationEUR: 296.67,
+      installationEUR: 269.00,
       installationUSD: 320.40,
       features: [
         "AMD Ryzen™ 9 7950X3D 16-Core \"Raphael\" (Zen 4)",
@@ -93,9 +93,9 @@ export default function DedicatedAmdServersPage() {
     },
     {
       name: "SN-1202-FN",
-      priceEUR: 231.62,
+      priceEUR: 210.00,
       priceUSD: 250.15,
-      installationEUR: 296.71,
+      installationEUR: 269.00,
       installationUSD: 320.45,
       features: [
         "AMD Ryzen™ 9 7950X3D 16-Core \"Raphael\" (Zen 4)",
@@ -108,9 +108,9 @@ export default function DedicatedAmdServersPage() {
     },
     {
       name: "SN-1262-AL",
-      priceEUR: 441.11,
+      priceEUR: 400.00,
       priceUSD: 476.50,
-      installationEUR: 597.83,
+      installationEUR: 542.00,
       installationUSD: 645.65,
       features: [
         "AMD EPYC™ 9454P \"Sapphire Rapids SP\"",
@@ -123,9 +123,9 @@ export default function DedicatedAmdServersPage() {
     },
     {
       name: "SN-1262-FN",
-      priceEUR: 441.11,
+      priceEUR: 400.00,
       priceUSD: 476.50,
-      installationEUR: 597.83,
+      installationEUR: 542.00,
       installationUSD: 645.65,
       features: [
         "AMD EPYC™ 9454P \"Sapphire Rapids SP\"",
@@ -138,9 +138,9 @@ export default function DedicatedAmdServersPage() {
     },
     {
       name: "SN-12062-AL",
-      priceEUR: 441.11,
+      priceEUR: 400.00,
       priceUSD: 476.50,
-      installationEUR: 453.70,
+      installationEUR: 411.00,
       installationUSD: 490.00,
       features: [
         "AMD EPYC™ 9454P \"Sapphire Rapids SP\"",
@@ -153,9 +153,9 @@ export default function DedicatedAmdServersPage() {
     },
     {
       name: "SN-12062-FN",
-      priceEUR: 441.11,
+      priceEUR: 400.00,
       priceUSD: 476.50,
-      installationEUR: 453.70,
+      installationEUR: 411.00,
       installationUSD: 490.00,
       features: [
         "AMD EPYC™ 9454P \"Sapphire Rapids SP\"",

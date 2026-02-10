@@ -14,9 +14,9 @@ export default function DedicatedIntelServersPage() {
   const plans: ProductPlan[] = [
     {
       name: "SN-424-AL",
-      priceEUR: 91.67,
+      priceEUR: 83.00,
       priceUSD: 99.00,
-      installationEUR: 109.26,
+      installationEUR: 99.00,
       installationUSD: 118.00,
       features: [
         "Intel® Core™ i5-13500 14 Core \"Raptor Lake-S\"",
@@ -29,9 +29,9 @@ export default function DedicatedIntelServersPage() {
     },
     {
       name: "SN-424-FN",
-      priceEUR: 91.67,
+      priceEUR: 83.00,
       priceUSD: 99.00,
-      installationEUR: 109.26,
+      installationEUR: 99.00,
       installationUSD: 118.00,
       features: [
         "Intel® Core™ i5-13500 14 Core \"Raptor Lake-S\"",
@@ -44,9 +44,9 @@ export default function DedicatedIntelServersPage() {
     },
     {
       name: "SN-623-AL",
-      priceEUR: 165.74,
+      priceEUR: 150.00,
       priceUSD: 179.00,
-      installationEUR: 109.26,
+      installationEUR: 99.00,
       installationUSD: 118.00,
       features: [
         "Intel® Core™ Ultra 7 265",
@@ -59,9 +59,9 @@ export default function DedicatedIntelServersPage() {
     },
     {
       name: "SN-623-FN",
-      priceEUR: 165.74,
+      priceEUR: 150.00,
       priceUSD: 179.00,
-      installationEUR: 109.26,
+      installationEUR: 99.00,
       installationUSD: 118.00,
       features: [
         "Intel® Core™ Ultra 7 265",
@@ -74,9 +74,9 @@ export default function DedicatedIntelServersPage() {
     },
     {
       name: "SN-1230-AL",
-      priceEUR: 330.89,
+      priceEUR: 300.00,
       priceUSD: 357.36,
-      installationEUR: 524.32,
+      installationEUR: 476.00,
       installationUSD: 567.00,
       features: [
         "Intel® Xeon® Gold 5412U 24-Core \"Sapphire Rapids SP\"",
@@ -89,9 +89,9 @@ export default function DedicatedIntelServersPage() {
     },
     {
       name: "SN-1230-FN",
-      priceEUR: 330.89,
+      priceEUR: 300.00,
       priceUSD: 357.36,
-      installationEUR: 524.32,
+      installationEUR: 476.00,
       installationUSD: 567.00,
       features: [
         "Intel® Xeon® Gold 5412U 24-Core \"Sapphire Rapids SP\"",
@@ -104,9 +104,9 @@ export default function DedicatedIntelServersPage() {
     },
     {
       name: "SN-12302-AL",
-      priceEUR: 330.89,
+      priceEUR: 300.00,
       priceUSD: 357.36,
-      installationEUR: 395.97,
+      installationEUR: 359.00,
       installationUSD: 427.65,
       features: [
         "Intel® Xeon® Gold 5412U",
@@ -119,9 +119,9 @@ export default function DedicatedIntelServersPage() {
     },
     {
       name: "SN-12302-FN",
-      priceEUR: 330.89,
+      priceEUR: 300.00,
       priceUSD: 357.36,
-      installationEUR: 395.97,
+      installationEUR: 359.00,
       installationUSD: 427.65,
       features: [
         "Intel® Xeon® Gold 5412U",
