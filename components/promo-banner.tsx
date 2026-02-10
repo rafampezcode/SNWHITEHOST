@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react"
 import { X, Sparkles, Clock } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
+import { usePromoBanner } from "@/components/promo-banner-provider"
 import { cn } from "@/lib/utils"
 
 interface PromoBannerProps {
@@ -19,7 +20,7 @@ export function PromoBanner({
   href = "https://clients.snwhitehosting.com"
 }: PromoBannerProps) {
   const { t } = useLanguage()
-  const [isVisible, setIsVisible] = useState(true)
+  const { isBannerVisible, setIsBannerVisible } = usePromoBanner()
   const [timeLeft, setTimeLeft] = useState<string>("")
 
   useEffect(() => {
@@ -51,10 +52,10 @@ export function PromoBanner({
     return () => clearInterval(interval)
   }, [endDate, t])
 
-  if (!isVisible) return null
+  if (!isBannerVisible) return null
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-r from-primary via-primary to-primary/90 text-primary-foreground shadow-lg">
+    <div className="sticky top-0 z-40 bg-gradient-to-r from-primary via-primary to-primary/90 text-primary-foreground shadow-lg">
       <a 
         href={href}
         className="block py-2.5 px-4"
@@ -82,7 +83,7 @@ export function PromoBanner({
       <button
         onClick={(e) => {
           e.preventDefault()
-          setIsVisible(false)
+          setIsBannerVisible(false)
         }}
         className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full hover:bg-primary-foreground/10 transition-colors"
         aria-label={t.promoBanner.closeButton}

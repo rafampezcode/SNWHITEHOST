@@ -32,10 +32,10 @@ import { cn } from "@/lib/utils"
 import { defaultGlobalSettings, type GlobalSettings } from "@/lib/global-settings-types"
 
 const colorThemes: { id: ColorTheme; name: string; color: string }[] = [
-  { id: "blue", name: "Blue (Default)", color: "bg-blue-500" },
+  { id: "blue", name: "Blue", color: "bg-blue-500" },
   { id: "green", name: "Green", color: "bg-green-500" },
   { id: "orange", name: "Orange", color: "bg-orange-500" },
-  { id: "red", name: "Red", color: "bg-red-500" },
+  { id: "red", name: "Red (Default)", color: "bg-red-500" },
   { id: "cyan", name: "Cyan", color: "bg-cyan-500" },
 ]
 

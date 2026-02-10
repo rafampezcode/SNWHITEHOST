@@ -7,6 +7,7 @@ import { LanguageProvider } from "@/components/language-provider"
 import { CurrencyProvider } from "@/components/currency-provider"
 import { FestiveEffects } from "@/components/festive-effects"
 import { GlobalSettingsProvider } from "@/components/global-settings-provider"
+import { PromoBannerProvider } from "@/components/promo-banner-provider"
 import { GlobalSiteBanner } from "@/components/global-site-banner"
 import { MaintenanceWrapper } from "@/components/maintenance-wrapper"
 import { FestivePopup } from "@/components/festive-popup"
@@ -87,12 +88,14 @@ export default function RootLayout({
           <LanguageProvider>
             <CurrencyProvider>
               <GlobalSettingsProvider>
-                <FestiveEffects />
-                <FestivePopup />
-                <GlobalSiteBanner />
-                <MaintenanceWrapper>
-                  {children}
-                </MaintenanceWrapper>
+                <PromoBannerProvider>
+                  <FestiveEffects />
+                  <FestivePopup />
+                  <GlobalSiteBanner />
+                  <MaintenanceWrapper>
+                    {children}
+                  </MaintenanceWrapper>
+                </PromoBannerProvider>
               </GlobalSettingsProvider>
             </CurrencyProvider>
           </LanguageProvider>

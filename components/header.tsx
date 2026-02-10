@@ -27,6 +27,8 @@ import {
 import { useLanguage } from "@/components/language-provider"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { useCurrency, type Currency } from "@/components/currency-provider"
+import { usePromoBanner } from "@/components/promo-banner-provider"
+import { useGlobalSettings } from "@/components/global-settings-provider"
 import { cn } from "@/lib/utils"
 
 const CLIENT_URL = "https://clients.snwhitehosting.com"
@@ -36,6 +38,11 @@ export function Header() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const { t } = useLanguage()
   const { currency, setCurrency } = useCurrency()
+  const { isBannerVisible } = usePromoBanner()
+  const { settings } = useGlobalSettings()
+
+  // El banner está realmente visible solo si está habilitado en settings Y no ha sido cerrado por el usuario
+  const isBannerShowing = settings.promoBanner.enabled && isBannerVisible && !settings.maintenance.enabled
 
   const currencies: Currency[] = ["EUR", "USD"]
 
@@ -95,8 +102,7 @@ export function Header() {
       label: t.nav.servers,
       items: [
         { icon: HardDrive, label: t.servers.vps, desc: t.servers.vpsDesc, href: "/servers/vps" },
-        { icon: Server, label: t.servers.dedicatedIntel, desc: t.servers.dedicatedIntelDesc, href: "/servers/dedicated-intel" },
-        { icon: Server, label: t.servers.dedicatedAmd, desc: t.servers.dedicatedAmdDesc, href: "/servers/dedicated-amd" },
+        { icon: Server, label: t.servers.dedicated, desc: t.servers.dedicatedDesc, href: "/servers/dedicated" },
       ],
     },
     {
@@ -119,7 +125,10 @@ export function Header() {
   ]
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
+    <header className={cn(
+      "sticky z-40 w-full border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80",
+      isBannerShowing ? "top-[44px]" : "top-0"
+    )}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}

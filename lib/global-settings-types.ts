@@ -57,7 +57,7 @@ export const defaultGlobalSettings: GlobalSettings = {
   },
   defaultTheme: {
     theme: "dark",
-    colorTheme: "blue",
+    colorTheme: "red",
     festiveTheme: "none",
   },
 }

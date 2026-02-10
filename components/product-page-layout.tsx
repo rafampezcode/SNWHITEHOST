@@ -51,6 +51,7 @@ interface ProductPageLayoutProps {
   techSpecs?: { label: string; value: string }[]
   hideQuickBenefits?: boolean
   hideHeroButtons?: boolean
+  preContentSelector?: React.ReactNode
 }
 
 const getQuickBenefits = (t: any) => [
@@ -73,6 +74,7 @@ export function ProductPageLayout({
   techSpecs,
   hideQuickBenefits = false,
   hideHeroButtons = false,
+  preContentSelector,
 }: ProductPageLayoutProps) {
   const { t, language } = useLanguage()
   const { currency, formatPrice } = useCurrency()
@@ -191,6 +193,13 @@ export function ProductPageLayout({
                 {t.pricing.subtitle}
               </p>
             </div>
+            
+            {/* Optional Pre-Content Selector */}
+            {preContentSelector && (
+              <div className="mb-12">
+                {preContentSelector}
+              </div>
+            )}
 
             <div className={cn(
               "grid gap-6 w-full",

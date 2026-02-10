@@ -9,16 +9,38 @@ import { FloatingSupport } from "@/components/floating-support"
 import { BackToTop } from "@/components/back-to-top"
 import { Button } from "@/components/ui/button"
 
-const CLIENT_URL = "https://clients.snwhitehosting.com"
-
 export default function StorageBoxPage() {
   const { t } = useLanguage()
-  const { currency, formatPrice } = useCurrency()
+  const { currency } = useCurrency()
 
-  const priceEUR = 8.00
-  const priceUSD = 9.40
+  const storageBoxPlans = [
+    {
+      name: t.products?.storageBox?.plans?.plan1TB || "Storage Box - 1TB Plan",
+      priceEUR: 8.00,
+      priceUSD: 9.40,
+      cartId: "18"
+    },
+    {
+      name: t.products?.storageBox?.plans?.plan5TB || "Storage Box - 5TB Plan",
+      priceEUR: 30.00,
+      priceUSD: 35.75,
+      cartId: "19"
+    },
+    {
+      name: t.products?.storageBox?.plans?.plan10TB || "Storage Box - 10TB Plan",
+      priceEUR: 52.00,
+      priceUSD: 62.00,
+      cartId: "20"
+    },
+    {
+      name: t.products?.storageBox?.plans?.plan20TB || "Storage Box - 20TB Plan",
+      priceEUR: 101.00,
+      priceUSD: 120.35,
+      cartId: "21"
+    }
+  ]
 
-  const displayPrice = currency === "EUR" ? `€${priceEUR.toFixed(2)}` : `$${priceUSD.toFixed(2)}`
+  const commonDescription = t.products?.storageBox?.fullDescription || "Expand your infrastructure without limits! Our Storage Box is the perfect solution for storing your backups off-server or having an extra hard drive in the cloud. Transfer: FTP, FTPS, SFTP, SCP, HTTPS. Network Mount: Samba/CIFS, NFS, WebDAV. Advanced Backups: Rsync (SSH), BorgBackup, Restic, Rclone. 24/7 Support Included"
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -43,76 +65,59 @@ export default function StorageBoxPage() {
           </div>
         </section>
 
-        {/* Pricing Card - Centrada y destacada */}
+        {/* Pricing Cards - Grid de Planes */}
         <section className="py-12 px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
-          <div className="mx-auto max-w-xl">
-            <div className="relative rounded-2xl border-2 border-primary/20 bg-card/80 backdrop-blur-sm shadow-2xl overflow-hidden">
-              {/* Badge Popular */}
-              <div className="absolute top-4 right-4">
-                <span className="inline-flex items-center rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
-                  {t.products?.storageBox?.popular || "Popular"}
-                </span>
-              </div>
+          <div className="mx-auto max-w-7xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {storageBoxPlans.map((plan, index) => {
+                const displayPrice = currency === "EUR" 
+                  ? `€${plan.priceEUR.toFixed(2)}` 
+                  : `$${plan.priceUSD.toFixed(2)}`
 
-              <div className="p-6 lg:p-8">
-                <h2 className="text-2xl font-bold text-foreground mb-2 text-center">
-                  {t.products?.storageBox?.planName || "Plan 1TB"}
-                </h2>
-                <div className="flex items-baseline justify-center gap-2 mb-6">
-                  <span className="text-4xl font-bold text-primary">{displayPrice}</span>
-                  <span className="text-base text-muted-foreground">{t.services?.perMonth || "/mes"}</span>
-                </div>
+                return (
+                  <div key={index} className="relative rounded-2xl border-2 border-primary/20 bg-card/80 backdrop-blur-sm shadow-xl overflow-hidden hover:shadow-2xl transition-shadow">
+                    {index === 0 && (
+                      <div className="absolute top-4 right-4">
+                        <span className="inline-flex items-center rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
+                          {t.products?.storageBox?.popular || "Popular"}
+                        </span>
+                      </div>
+                    )}
 
-                {/* Características del protocolo */}
-                <div className="space-y-4 mb-6">
-                  <div>
-                    <h3 className="text-xs font-semibold text-foreground/60 uppercase tracking-wide mb-2">
-                      {t.products?.storageBox?.transfer || "Transferencia"}
-                    </h3>
-                    <p className="text-sm text-foreground">
-                      {t.products?.storageBox?.transferProtocols || "FTP, FTPS, SFTP, SCP, HTTPS"}
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-xs font-semibold text-foreground/60 uppercase tracking-wide mb-2">
-                      {t.products?.storageBox?.networkMount || "Montaje en Red"}
-                    </h3>
-                    <p className="text-sm text-foreground">
-                      {t.products?.storageBox?.networkMountProtocols || "Samba/CIFS, NFS, WebDAV"}
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-xs font-semibold text-foreground/60 uppercase tracking-wide mb-2">
-                      {t.products?.storageBox?.advancedBackups || "Backups Avanzados"}
-                    </h3>
-                    <p className="text-sm text-foreground">
-                      {t.products?.storageBox?.advancedBackupsTools || "Rsync (SSH), BorgBackup, Restic, Rclone"}
-                    </p>
-                  </div>
+                    <div className="p-6">
+                      <div className="text-center mb-4">
+                        <div className="inline-flex items-center justify-center p-2 rounded-lg bg-primary/10 mb-3">
+                          <HardDrive className="h-6 w-6 text-primary" />
+                        </div>
+                        <h2 className="text-lg font-bold text-foreground mb-3">
+                          {plan.name}
+                        </h2>
+                        <div className="flex items-baseline justify-center gap-2">
+                          <span className="text-3xl font-bold text-primary">{displayPrice}</span>
+                        </div>
+                        <span className="text-sm text-muted-foreground">{t.pricing?.monthly || "Monthly"}</span>
+                      </div>
 
-                  <div className="pt-3 border-t border-border">
-                    <div className="flex items-center justify-center gap-2 text-sm text-foreground">
-                      <Check className="h-4 w-4 text-primary" />
-                      <span className="font-medium">
-                        {t.products?.storageBox?.support247 || "Soporte 24/7 Incluido"}
-                      </span>
+                      <div className="space-y-3 mb-6 text-xs">
+                        <p className="text-foreground/80 leading-relaxed">
+                          {commonDescription}
+                        </p>
+                      </div>
+
+                      <Button 
+                        size="sm" 
+                        className="w-full"
+                        asChild
+                      >
+                        <a href={`https://clients.snwhitehosting.com/cart.php?a=confproduct&i=${plan.cartId}`}>
+                          {t.common?.orderNow || "Contratar Ahora"}
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </a>
+                      </Button>
                     </div>
                   </div>
-                </div>
-
-                <Button 
-                  size="lg" 
-                  className="w-full"
-                  asChild
-                >
-                  <a href="https://clients.snwhitehosting.com/cart.php?a=confproduct&i=1">
-                    {t.common?.orderNow || "Contratar Ahora"}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-              </div>
+                )
+              })}
             </div>
           </div>
         </section>
