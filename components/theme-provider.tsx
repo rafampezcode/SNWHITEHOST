@@ -18,13 +18,19 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
+// Helper function to detect browser theme preference
+const getBrowserThemePreference = (): Theme => {
+  if (typeof window === "undefined") return "light"
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+}
+
 // Default fallback values for SSR
 const DEFAULT_THEME: Theme = "light"
-const DEFAULT_COLOR_THEME: ColorTheme = "blue"
+const DEFAULT_COLOR_THEME: ColorTheme = "red"
 const DEFAULT_FESTIVE_THEME: FestiveTheme = "none"
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(DEFAULT_THEME)
+  const [theme, setTheme] = useState<Theme>(() => getBrowserThemePreference())
   const [colorTheme, setColorTheme] = useState<ColorTheme>(DEFAULT_COLOR_THEME)
   const [festiveTheme, setFestiveTheme] = useState<FestiveTheme>(DEFAULT_FESTIVE_THEME)
   const [mounted, setMounted] = useState(false)
