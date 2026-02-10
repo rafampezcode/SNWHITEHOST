@@ -56,7 +56,7 @@ export const defaultGlobalSettings: GlobalSettings = {
     buttonText: "Got it!",
   },
   defaultTheme: {
-    theme: "light",
+    theme: "dark",
     colorTheme: "blue",
     festiveTheme: "none",
   },

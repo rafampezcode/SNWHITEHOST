@@ -54,7 +54,7 @@ export function PromoBanner({
   if (!isVisible) return null
 
   return (
-    <div className="relative bg-gradient-to-r from-primary via-primary to-primary/90 text-primary-foreground">
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-r from-primary via-primary to-primary/90 text-primary-foreground shadow-lg">
       <a 
         href={href}
         className="block py-2.5 px-4"

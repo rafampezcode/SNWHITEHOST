@@ -187,13 +187,6 @@ export default function AdminDashboard() {
               <Badge variant="secondary">Admin Panel</Badge>
             </div>
             <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              >
-                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </Button>
               <Button variant="outline" onClick={handleLogout}>
                 <LogOut className="h-4 w-4 mr-2" />
                 Logout
@@ -219,6 +212,65 @@ export default function AdminDashboard() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
+          {/* Appearance Mode Card */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Moon className="h-5 w-5 text-primary" />
+                Appearance Mode
+              </CardTitle>
+              <CardDescription>
+                Choose the default light or dark mode for new visitors
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <button
+                  type="button"
+                  onClick={() => setTheme("dark")}
+                  className={cn(
+                    "flex items-center gap-3 rounded-lg border p-3 text-left transition-all festive-hover",
+                    theme === "dark"
+                      ? "border-primary bg-primary/5"
+                      : "border-border hover:border-primary/50"
+                  )}
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
+                    <Moon className="h-5 w-5 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-medium text-foreground">Dark</div>
+                    <div className="text-sm text-muted-foreground">Default for the site</div>
+                  </div>
+                  {theme === "dark" && (
+                    <Check className="h-5 w-5 text-primary shrink-0" />
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setTheme("light")}
+                  className={cn(
+                    "flex items-center gap-3 rounded-lg border p-3 text-left transition-all festive-hover",
+                    theme === "light"
+                      ? "border-primary bg-primary/5"
+                      : "border-border hover:border-primary/50"
+                  )}
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
+                    <Sun className="h-5 w-5 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-medium text-foreground">Light</div>
+                    <div className="text-sm text-muted-foreground">Brighter interface</div>
+                  </div>
+                  {theme === "light" && (
+                    <Check className="h-5 w-5 text-primary shrink-0" />
+                  )}
+                </button>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Color Theme Card */}
           <Card>
             <CardHeader>

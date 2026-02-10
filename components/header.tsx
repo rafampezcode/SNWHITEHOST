@@ -15,8 +15,6 @@ import {
   ChevronDown,
   Award,
   RefreshCw,
-  Moon,
-  Sun,
   Briefcase,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -27,7 +25,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useLanguage } from "@/components/language-provider"
-import { useTheme } from "@/components/theme-provider"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { useCurrency, type Currency } from "@/components/currency-provider"
 import { cn } from "@/lib/utils"
@@ -38,7 +35,6 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const { t } = useLanguage()
-  const { theme, setTheme } = useTheme()
   const { currency, setCurrency } = useCurrency()
 
   const currencies: Currency[] = ["EUR", "USD"]
@@ -309,16 +305,6 @@ export function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
             
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="hidden sm:flex"
-            >
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-
             <Button variant="default" size="sm" asChild className="hidden sm:flex">
               <a href={`${CLIENT_URL}/clientarea.php`}>
                 <User className="h-4 w-4 mr-2" />

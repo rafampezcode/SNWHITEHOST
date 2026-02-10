@@ -27,10 +27,9 @@ export const metadata: Metadata = {
     "reseller hosting",
   ],
   icons: {
-    icon: "/Gemini_Generated_Image_1uh3ko1uh3ko1uh3.png",
-    apple: "/apple-icon.png",
+    icon: "/logo.png",
+    apple: "/logo.png",
   },
-    generator: 'v0.app'
 }
 
 export const viewport: Viewport = {
