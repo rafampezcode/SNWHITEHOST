@@ -99,7 +99,8 @@ export function Header() {
       label: t.nav.servers,
       items: [
         { icon: HardDrive, label: t.servers.vps, desc: t.servers.vpsDesc, href: "/servers/vps" },
-        { icon: Server, label: t.servers.dedicated, desc: t.servers.dedicatedDesc, href: "/servers/dedicated" },
+        { icon: Server, label: t.servers.dedicatedIntel, desc: t.servers.dedicatedIntelDesc, href: "/servers/dedicated-intel" },
+        { icon: Server, label: t.servers.dedicatedAmd, desc: t.servers.dedicatedAmdDesc, href: "/servers/dedicated-amd" },
       ],
     },
     {

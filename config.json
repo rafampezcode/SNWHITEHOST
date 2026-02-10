@@ -24,6 +24,6 @@
   "defaultTheme": {
     "theme": "dark",
     "colorTheme": "red",
-    "festiveTheme": "valentine"
+    "festiveTheme": "none"
   }
 }
