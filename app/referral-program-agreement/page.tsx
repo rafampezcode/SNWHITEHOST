@@ -1,513 +1,391 @@
 "use client"
 
-import { Users, TrendingUp, Check, ArrowRight, Clock, Shield, Zap, Award, XCircle, AlertTriangle, Receipt, Calendar, CreditCard } from "lucide-react"
-import { useLanguage } from "@/components/language-provider"
+import { Share2, MapPin, Mail, Home } from "lucide-react"
+import { LegalSidebar } from "@/components/legal-sidebar"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { FloatingSupport } from "@/components/floating-support"
-import { BackToTop } from "@/components/back-to-top"
+import { useLanguage } from "@/components/language-provider"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Card } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
 
 export default function ReferralProgramAgreementPage() {
-  const { t, language } = useLanguage()
-
-  const commissionTiers = [
-    { clients: "1 – 30", commission: "10%", color: "blue" },
-    { clients: "31 – 60", commission: "15%", color: "cyan" },
-    { clients: "61 – 80", commission: "20%", color: "emerald" },
-    { clients: "81 – 150", commission: "25%", color: "amber" },
-    { clients: "+151", commission: "30%", color: "rose" },
-  ]
-
-  const includedServices = [
-    { name: t.partnerProgram.hosting, icon: Zap, iconColor: "text-blue-500", bgColor: "bg-blue-500/10" },
-    { name: t.partnerProgram.vps, icon: Award, iconColor: "text-purple-500", bgColor: "bg-purple-500/10" },
-    { name: t.partnerProgram.dedicated, icon: Users, iconColor: "text-emerald-500", bgColor: "bg-emerald-500/10" },
-    { name: t.partnerProgram.additionalServices, icon: CreditCard, iconColor: "text-amber-500", bgColor: "bg-amber-500/10" },
-  ]
-
-  const validationRequirements = [
-    t.partnerProgram.validationReq1,
-    t.partnerProgram.validationReq2,
-    t.partnerProgram.validationReq3,
-    t.partnerProgram.validationReq4,
-  ]
-
-  const nonCountedCustomers = [
-    t.partnerProgram.nonCountedCust1,
-    t.partnerProgram.nonCountedCust2,
-    t.partnerProgram.nonCountedCust3,
-    t.partnerProgram.nonCountedCust4,
-  ]
-
-  const commissionExclusions = [
-    t.partnerProgram.exclusion1,
-    t.partnerProgram.exclusion2,
-    t.partnerProgram.exclusion3,
-    t.partnerProgram.exclusion4,
-    t.partnerProgram.exclusion5,
-    t.partnerProgram.exclusion6,
-  ]
+  const { t } = useLanguage()
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-background via-primary/5 to-background">
       <Header />
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-primary/5 py-24 lg:py-32">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(122,6,6,0.08),transparent_60%)]" />
-          <div className="absolute top-20 right-10 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-          <div className="absolute bottom-20 left-10 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
-          
-          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <Badge variant="secondary" className="mb-6 bg-primary/10 text-primary border-primary/20 text-sm px-4 py-2">
-                🤝 {t.partnerProgram.commercialBadge}
-              </Badge>
-              <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl mb-6">
-                {t.partnerProgram.title}
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-4">
-                {t.partnerProgram.companyName}
-              </p>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {t.partnerProgram.heroSubtitle}
-              </p>
-            </div>
+      <div className="container max-w-7xl mx-auto py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 flex items-center gap-2">
+          <Link href="/">
+            <Button variant="outline" size="sm" className="gap-2">
+              <Home className="h-4 w-4" />
+              {t.legal.backToHome}
+            </Button>
+          </Link>
+        </div>
 
-            {/* Commission Highlight Box */}
-            <div className="max-w-4xl mx-auto">
-              <Card className="relative border-2 border-primary/30 bg-gradient-to-br from-card via-card/95 to-primary/5 backdrop-blur-sm p-10 shadow-2xl">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10" />
-                <div className="grid md:grid-cols-3 gap-8 items-center text-center">
-                  <div>
-                    <div className="text-6xl font-bold text-primary mb-2">{t.partnerProgram.baseCommissionPercent}</div>
-                    <p className="text-sm text-muted-foreground">{t.partnerProgram.baseCommissionTitle}</p>
-                  </div>
-                  <div className="flex items-center justify-center">
-                    <ArrowRight className="h-12 w-12 text-primary/40" />
-                  </div>
-                  <div>
-                    <div className="text-6xl font-bold text-primary mb-2">30%</div>
-                    <p className="text-sm text-muted-foreground">{t.partnerProgram.commissionRange}</p>
-                  </div>
-                </div>
-                <div className="mt-8 text-center">
-                  <p className="text-muted-foreground mb-6">
-                    {t.partnerProgram.recurringOnServices}
-                  </p>
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-lg" asChild>
-                    <a href="https://clients.snwhitehosting.com/submitticket.php">
-                      {t.partnerProgram.ctaContact}
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </a>
-                  </Button>
-                </div>
-              </Card>
-            </div>
+        <div className="mb-16 text-center space-y-6">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 border border-primary/20">
+            <Share2 className="h-10 w-10 text-primary" />
           </div>
-        </section>
-
-        {/* Base Commission Section */}
-        <section className="py-24 bg-background">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold tracking-tight text-foreground mb-4">
-                {t.partnerProgram.baseCommission}
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-                {t.partnerProgram.baseCommissionIntro} <span className="font-semibold text-primary">{t.partnerProgram.baseCommissionPercent}</span>, {t.partnerProgram.baseCommissionApplies}
-              </p>
-            </div>
-
-            {/* Services Grid */}
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-12">
-              {includedServices.map((service) => (
-                <Card key={service.name} className="border-2 border-border hover:border-primary/50 transition-all duration-300 p-6 text-center group hover:shadow-lg">
-                  <div className={cn("flex h-16 w-16 mx-auto items-center justify-center rounded-2xl mb-4 transition-transform group-hover:scale-110", service.bgColor)}>
-                    <service.icon className={cn("h-8 w-8", service.iconColor)} />
-                  </div>
-                  <h3 className="font-semibold text-foreground text-lg">✔ {service.name}</h3>
-                </Card>
-              ))}
-            </div>
-
-            {/* Important Notes */}
-            <div className="space-y-4 max-w-5xl mx-auto">
-              <Card className="border-l-4 border-l-primary bg-primary/5 p-6">
-                <p className="text-muted-foreground leading-relaxed">
-                  <span className="font-semibold text-foreground">💡 {t.partnerProgram.noteImportant}</span> {t.partnerProgram.noteImportantText}
-                </p>
-              </Card>
-              <Card className="border-l-4 border-l-blue-500 bg-blue-500/5 p-6">
-                <p className="text-muted-foreground leading-relaxed">
-                  <span className="font-semibold text-foreground">📊 {t.partnerProgram.calculationNote}</span> {t.partnerProgram.calculationNoteText}
-                </p>
-              </Card>
-              <Card className="border-l-4 border-l-amber-500 bg-amber-500/5 p-6">
-                <p className="text-muted-foreground leading-relaxed">
-                  <span className="font-semibold text-foreground">⚖️ {t.partnerProgram.equityNote}</span> {t.partnerProgram.equityNoteText}
-                </p>
-              </Card>
-            </div>
+          <div className="space-y-3">
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">{t.legal.referralProgramTitle.split(' ').slice(0, 2).join(' ')}</span>
+              <span className="mx-2 text-foreground">{t.legal.referralProgramTitle.split(' ').slice(2).join(' ')}</span>
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              {t.legal.referralProgramSubtitle}
+            </p>
           </div>
-        </section>
+        </div>
 
-        {/* Scaled Commission Tiers */}
-        <section className="py-24 bg-muted/30">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold tracking-tight text-foreground mb-4">
-                {t.partnerProgram.scaledAutomatic}
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-                {t.partnerProgram.scaledText}
-              </p>
-            </div>
+        <div className="grid lg:grid-cols-[280px_1fr] gap-12">
+          <LegalSidebar currentPath="/referral-program-agreement" />
 
-            {/* Commission Tiers Table */}
-            <div className="max-w-4xl mx-auto mb-12">
-              <Card className="border-2 border-primary/20 overflow-hidden shadow-xl">
-                <div className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 px-6 py-4">
-                  <div className="grid grid-cols-2 gap-4 text-center text-primary-foreground">
-                    <h3 className="font-bold text-lg">{t.partnerProgram.tableHeaderClients}</h3>
-                    <h3 className="font-bold text-lg">{t.partnerProgram.tableHeaderCommission}</h3>
-                  </div>
+          <div className="lg:col-span-1">
+            <div className="prose prose-lg prose-neutral dark:prose-invert max-w-none ">
+              <style jsx global>{`
+                .prose h2 {
+                  font-size: 2rem;
+                  font-weight: 700;
+                  margin-top: 3rem;
+                  margin-bottom: 1.5rem;
+                  color: hsl(var(--foreground));
+                  }
+                .prose h3 {
+                  font-size: 1.5rem;
+                  font-weight: 600;
+                  margin-top: 2rem;
+                  margin-bottom: 1rem;
+                  color: hsl(var(--primary));
+                }
+                .prose p {
+                  margin-bottom: 1.25rem;
+                  line-height: 1.8;
+                  color: hsl(var(--foreground));
+                }
+                .prose ul {
+                  margin-top: 1rem;
+                  margin-bottom: 1.5rem;
+                  padding-left: 1.5rem;
+                }
+                .prose li {
+                  margin-bottom: 0.75rem;
+                  color: hsl(var(--foreground));
+                }
+                .prose section {
+                  margin-bottom: 3rem;
+                }
+                .prose strong {
+                  color: hsl(var(--foreground));
+                }
+              `}</style>
+              <section className="mb-8">
+                <h2>1. Descripción General del Programa</h2>
+                <p>
+                  El Programa de Afiliados de SN WHITE HOSTING™ permite a los partners generar comisiones recurrentes mediante la referencia de nuevos clientes. Este acuerdo establece los términos y condiciones aplicables a todos los participantes del programa.
+                </p>
+                <p>
+                  Las comisiones se calculan sobre servicios de facturación continua y recurrente, con un modelo escalonado que recompensa el crecimiento y mantenimiento de una base de clientes activos.
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2>2. Comisión Base</h2>
+                <p>
+                  Todos los partners de SN WHITE HOSTING™ comienzan con una comisión recurrente del <strong>10%</strong> sobre el importe neto de los servicios calificados.
+                </p>
+                <h3>2.1. Servicios Incluidos</h3>
+                <p>Las comisiones se aplican únicamente a los siguientes servicios de facturación recurrente:</p>
+                <ul>
+                  <li>Hosting compartido</li>
+                  <li>Servidores de juegos</li>
+                  <li>Planes reseller</li>
+                  <li>Servicios de correo electrónico</li>
+                </ul>
+                <h3>2.2. Cálculo de Comisiones</h3>
+                <p>
+                  Las comisiones se calculan sobre el importe neto del servicio, excluyendo impuestos, tasas de registro, tarifas de instalación u otros cargos no recurrentes.
+                </p>
+                <h3>2.3. Mantenimiento de Comisión</h3>
+                <p>
+                  La comisión permanece activa únicamente mientras el cliente referido mantenga al menos un servicio activo y en estado de pago correcto. La suspensión, cancelación o impago del servicio resulta en la pérdida de la comisión correspondiente.
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2>3. Escalado Automático de Comisiones</h2>
+                <p>
+                  El porcentaje de comisión aumenta automáticamente en función del número de clientes activos referidos, aplicándose de forma retroactiva a todos los clientes activos del partner.
+                </p>
+                <h3>3.1. Escala de Comisiones</h3>
+                <div className="overflow-x-auto my-4">
+                  <table className="min-w-full border-collapse border border-border">
+                    <thead className="bg-muted">
+                      <tr>
+                        <th className="border border-border px-4 py-2 text-left">Clientes Activos</th>
+                        <th className="border border-border px-4 py-2 text-left">Comisión Aplicable</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="border border-border px-4 py-2">1 – 30</td>
+                        <td className="border border-border px-4 py-2 font-semibold">10%</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-border px-4 py-2">31 – 60</td>
+                        <td className="border border-border px-4 py-2 font-semibold">15%</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-border px-4 py-2">61 – 80</td>
+                        <td className="border border-border px-4 py-2 font-semibold">20%</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-border px-4 py-2">81 – 150</td>
+                        <td className="border border-border px-4 py-2 font-semibold">25%</td>
+                      </tr>
+                      <tr className="bg-primary/5">
+                        <td className="border border-border px-4 py-2">151 o más</td>
+                        <td className="border border-border px-4 py-2 font-semibold">30%</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <div className="divide-y divide-border">
-                  {commissionTiers.map((tier, index) => (
-                    <div 
-                      key={tier.clients} 
-                      className={cn(
-                        "grid grid-cols-2 gap-4 px-6 py-5 items-center transition-all hover:bg-muted/50",
-                        index === commissionTiers.length - 1 && "bg-primary/5"
-                      )}
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className={cn(
-                          "flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold flex-shrink-0",
-                          tier.color === "blue" ? "bg-blue-500/20 text-blue-500" :
-                          tier.color === "cyan" ? "bg-cyan-500/20 text-cyan-500" :
-                          tier.color === "emerald" ? "bg-emerald-500/20 text-emerald-500" :
-                          tier.color === "amber" ? "bg-amber-500/20 text-amber-500" :
-                          "bg-rose-500/20 text-rose-500"
-                        )}>
-                          {index + 1}
-                        </div>
-                        <span className="text-lg font-semibold text-foreground">{tier.clients}</span>
-                      </div>
-                      <div className="text-center">
-                        <Badge 
-                          variant={index === commissionTiers.length - 1 ? "default" : "secondary"} 
-                          className={cn(
-                            "text-2xl font-bold px-6 py-2",
-                            index === commissionTiers.length - 1 && "bg-primary text-primary-foreground shadow-lg"
-                          )}
-                        >
-                          {tier.commission}
-                        </Badge>
-                      </div>
+                <h3>3.2. Aplicación Retroactiva</h3>
+                <p>
+                  El porcentaje alcanzado se aplica a <strong>todos los clientes activos</strong> del partner, no únicamente a los clientes nuevos o adicionales.
+                </p>
+                <h3>3.3. Revisión Mensual</h3>
+                <p>
+                  La revisión del tramo de comisión se realiza mensualmente, en base al número de clientes activos durante ese periodo de facturación.
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2>4. Validación de Clientes Referidos</h2>
+                <p>
+                  Para que un cliente sea considerado válido y genere comisión, deben cumplirse todos los siguientes requisitos:
+                </p>
+                <h3>4.1. Requisitos de Validación</h3>
+                <ul>
+                  <li>Haber contratado los servicios exclusivamente mediante el enlace oficial de referido del partner</li>
+                  <li>Estar correctamente registrado por el sistema de seguimiento en el momento del alta</li>
+                  <li>Mantener al menos un servicio activo durante un mínimo de 30 días</li>
+                  <li>Estar al corriente de pago en el momento de la revisión mensual</li>
+                </ul>
+                <h3>4.2. Exclusiones de Clientes</h3>
+                <p>No se contabilizarán como clientes referidos válidos:</p>
+                <ul>
+                  <li>Clientes registrados manualmente por el equipo interno de SN WHITE HOSTING™</li>
+                  <li>Clientes con cuentas existentes previamente en la plataforma</li>
+                  <li>Altas realizadas sin referencia válida del enlace de afiliado</li>
+                  <li>Clientes con servicios cancelados, suspendidos o en estado de impago</li>
+                </ul>
+                <h3>4.3. Limitación de Responsabilidad</h3>
+                <p>
+                  SN WHITE HOSTING™ no se responsabiliza por referencias no registradas correctamente debido a bloqueadores de cookies, cookies deshabilitadas, extensiones de navegador u otros factores externos al control de la empresa.
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2>5. Ajustes de Nivel y Mantenimiento de Tramo</h2>
+                <h3>5.1. Descenso de Tramo</h3>
+                <p>
+                  Si un partner desciende de tramo durante <strong>dos meses consecutivos</strong>, la comisión se ajustará automáticamente al nivel correspondiente según el número de clientes activos en ese momento.
+                </p>
+                <h3>5.2. Recuperación de Tramo</h3>
+                <p>
+                  El partner podrá recuperar o mejorar su tramo de comisión en cualquier momento al alcanzar nuevamente el volumen de clientes activos requerido para el tramo superior.
+                </p>
+                <h3>5.3. Base de Cálculo</h3>
+                <p>
+                  El cálculo del tramo se basa exclusivamente en los clientes activos durante la revisión mensual, sin considerar clientes históricos inactivos o cancelados.
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2>6. Exclusiones de Comisión</h2>
+                <p>
+                  No generarán comisión en ningún caso los siguientes conceptos:
+                </p>
+                <ul>
+                  <li>Pagos únicos o de una sola vez</li>
+                  <li>Tarifas de alta, instalación o configuración</li>
+                  <li>Servicios no recurrentes o puntuales</li>
+                  <li>Impuestos, tasas gubernamentales o cargos regulatorios</li>
+                  <li>Servicios contratados para uso interno del propio partner</li>
+                  <li>Transacciones derivadas de actividades fraudulentas, abusivas o engañosas</li>
+                </ul>
+                <p className="mt-4">
+                  SN WHITE HOSTING™ se reserva el derecho de retener, ajustar o cancelar comisiones en caso de detectar prácticas fraudulentas, autopromoción abusiva, captación engañosa o uso indebido del programa de afiliados.
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2>7. Forma y Periodicidad de Pago de Comisiones</h2>
+                <h3>7.1. Métodos de Pago</h3>
+                <p>Las comisiones generadas podrán abonarse mediante las siguientes modalidades:</p>
+                <ul>
+                  <li>
+                    <strong>Saldo interno en la cuenta del partner:</strong> Sin importe mínimo requerido. Las comisiones se acreditarán automáticamente en el saldo de la cuenta del partner.
+                  </li>
+                  <li>
+                    <strong>Transferencia bancaria directa:</strong> Sujeto a un importe mínimo acumulado de 50 € (cincuenta euros). El partner deberá proporcionar los datos bancarios válidos para recibir el pago.
+                  </li>
+                </ul>
+                <h3>7.2. Periodicidad de Liquidación</h3>
+                <p>
+                  La liquidación de comisiones se realiza mensualmente, durante los primeros 10 días hábiles del mes siguiente al periodo de facturación correspondiente.
+                </p>
+                <h3>7.3. Verificación de Pagos</h3>
+                <p>
+                  Todas las comisiones están sujetas a verificación y validación de las transacciones subyacentes. SN WHITE HOSTING™ se reserva el derecho de retener el pago de comisiones hasta completar cualquier investigación sobre actividad sospechosa.
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2>8. Conductas Prohibidas</h2>
+                <p>Los partners no podrán realizar las siguientes actividades:</p>
+                <ul>
+                  <li>Publicar enlaces de afiliado en listas de correo no solicitadas o spam</li>
+                  <li>Utilizar técnicas de phishing, engaño o tergiversación para obtener referencias</li>
+                  <li>Crear cuentas fraudulentas o falsas para generar comisiones</li>
+                  <li>Manipular el sistema de seguimiento o las cookies de referencia</li>
+                  <li>Realizar autorreferencias o referencias circulares</li>
+                  <li>Ofrecer incentivos que contradigan las políticas de SN WHITE HOSTING™</li>
+                  <li>Utilizar el nombre o marca de SN WHITE HOSTING™ sin autorización expresa</li>
+                </ul>
+                <p className="mt-4">
+                  El incumplimiento de estas restricciones resultará en la suspensión inmediata del programa y la pérdida de todas las comisiones pendientes.
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2>9. Responsabilidades Fiscales</h2>
+                <p>
+                  Los partners son responsables del cumplimiento de todas las obligaciones fiscales y tributarias derivadas de las comisiones recibidas. SN WHITE HOSTING™ no es responsable de la retención, declaración o pago de impuestos en nombre del partner.
+                </p>
+                <p>
+                  En jurisdicciones donde sea legalmente requerido, SN WHITE HOSTING™ emitirá los documentos fiscales correspondientes y podrá retener los impuestos aplicables según la legislación vigente.
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2>10. Suspensión y Terminación</h2>
+                <h3>10.1. Derecho de Suspensión</h3>
+                <p>
+                  SN WHITE HOSTING™ se reserva el derecho de suspender o terminar la participación de cualquier partner en el programa en los siguientes casos:
+                </p>
+                <ul>
+                  <li>Violación de los términos de este acuerdo</li>
+                  <li>Actividad fraudulenta o engañosa</li>
+                  <li>Impago o mora en servicios contratados como cliente</li>
+                  <li>Conducta que dañe la reputación de SN WHITE HOSTING™</li>
+                  <li>Inactividad continuada por más de 12 meses</li>
+                </ul>
+                <h3>10.2. Pérdida de Comisiones</h3>
+                <p>
+                  En caso de suspensión o terminación, todas las comisiones pendientes de pago podrán ser retenidas de forma permanente. Las comisiones ya abonadas no serán objeto de devolución, salvo en casos de fraude comprobado.
+                </p>
+                <h3>10.3. Terminación Voluntaria</h3>
+                <p>
+                  El partner podrá terminar su participación en el programa en cualquier momento mediante notificación escrita a SN WHITE HOSTING™. Las comisiones acumuladas hasta la fecha de terminación serán abonadas según lo establecido en este acuerdo.
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2>11. Modificación de Condiciones</h2>
+                <p>
+                  SN WHITE HOSTING™ se reserva el derecho de modificar las condiciones de este Programa de Afiliados, incluyendo pero no limitado a:
+                </p>
+                <ul>
+                  <li>Porcentajes de comisión</li>
+                  <li>Escalas de tramos</li>
+                  <li>Servicios incluidos o excluidos</li>
+                  <li>Métodos y periodicidad de pago</li>
+                  <li>Requisitos de validación de clientes</li>
+                </ul>
+                <p className="mt-4">
+                  Cualquier modificación será notificada a los partners con un <strong>mínimo de 30 días naturales de antelación</strong> a través del correo electrónico registrado y mediante anuncio en el área de clientes.
+                </p>
+                <p>
+                  La continuación de la participación en el programa tras la notificación de cambios constituye la aceptación de las nuevas condiciones.
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2>12. Limitación de Responsabilidad</h2>
+                <p>
+                  SN WHITE HOSTING™ no será responsable de:
+                </p>
+                <ul>
+                  <li>Pérdida de comisiones por factores técnicos fuera de su control</li>
+                  <li>Errores en el seguimiento de referencias causados por bloqueadores o software de terceros</li>
+                  <li>Decisiones comerciales de los clientes referidos que resulten en cancelaciones de servicio</li>
+                  <li>Daños indirectos, consecuentes o incidentales derivados de la participación en el programa</li>
+                </ul>
+              </section>
+
+              <section className="mb-8">
+                <h2>13. Propiedad Intelectual</h2>
+                <p>
+                  El uso del nombre, logotipo, marca o materiales de marketing de SN WHITE HOSTING™ está sujeto a aprobación previa por escrito. Los partners recibirán acceso a materiales promocionales aprobados que podrán utilizar exclusivamente para la promoción de servicios de SN WHITE HOSTING™.
+                </p>
+                <p>
+                  Cualquier uso no autorizado de la propiedad intelectual de SN WHITE HOSTING™ resultará en la terminación inmediata del programa.
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2>14. Resolución de Disputas</h2>
+                <p>
+                  Cualquier disputa relacionada con este acuerdo deberá ser notificada por escrito a través del sistema de soporte de SN WHITE HOSTING™ dentro de los 30 días siguientes al evento que la origine.
+                </p>
+                <p>
+                  SN WHITE HOSTING™ investigará la disputa y emitirá una decisión final en un plazo de 15 días hábiles. La decisión de SN WHITE HOSTING™ será definitiva y vinculante.
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2>15. Aceptación y Vigencia</h2>
+                <p>
+                  Al participar en el Programa de Afiliados de SN WHITE HOSTING™, el partner acepta quedar vinculado por los términos de este acuerdo.
+                </p>
+                <p>
+                  Este acuerdo entra en vigor en la fecha de registro del partner en el programa y permanece vigente hasta su terminación según lo establecido en la Sección 10.
+                </p>
+                <p className="text-sm text-muted-foreground mt-6 pt-6 border-t border-border">
+                  <strong>Fecha de Última Actualización:</strong> 13 de enero de 2026
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  <strong>Fecha de Vigencia:</strong> 13 de enero de 2026
+                </p>
+              </section>
+
+              <div className="mt-12 p-6 rounded-lg border bg-card">
+                <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="h-5 w-5 text-primary mt-0.5" />
+                    <div>
+                      <p className="font-medium">SN SOLUTIONS LLC</p>
+                      <p className="text-muted-foreground">1209 Mountain Road Pl NE, Ste N</p>
+                      <p className="text-muted-foreground">Albuquerque, New Mexico, 87110, USA</p>
                     </div>
-                  ))}
-                </div>
-              </Card>
-            </div>
-
-            {/* Key Points */}
-            <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
-              <Card className="border-l-4 border-l-emerald-500 bg-emerald-500/5 p-6">
-                <div className="flex items-start gap-4">
-                  <Check className="h-6 w-6 text-emerald-500 flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2 text-lg">🔎 {t.partnerProgram.retroactiveApplication}</h3>
-                    <p className="text-muted-foreground">
-                      {t.partnerProgram.retroactiveText}
-                    </p>
                   </div>
-                </div>
-              </Card>
-              <Card className="border-l-4 border-l-blue-500 bg-blue-500/5 p-6">
-                <div className="flex items-start gap-4">
-                  <Calendar className="h-6 w-6 text-blue-500 flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2 text-lg">📅 {t.partnerProgram.monthlyReviewTitle}</h3>
-                    <p className="text-muted-foreground">
-                      {t.partnerProgram.monthlyReviewShortText}
-                    </p>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Validation Section */}
-        <section className="py-24 bg-background">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold tracking-tight text-foreground mb-4">
-                {t.partnerProgram.validationCriteria}
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-                {t.partnerProgram.validationText}
-              </p>
-            </div>
-
-            <div className="grid gap-8 lg:grid-cols-2 max-w-6xl mx-auto">
-              {/* Valid Requirements */}
-              <Card className="border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-500/5 via-emerald-500/5 to-background p-8 shadow-lg">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/20">
-                    <Check className="h-6 w-6 text-emerald-500" />
-                  </div>
-                  <h3 className="font-bold text-foreground text-xl">{t.partnerProgram.validationRequirementsTitle}</h3>
-                </div>
-                <ul className="space-y-4">
-                  {validationRequirements.map((req, idx) => (
-                    <li key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-background/50 border border-emerald-500/20">
-                      <Check className="h-5 w-5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground leading-relaxed">{req}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-
-              {/* Non-Counted Customers */}
-              <Card className="border-2 border-rose-500/30 bg-gradient-to-br from-rose-500/5 via-rose-500/5 to-background p-8 shadow-lg">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-rose-500/20">
-                    <XCircle className="h-6 w-6 text-rose-500" />
-                  </div>
-                  <h3 className="font-bold text-foreground text-xl">{t.partnerProgram.nonCountedTitle}</h3>
-                </div>
-                <ul className="space-y-4">
-                  {nonCountedCustomers.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-background/50 border border-rose-500/20">
-                      <XCircle className="h-5 w-5 text-rose-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </div>
-
-            <Card className="mt-8 border-l-4 border-l-amber-500 bg-amber-500/5 p-6 max-w-6xl mx-auto">
-              <div className="flex items-start gap-4">
-                <AlertTriangle className="h-6 w-6 text-amber-500 flex-shrink-0 mt-1" />
-                <p className="text-muted-foreground leading-relaxed">
-                  <span className="font-semibold text-foreground">{t.partnerProgram.validationWarning}</span> {t.partnerProgram.validationWarningText}
-                </p>
-              </div>
-            </Card>
-          </div>
-        </section>
-
-        {/* Adjustments & Exclusions */}
-        <section className="py-24 bg-muted/30">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-12 lg:grid-cols-2">
-              {/* Level Adjustments */}
-              <div>
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20">
-                    <Clock className="h-6 w-6 text-primary" />
-                  </div>
-                  <h2 className="text-3xl font-bold tracking-tight text-foreground">
-                    {t.partnerProgram.adjustments}
-                  </h2>
-                </div>
-                <Card className="border-2 border-primary/20 bg-gradient-to-br from-background to-primary/5 p-8 shadow-lg h-full">
-                  <p className="text-lg font-semibold text-foreground mb-6">
-                    {t.partnerProgram.adjustmentsMaintenance}
-                  </p>
-                  <ul className="space-y-4">
-                    <li className="flex items-start gap-3 p-4 rounded-lg bg-background/80 border border-primary/10">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 flex-shrink-0 mt-1">
-                        <span className="text-xs font-bold text-primary">1</span>
-                      </div>
-                      <span className="text-muted-foreground leading-relaxed">
-                        {t.partnerProgram.adjustmentText1}
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3 p-4 rounded-lg bg-background/80 border border-primary/10">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 flex-shrink-0 mt-1">
-                        <span className="text-xs font-bold text-primary">2</span>
-                      </div>
-                      <span className="text-muted-foreground leading-relaxed">
-                        {t.partnerProgram.adjustmentText2}
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3 p-4 rounded-lg bg-background/80 border border-primary/10">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 flex-shrink-0 mt-1">
-                        <span className="text-xs font-bold text-primary">3</span>
-                      </div>
-                      <span className="text-muted-foreground leading-relaxed">
-                        {t.partnerProgram.adjustmentText3}
-                      </span>
-                    </li>
-                  </ul>
-                </Card>
-              </div>
-
-              {/* Exclusions */}
-              <div>
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-rose-500/20">
-                    <Shield className="h-6 w-6 text-rose-500" />
-                  </div>
-                  <h2 className="text-3xl font-bold tracking-tight text-foreground">
-                    {t.partnerProgram.exclusions}
-                  </h2>
-                </div>
-                <Card className="border-2 border-rose-500/30 bg-gradient-to-br from-rose-500/5 via-rose-500/5 to-background p-8 shadow-lg h-full">
-                  <p className="text-lg font-semibold text-foreground mb-6">
-                    {t.partnerProgram.exclusionsSubtitle}
-                  </p>
-                  <ul className="space-y-3">
-                    {commissionExclusions.map((exclusion, idx) => (
-                      <li key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-background/50 border border-rose-500/20">
-                        <XCircle className="h-5 w-5 text-rose-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-muted-foreground leading-relaxed">{exclusion}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Card className="mt-6 border border-rose-500/30 bg-rose-500/10 p-4">
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      <span className="font-semibold text-foreground">⚠️ {t.partnerProgram.exclusionNote}</span> {t.partnerProgram.exclusionNoteText}
-                    </p>
-                  </Card>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Payment Methods */}
-        <section className="py-24 bg-background">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold tracking-tight text-foreground mb-4">
-                {t.partnerProgram.paymentMethodTitle}
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-                {t.partnerProgram.paymentMethodSubtitle}
-              </p>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-2 mb-12 max-w-5xl mx-auto">
-              <Card className="border-2 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-background to-primary/5 p-10 transition-all hover:shadow-xl text-center group">
-                <div className="flex justify-center mb-6">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-primary/15 group-hover:bg-primary/25 transition-colors">
-                    <Receipt className="h-10 w-10 text-primary" />
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-3">
-                  💳 {t.partnerProgram.internalBalanceTitle}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  {t.partnerProgram.internalBalanceDetail}
-                </p>
-                <Badge variant="secondary" className="text-sm px-4 py-2">
-                  {t.partnerProgram.internalBalanceMin}
-                </Badge>
-              </Card>
-
-              <Card className="border-2 border-primary/20 hover:border-primary/40 bg-gradient-to-br from-background to-primary/5 p-10 transition-all hover:shadow-xl text-center group">
-                <div className="flex justify-center mb-6">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-primary/15 group-hover:bg-primary/25 transition-colors">
-                    <CreditCard className="h-10 w-10 text-primary" />
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold text-foreground mb-3">
-                  🏦 {t.partnerProgram.directPaymentTitle}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  {t.partnerProgram.directPaymentDetail}
-                </p>
-                <Badge variant="secondary" className="text-sm px-4 py-2">
-                  {t.partnerProgram.directPaymentMin}
-                </Badge>
-              </Card>
-            </div>
-
-            <Card className="border-2 border-primary/30 bg-gradient-to-r from-primary/10 to-primary/5 p-8 text-center max-w-3xl mx-auto shadow-lg">
-              <Calendar className="h-12 w-12 text-primary mx-auto mb-4" />
-              <p className="text-xl font-semibold text-foreground">
-                📆 {t.partnerProgram.monthlySettlement}
-              </p>
-            </Card>
-          </div>
-        </section>
-
-        {/* Terms Modification */}
-        <section className="py-16 bg-muted/30">
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <Card className="border-l-4 border-l-amber-500 bg-amber-500/5 p-8">
-              <div className="flex items-start gap-4">
-                <AlertTriangle className="h-8 w-8 text-amber-500 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">
-                    ⚠️ {t.partnerProgram.termsModificationTitle}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {t.partnerProgram.termsModificationText}
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-4">
-                    📅 {t.partnerProgram.lastUpdated} 13/01/2026
-                  </p>
-                </div>
-              </div>
-            </Card>
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="py-24 bg-gradient-to-br from-primary/10 via-background to-primary/5">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <Card className="relative border-2 border-primary/30 bg-gradient-to-r from-card via-card to-primary/5 p-16 text-center overflow-hidden shadow-2xl">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -z-10" />
-              <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10" />
-              
-              <div className="relative">
-                <div className="flex justify-center mb-6">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-primary/20">
-                    <Users className="h-10 w-10 text-primary" />
-                  </div>
-                </div>
-                <h2 className="text-4xl font-bold tracking-tight text-foreground mb-4">
-                  {t.partnerProgram.ctaTitle}
-                </h2>
-                <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-                  {t.partnerProgram.ctaSubtitle}
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg text-lg px-8 py-6" asChild>
-                    <a href="https://clients.snwhitehosting.com/submitticket.php">
-                      {t.partnerProgram.ctaContact}
-                      <ArrowRight className="ml-2 h-5 w-5" />
+                  <div className="flex items-center gap-3">
+                    <Mail className="h-5 w-5 text-primary" />
+                    <a href="mailto:legal@snwhitehosting.com" className="text-primary hover:underline">
+                      legal@snwhitehosting.com
                     </a>
-                  </Button>
-                  <Link href="/">
-                    <Button size="lg" variant="outline" className="text-lg px-8 py-6">
-                      {t.partnerProgram.ctaBack}
-                    </Button>
-                  </Link>
+                  </div>
                 </div>
-                <p className="mt-8 text-sm text-muted-foreground">
-                  💬 {t.partnerProgram.ctaQuestions}
-                </p>
               </div>
-            </Card>
+            </div>
           </div>
-        </section>
-      </main>
-      <FloatingSupport />
-      <BackToTop />
+        </div>
+      </div>
       <Footer />
-    </div>
-  )
-}
+      </div>
+      )
+      }
