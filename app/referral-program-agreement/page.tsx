@@ -30,11 +30,11 @@ export default function ReferralProgramAgreementPage() {
           </div>
           <div className="space-y-3">
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">{t.legal.referralProgramTitle.split(' ').slice(0, 2).join(' ')}</span>
-              <span className="mx-2 text-foreground">{t.legal.referralProgramTitle.split(' ').slice(2).join(' ')}</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">Programa de</span>
+              <span className="mx-2 text-foreground">Afiliados</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              {t.legal.referralProgramSubtitle}
+              Términos y condiciones del programa de afiliados
             </p>
           </div>
         </div>
