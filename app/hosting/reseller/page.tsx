@@ -105,7 +105,7 @@ export default function ResellerHostingPage() {
       priceUSD: 30.0,
       features: [
         "50 GB NVMe Storage",
-        "Hasta 50 cuentas",
+        "Hasta 20 cuentas",
         "DDR5 RAM",
         t.products.reseller.labels.cpanel,
         t.products.reseller.labels.litespeed,

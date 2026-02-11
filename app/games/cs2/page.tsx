@@ -4,35 +4,12 @@ import { Crosshair, Cpu, Shield, Zap, Users, Headphones } from "lucide-react"
 import { ProductPageLayout, type ProductPlan, type ProductFeature } from "@/components/product-page-layout"
 import { useLanguage } from "@/components/language-provider"
 
-const CLIENT_URL = "https://clients.snwhitehosting.com"
-
 export default function CS2Page() {
   const { t } = useLanguage()
 
   const plans: ProductPlan[] = [
     {
-      name: "CS2 - Servidor Gratis - US",
-      description: "Free Trial — ¡GRATIS!",
-      priceEUR: 0,
-      priceUSD: 0,
-      stock: 10,
-      features: [
-        "2GB DDR5.",
-        "AMD EPYC™ 9645.",
-        "2 Core.",
-        "10GB almacenamiento NVME.",
-        "Localización: Estados Unidos.",
-        "Pterodactyl Panel.",
-        "Mods.",
-        "Plugins.",
-        "1 Bases de datos.",
-        "Slots ilimitados.",
-        "Soporte 24/7.",
-      ],
-      href: `${CLIENT_URL}/index.php?rp=/store/cs2`,
-    },
-    {
-      name: "CS2 - Plan Silver - US",
+      name: "CS2 - Plan Bestia - US",
       description: "Mensual",
       priceEUR: 5.15,
       priceUSD: 6.0,
@@ -40,7 +17,7 @@ export default function CS2Page() {
         "2GB DDR5.",
         "AMD EPYC™ 9645.",
         "2 Core.",
-        "10GB almacenamiento NVME.",
+        "65GB almacenamiento NVME.",
         "Localización: Estados Unidos.",
         "Pterodactyl Panel.",
         "Mods.",
@@ -50,7 +27,7 @@ export default function CS2Page() {
         "1 Backups.",
         "Soporte 24/7.",
       ],
-      href: `${CLIENT_URL}/index.php?rp=/store/cs2`,
+      href: "https://clients.snwhitehosting.com/cart.php?a=confproduct&i=11",
     },
     {
       name: "CS2 - Plan Furia - US",
@@ -60,7 +37,7 @@ export default function CS2Page() {
       features: [
         "3GB RAM.",
         "2 Núcleos.",
-        "20GB almacenamiento.",
+        "80GB almacenamiento.",
         "Pterodactyl Panel.",
         "Todas las versiones.",
         "Slots ilimitados.",
@@ -70,19 +47,19 @@ export default function CS2Page() {
         "FTP.",
         "Soporte 24/7.",
       ],
-      href: `${CLIENT_URL}/index.php?rp=/store/cs2`,
+      href: "https://clients.snwhitehosting.com/cart.php?a=confproduct&i=12",
       popular: true,
     },
     {
       name: "CS2 - Plan Mouz - US",
       description: "Mensual",
-      priceEUR: 12.00,
-      priceUSD: 14.0,
+      priceEUR: 16.00,
+      priceUSD: 18.90,
       features: [
         "4GB DDR5.",
         "AMD EPYC™ 9645.",
         "2 Core.",
-        "50GB almacenamiento NVME.",
+        "128GB almacenamiento NVME.",
         "Localización: Estados Unidos.",
         "Pterodactyl Panel.",
         "1 Bases de datos.",
@@ -90,17 +67,17 @@ export default function CS2Page() {
         "1 Backups.",
         "Soporte 24/7.",
       ],
-      href: `${CLIENT_URL}/index.php?rp=/store/cs2`,
+      href: "https://clients.snwhitehosting.com/cart.php?a=confproduct&i=13",
     },
     {
       name: "CS2 - 9z Team - US",
       description: "Mensual",
-      priceEUR: 15.00,
-      priceUSD: 18.0,
+      priceEUR: 21.20,
+      priceUSD: 25.0,
       features: [
         "6GB RAM.",
         "4 Núcleos.",
-        "64GB almacenamiento.",
+        "192GB almacenamiento.",
         "Pterodactyl Panel.",
         "Todas las versiones.",
         "Slots ilimitados.",
@@ -110,7 +87,7 @@ export default function CS2Page() {
         "FTP.",
         "Soporte 24/7.",
       ],
-      href: `${CLIENT_URL}/index.php?rp=/store/cs2`,
+      href: "https://clients.snwhitehosting.com/cart.php?a=confproduct&i=14",
     },
   ]
 

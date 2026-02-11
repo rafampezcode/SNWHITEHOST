@@ -95,6 +95,9 @@ export function Header() {
         { image: "/american truck simulator.png", label: t.games.americanTruck, desc: t.games.americanTruckDesc, href: "/games/american-truck-simulator" },
         { image: "/rust.png", label: t.games.rust, desc: t.games.rustDesc, href: "/games/rust" },
         { image: "/assetto corsa.png", label: t.games.assetto, desc: t.games.assettoDesc, href: "/games/assetto-corsa" },
+        { image: "/csgo.png", label: t.games.csgo, desc: t.games.csgoDesc, href: "/games/cs2" },
+        { image: "/csgo.png", label: t.games.cssource, desc: t.games.cssourceDesc, href: "/games/cs-source" },
+        { image: "/csgo.png", label: t.games.cs16, desc: t.games.cs16Desc, href: "/games/cs-1-6" },
       ],
     },
     {

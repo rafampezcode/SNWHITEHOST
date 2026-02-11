@@ -85,6 +85,10 @@ export const translations = {
       assettoDesc: "Racing simulation servers",
       csgo: "CS2 / CS:GO",
       csgoDesc: "Counter-Strike server hosting",
+      cssource: "Counter-Strike: Source",
+      cssourceDesc: "Counter-Strike: Source server hosting",
+      cs16: "Counter-Strike 1.6",
+      cs16Desc: "Classic CS 1.6 server hosting",
     },
     // Domains submenu
     domains: {
@@ -807,6 +811,16 @@ export const translations = {
         subtitle: "Competitive FPS Servers",
         description: "Premium CS2 server hosting with 128 tick rate, low latency and full plugin support.",
       },
+      cssource: {
+        title: "Counter-Strike: Source Hosting",
+        subtitle: "Classic FPS Servers",
+        description: "Reliable CS: Source hosting with low latency, SourceMod support, and instant setup.",
+      },
+      cs16: {
+        title: "Counter-Strike 1.6 Hosting",
+        subtitle: "Classic FPS Servers",
+        description: "Stable CS 1.6 hosting with fast setup, low ping, and full plugin support.",
+      },
       minecraftBedrock: {
         title: "Minecraft Bedrock Servers",
         subtitle: "Bedrock Edition",
@@ -1424,6 +1438,10 @@ export const translations = {
       assettoDesc: "Servidores de simulación de carreras",
       csgo: "CS2 / CS:GO",
       csgoDesc: "Hosting de servidores Counter-Strike",
+      cssource: "Counter-Strike: Source",
+      cssourceDesc: "Hosting de servidores Counter-Strike: Source",
+      cs16: "Counter-Strike 1.6",
+      cs16Desc: "Hosting clasico de servidores CS 1.6",
     },
     domains: {
       register: "Registrar Dominio",
@@ -2141,6 +2159,16 @@ export const translations = {
         subtitle: "Servidores FPS Competitivos",
         description: "Alojamiento premium de servidores CS2 con tick rate 128, baja latencia y soporte completo de plugins.",
       },
+      cssource: {
+        title: "Hosting Counter-Strike: Source",
+        subtitle: "Servidores FPS clasicos",
+        description: "Hosting premium de servidores CS: Source con baja latencia, soporte SourceMod e instalacion instantanea.",
+      },
+      cs16: {
+        title: "Hosting Counter-Strike 1.6",
+        subtitle: "Servidores FPS clasicos",
+        description: "Hosting estable de CS 1.6 con configuracion rapida, baja latencia y soporte completo de plugins.",
+      },
       minecraftBedrock: {
         title: "Servidores Minecraft Bedrock",
         subtitle: "Edicion Bedrock",
@@ -2758,6 +2786,10 @@ export const translations = {
       assettoDesc: "Rennsimulation Server",
       csgo: "CS2 / CS:GO",
       csgoDesc: "Counter-Strike Server Hosting",
+      cssource: "Counter-Strike: Source",
+      cssourceDesc: "Counter-Strike: Source Server Hosting",
+      cs16: "Counter-Strike 1.6",
+      cs16Desc: "Klassisches CS 1.6 Server Hosting",
       palworld: "Palworld",
       palworldDesc: "Palworld dedizierte Server",
     },
@@ -3434,6 +3466,16 @@ export const translations = {
         subtitle: "Wettbewerbsfähige FPS-Server",
         description: "Premium CS2-Server-Hosting mit 128-Tick-Rate, niedriger Latenz und vollständiger Plugin-Unterstützung.",
       },
+      cssource: {
+        title: "Counter-Strike: Source Hosting",
+        subtitle: "Klassische FPS-Server",
+        description: "Zuverlässiges CS: Source Hosting mit niedriger Latenz, SourceMod-Support und sofortiger Einrichtung.",
+      },
+      cs16: {
+        title: "Counter-Strike 1.6 Hosting",
+        subtitle: "Klassische FPS-Server",
+        description: "Stabiles CS 1.6 Hosting mit schnellem Setup, niedriger Latenz und vollem Plugin-Support.",
+      },
       palworld: {
         title: "Palworld Server Hosting",
         subtitle: "Survival-Multiplayer-Server",
@@ -4032,6 +4074,10 @@ export const translations = {
       assettoDesc: "Racing simulation servers",
       csgo: "CS2 / CS:GO",
       csgoDesc: "Counter-Strike server hosting",
+      cssource: "Counter-Strike: Source",
+      cssourceDesc: "Counter-Strike: Source server hosting",
+      cs16: "Counter-Strike 1.6",
+      cs16Desc: "Klassieke CS 1.6 server hosting",
       palworld: "Palworld",
       palworldDesc: "Palworld dedicated servers",
     },
@@ -4736,6 +4782,16 @@ export const translations = {
         title: "Counter-Strike 2 Hosting",
         subtitle: "Competitieve FPS-servers",
         description: "Premium CS2-server-hosting met 128-tick-rate, lage latentie en volledige plugin-ondersteuning.",
+      },
+      cssource: {
+        title: "Counter-Strike: Source Hosting",
+        subtitle: "Klassieke FPS-servers",
+        description: "Betrouwbare CS: Source hosting met lage latentie, SourceMod-ondersteuning en directe installatie.",
+      },
+      cs16: {
+        title: "Counter-Strike 1.6 Hosting",
+        subtitle: "Klassieke FPS-servers",
+        description: "Stabiele CS 1.6 hosting met snelle setup, lage ping en volledige plugin-ondersteuning.",
       },
       palworld: {
         title: "Palworld-server-hosting",
