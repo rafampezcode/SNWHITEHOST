@@ -44,7 +44,7 @@ export function CookieBanner() {
           <Cookie className="h-6 w-6 text-primary shrink-0" />
           <p className="text-sm text-muted-foreground">
             {t.cookieBanner.message}{" "}
-            <a href="/privacy" className="text-primary hover:underline">
+            <a href="/privacy-policy" className="text-primary hover:underline">
               {t.cookieBanner.privacy}
             </a>
             .
