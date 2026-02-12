@@ -10,12 +10,13 @@ export default function RustPage() {
   const { t } = useLanguage()
 
   // Precios reales de SN White Hosting - Rust
+  const rustPlans = t.products.rust.plans as any
   const plans: ProductPlan[] = [
     {
-      name: "Rust - Plan Chatarra - US",
+      name: rustPlans.scrap,
       description: "Mensual",
-      priceEUR: 14.00,
-      priceUSD: 16.4,
+      priceEUR: 8.00,
+      priceUSD: 9.50,
       features: [
         "6GB DDR5",
         "AMD EPYC™ 9645",
@@ -33,10 +34,10 @@ export default function RustPage() {
       href: `${CLIENT_URL}/index.php?rp=/store/rust`,
     },
     {
-      name: "Rust - Plan Hoja de metal - US",
+      name: rustPlans.sheetMetal,
       description: "Mensual",
-      priceEUR: 18.80,
-      priceUSD: 22.0,
+      priceEUR: 12.00,
+      priceUSD: 14.50,
       features: [
         "8GB DDR5",
         "AMD EPYC™ 9645",
@@ -55,10 +56,10 @@ export default function RustPage() {
       popular: true,
     },
     {
-      name: "Rust - Plan Chapa Metálica - US",
+      name: rustPlans.metalFragments,
       description: "Mensual",
-      priceEUR: 24.00,
-      priceUSD: 28.0,
+      priceEUR: 18.00,
+      priceUSD: 21.50,
       features: [
         "10GB DDR5",
         "AMD EPYC™ 9645",
@@ -76,10 +77,10 @@ export default function RustPage() {
       href: `${CLIENT_URL}/index.php?rp=/store/rust`,
     },
     {
-      name: "Rust - Plan Engranaje - US",
+      name: rustPlans.gears,
       description: "Mensual",
-      priceEUR: 29.00,
-      priceUSD: 34.0,
+      priceEUR: 25.00,
+      priceUSD: 29.75,
       features: [
         "12GB DDR5",
         "AMD EPYC™ 9645",
@@ -97,7 +98,7 @@ export default function RustPage() {
       href: `${CLIENT_URL}/index.php?rp=/store/rust`,
     },
     {
-      name: "Rust - Plan Fusible Eléctrico - US",
+      name: rustPlans.electricFuse,
       description: "Mensual",
       priceEUR: 35.00,
       priceUSD: 40.75,

@@ -635,6 +635,13 @@ export const translations = {
         title: "Rust Servers",
         subtitle: "Game Hosting",
         description: "Dedicated Rust game hosting with high performance, low latency and anti-cheat protection.",
+        plans: {
+          scrap: "Rust - Scrap Plan - US",
+          sheetMetal: "Rust - Sheet Metal Plan - US",
+          metalFragments: "Rust - Metal Fragments Plan - US",
+          gears: "Rust - Gears Plan - US",
+          electricFuse: "Rust - Electric Fuse Plan - US",
+        },
       },
       email: {
         title: "Corporate Email",
@@ -830,6 +837,14 @@ export const translations = {
         title: "Terraria Servers",
         subtitle: "Game Hosting",
         description: "High-performance Terraria server hosting with mod support and 24/7 expert support.",
+        plans: {
+          free: "T - Free Server",
+          rareLoot: "T - Rare Loot Plan",
+          treasure: "T - The Treasure Plan",
+          pureMagic: "T - Pure Magic Plan",
+          magicThread: "T - Magic Thread Plan",
+          luckyClover: "T - Lucky Clover Plan",
+        },
         features: {
           modSupportTitle: "Mod Support",
           modSupportDesc: "Full support for Terraria mods and plugins",
@@ -1984,6 +1999,13 @@ export const translations = {
         title: "Servidores Rust",
         subtitle: "Alojamiento de Juegos",
         description: "Alojamiento dedicado para juegos Rust con alto rendimiento, baja latencia y proteccion anti-trampa.",
+        plans: {
+          scrap: "Rust - Plan Chatarra - US",
+          sheetMetal: "Rust - Plan Hoja de metal - US",
+          metalFragments: "Rust - Plan Chapa Metálica - US",
+          gears: "Rust - Plan Engranaje - US",
+          electricFuse: "Rust - Plan Fusible Eléctrico - US",
+        },
       },
       email: {
         title: "Correo Corporativo",
@@ -2179,6 +2201,14 @@ export const translations = {
         title: "Hosting Terraria",
         subtitle: "Servidores 2D",
         description: "Hosting de servidor Terraria de alto rendimiento con soporte de mods y soporte experto 24/7.",
+        plans: {
+          free: "T - Servidor Gratis",
+          rareLoot: "T - Plan Botín Raro",
+          treasure: "T - Plan El Tesoro",
+          pureMagic: "T - Plan Magia pura",
+          magicThread: "T - Hilo Mágico",
+          luckyClover: "T - Trébol de la suerte",
+        },
         features: {
           modSupportTitle: "Soporte de Mods",
           modSupportDesc: "Soporte completo para mods y plugins de Terraria",
@@ -3335,6 +3365,13 @@ export const translations = {
         title: "Rust Server",
         subtitle: "Spiel-Hosting",
         description: "Dediziertes Rust-Spiel-Hosting mit hoher Leistung, niedriger Latenz und Anti-Cheat-Schutz.",
+        plans: {
+          scrap: "Rust - Schrott Plan - US",
+          sheetMetal: "Rust - Blech Plan - US",
+          metalFragments: "Rust - Metallplatte Plan - US",
+          gears: "Rust - Zahnräder Plan - US",
+          electricFuse: "Rust - Elektrosicherung Plan - US",
+        },
       },
       ark: {
         title: "ARK Server",
@@ -3492,6 +3529,14 @@ export const translations = {
         title: "Terraria Hosting",
         subtitle: "2D-Server",
         description: "Hochleistungs-Terraria-Server-Hosting mit Mod-Unterstützung und professionellem 24/7-Support.",
+        plans: {
+          free: "T - Kostenloser Server",
+          rareLoot: "T - Seltene Beute Plan",
+          treasure: "T - Schatzkammer Plan",
+          pureMagic: "T - Reine Magie Plan",
+          magicThread: "T - Magischer Faden Plan",
+          luckyClover: "T - Glücksklee Plan",
+        },
         features: {
           modSupportTitle: "Mod-Unterstützung",
           modSupportDesc: "Vollständige Unterstützung für Terraria-Mods und Plugins",
@@ -4653,6 +4698,13 @@ export const translations = {
         title: "Rust-servers",
         subtitle: "Gamehosting",
         description: "Dedicated Rust-gamehosting met hoge prestaties, lage latentie en anti-cheat-bescherming.",
+        plans: {
+          scrap: "Rust - Schroot Plan - US",
+          sheetMetal: "Rust - Plaatstaal Plan - US",
+          metalFragments: "Rust - Metaalfragmenten Plan - US",
+          gears: "Rust - Tandwielen Plan - US",
+          electricFuse: "Rust - Elektrische Zekering Plan - US",
+        },
       },
       ark: {
         title: "ARK-servers",
@@ -4810,6 +4862,14 @@ export const translations = {
         title: "Terraria Hosting",
         subtitle: "2D Servers",
         description: "Krachtige Terraria-server hosting met mod-ondersteuning en professionele 24/7-ondersteuning.",
+        plans: {
+          free: "T - Gratis Server",
+          rareLoot: "T - Zeldzame Buit Plan",
+          treasure: "T - Schatkamer Plan",
+          pureMagic: "T - Zuivere Magie Plan",
+          magicThread: "T - Magische Draad Plan",
+          luckyClover: "T - Geluksklaver Plan",
+        },
         features: {
           modSupportTitle: "Mod-ondersteuning",
           modSupportDesc: "Volledige ondersteuning voor Terraria-mods en plugins",

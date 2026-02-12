@@ -8,10 +8,11 @@ const CLIENT_URL = "https://clients.snwhitehosting.com"
 
 export default function TerrariaPage() {
   const { t } = useLanguage()
+  const terrariaPlans = t.products.terraria?.plans as any
 
   const plans: ProductPlan[] = [
     {
-      name: "T - Servidor Gratis",
+      name: terrariaPlans?.free || "T - Servidor Gratis",
       description: "Free Trial",
       priceEUR: 0,
       priceUSD: 0,
@@ -32,7 +33,7 @@ export default function TerrariaPage() {
       href: "https://clients.snwhitehosting.com/cart.php?a=checkout",
     },
     {
-      name: "T - Plan Botín Raro",
+      name: terrariaPlans?.rareLoot || "T - Plan Botín Raro",
       description: t.products.terraria?.planDescriptions?.entry || "Entry",
       priceEUR: 1.75,
       priceUSD: 3.00,
@@ -51,7 +52,7 @@ export default function TerrariaPage() {
       href: "https://clients.snwhitehosting.com/cart.php?a=confproduct&i=0",
     },
     {
-      name: "T - Plan El Tesoro",
+      name: terrariaPlans?.treasure || "T - Plan El Tesoro",
       description: t.products.terraria?.planDescriptions?.recommended || "Recommended",
       priceEUR: 3.45,
       priceUSD: 4.00,
@@ -71,7 +72,7 @@ export default function TerrariaPage() {
       popular: true,
     },
     {
-      name: "T - Plan Magia pura",
+      name: terrariaPlans?.pureMagic || "T - Plan Magia pura",
       description: t.products.terraria?.planDescriptions?.large || "For large groups",
       priceEUR: 5.25,
       priceUSD: 6.00,
@@ -88,6 +89,44 @@ export default function TerrariaPage() {
         "Soporte 24/7",
       ],
       href: "https://clients.snwhitehosting.com/cart.php?a=confproduct&i=2",
+    },
+    {
+      name: terrariaPlans?.magicThread || "T - Hilo Mágico",
+      description: t.products.terraria?.planDescriptions?.large || "For communities",
+      priceEUR: 8.00,
+      priceUSD: 9.50,
+      features: [
+        "6GB RAM",
+        "3 Núcleos",
+        "32GB Almacenamiento",
+        "Slots Ilimitados",
+        "Base de datos",
+        "FTP",
+        "Mods",
+        "Plugins",
+        "Pterodactyl Panel",
+        "Soporte 24/7",
+      ],
+      href: "https://clients.snwhitehosting.com/cart.php?a=confproduct&i=3",
+    },
+    {
+      name: terrariaPlans?.luckyClover || "T - Trébol de la suerte",
+      description: t.products.terraria?.planDescriptions?.large || "For large communities",
+      priceEUR: 12.00,
+      priceUSD: 14.30,
+      features: [
+        "8GB RAM",
+        "3 Núcleos",
+        "64GB Almacenamiento",
+        "Slots Ilimitados",
+        "Base de datos",
+        "FTP",
+        "Mods",
+        "Plugins",
+        "Pterodactyl Panel",
+        "Soporte 24/7",
+      ],
+      href: "https://clients.snwhitehosting.com/cart.php?a=confproduct&i=4",
     },
   ]
 
