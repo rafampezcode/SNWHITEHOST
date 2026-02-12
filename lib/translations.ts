@@ -1096,6 +1096,7 @@ export const translations = {
       dsaReport: "DSA Transparency Report",
       dsaReportTitle: "DSA Transparency Report",
       dsaReportSubtitle: "Digital Services Act transparency information",
+      contactUs: "Contact Us",
       backToHome: "Back to Home",
     },
     // Affiliate Program
@@ -2444,6 +2445,7 @@ export const translations = {
       dsaReport: "Informe de Transparencia DSA",
       dsaReportTitle: "Transparencia DSA",
       dsaReportSubtitle: "Información de transparencia de la Ley de Servicios Digitales",
+      contactUs: "Contáctenos",
       backToHome: "Volver al Inicio",
     },
     // Programa de Afiliados
@@ -3732,6 +3734,7 @@ export const translations = {
       dsaReport: "DSA-Transparenzbericht",
       dsaReportTitle: "DSA-Transparenzbericht",
       dsaReportSubtitle: "Digital Services Act Transparenzinformationen",
+      contactUs: "Kontaktieren Sie uns",
       backToHome: "Zurück zur Startseite",
     },
     // Partnerprogramm
@@ -5049,6 +5052,7 @@ export const translations = {
       dsaReport: "DSA Transparantierapport",
       dsaReportTitle: "DSA Transparantie",
       dsaReportSubtitle: "Digital Services Act transparantie-informatie",
+      contactUs: "Neem contact op",
       backToHome: "Terug naar Home",
     },
     // Affiliate Programma

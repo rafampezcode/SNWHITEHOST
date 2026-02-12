@@ -30,8 +30,7 @@ export default function CancellationAndRefundPolicyPage() {
           </div>
           <div className="space-y-3">
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">{t.legal.cancellationRefundTitle.split(' ').slice(0, 2).join(' ')}</span>
-              <span className="mx-2 text-foreground">{t.legal.cancellationRefundTitle.split(' ').slice(2).join(' ')}</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">{t.legal.cancellationRefundTitle}</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {t.legal.cancellationRefundSubtitle}
@@ -163,12 +162,12 @@ export default function CancellationAndRefundPolicyPage() {
                   SN WHITE HOSTING reserves the right to modify this policy. Changes will be announced in the News section of the Client Panel 15 days in advance.
                 </p>
                 <p className="text-sm text-muted-foreground mt-4">
-                  <strong>Effective Date:</strong> February 21, 2026
+                  <strong>{t.legal.effectiveDateLabel}:</strong> February 21, 2026
                 </p>
               </section>
 
               <div className="mt-16 p-8 rounded-xl border-2 border-primary/20 bg-gradient-to-br from-card via-card to-primary/5">
-                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">Contact Us</h3>
+                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">{t.legal.contactUs}</h3>
                 <div className="space-y-4 text-base">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />

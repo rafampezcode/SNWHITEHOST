@@ -30,8 +30,7 @@ export default function TLDRegistrationPolicyPage() {
           </div>
           <div className="space-y-3">
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">TLD Registration</span>
-              <span className="mx-2 text-foreground">Policy</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">{t.legal.tldRegistrationTitle}</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {t.legal.tldRegistrationSubtitle}
@@ -156,12 +155,12 @@ export default function TLDRegistrationPolicyPage() {
                 <h2>9. Policy Amendments</h2>
                 <p>We reserve the right to amend this policy at any time. Any changes will be posted on snwhitehosting.com at least 15 days in advance of their effective date.</p>
                 <p className="text-sm text-muted-foreground mt-4">
-                  <strong>Effective Date:</strong> 01/08/2025
+                  <strong>{t.legal.effectiveDateLabel}:</strong> 01/08/2025
                 </p>
               </section>
 
               <div className="mt-12 p-6 rounded-lg border bg-card">
-                <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+                <h3 className="text-lg font-semibold mb-4">{t.legal.contactUs}</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-primary mt-0.5" />

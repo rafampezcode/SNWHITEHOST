@@ -32,8 +32,7 @@ export default function PrivacyPolicyPage() {
           </div>
           <div className="space-y-3">
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">{t.legal.privacyPolicyTitle.split(' ')[0]}</span>
-              <span className="mx-2 text-foreground">{t.legal.privacyPolicyTitle.split(' ').slice(1).join(' ')}</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">{t.legal.privacyPolicyTitle}</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {t.legal.privacyPolicySubtitle}
@@ -248,7 +247,7 @@ export default function PrivacyPolicyPage() {
               </section>
 
               <div className="mt-16 p-8 rounded-xl border-2 border-primary/20 bg-gradient-to-br from-card via-card to-primary/5">
-                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">Contact Us</h3>
+                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">{t.legal.contactUs}</h3>
                 <div className="space-y-4 text-base">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />

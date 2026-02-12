@@ -30,8 +30,7 @@ export default function TrademarkAndCopyrightPolicyPage() {
           </div>
           <div className="space-y-3">
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">{t.legal.trademarkCopyrightTitle.split(' ').slice(0, 2).join(' ')}</span>
-              <span className="mx-2 text-foreground">{t.legal.trademarkCopyrightTitle.split(' ').slice(2).join(' ')}</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">{t.legal.trademarkCopyrightTitle}</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {t.legal.trademarkCopyrightSubtitle}
@@ -215,12 +214,12 @@ export default function TrademarkAndCopyrightPolicyPage() {
                   This policy may be amended at any time. Changes will be posted on snwhitehosting.com at least 15 days in advance.
                 </p>
                 <p className="text-sm text-muted-foreground mt-4">
-                  <strong>Effective Date:</strong> 01/08/2025
+                  <strong>{t.legal.effectiveDateLabel}:</strong> 01/08/2025
                 </p>
               </section>
 
               <div className="mt-12 p-6 rounded-lg border bg-card">
-                <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+                <h3 className="text-lg font-semibold mb-4">{t.legal.contactUs}</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-primary mt-0.5" />

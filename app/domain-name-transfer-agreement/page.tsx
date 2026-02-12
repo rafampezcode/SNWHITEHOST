@@ -30,8 +30,7 @@ export default function DomainNameTransferAgreementPage() {
           </div>
           <div className="space-y-3">
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">Domain Name</span>
-              <span className="mx-2 text-foreground">Transfer Agreement</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">{t.legal.domainTransferTitle}</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {t.legal.domainTransferSubtitle}
@@ -167,12 +166,12 @@ export default function DomainNameTransferAgreementPage() {
                   We may amend this agreement at any time. Changes will be posted on our official website and will take effect 15 days after publication.
                 </p>
                 <p className="text-sm text-muted-foreground mt-4">
-                  <strong>Effective Date:</strong> 01/08/2025
+                  <strong>{t.legal.effectiveDateLabel}:</strong> 01/08/2025
                 </p>
               </section>
 
               <div className="mt-12 p-6 rounded-lg border bg-card">
-                <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+                <h3 className="text-lg font-semibold mb-4">{t.legal.contactUs}</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-primary mt-0.5" />

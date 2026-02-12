@@ -30,8 +30,7 @@ export default function ReferralProgramAgreementPage() {
           </div>
           <div className="space-y-3">
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">{t.affiliateAgreement.pageTitle.split(' ')[0]}</span>
-              <span className="mx-2 text-foreground">{t.affiliateAgreement.pageTitle.split(' ').slice(1).join(' ')}</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">{t.affiliateAgreement.pageTitle}</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {t.affiliateAgreement.pageSubtitle}
