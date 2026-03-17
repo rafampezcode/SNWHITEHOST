@@ -1,209 +1,66 @@
 "use client"
 
-import { AlertCircle, MapPin, Mail, Home } from "lucide-react"
-import { LegalSidebar } from "@/components/legal-sidebar"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
+import { AlertCircle } from "lucide-react"
+import { LegalDocumentPage, type LocalizedLegalContent } from "@/components/legal-document-page"
 import { useLanguage } from "@/components/language-provider"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+
+const localizedContent: LocalizedLegalContent = {
+  en: {
+    effectiveDate: "February 21, 2026",
+    sections: [
+      { title: "1. Purpose", blocks: [{ type: "paragraph", text: "This Acceptable Use Policy defines the uses of our infrastructure that are permitted and prohibited so we can maintain a secure, stable, and lawful hosting environment for all customers." }] },
+      { title: "2. General Principles", blocks: [{ type: "paragraph", text: "All services must be used lawfully, responsibly, and with respect for the rights, privacy, and security of third parties." }, { type: "list", items: ["Illegal conduct is prohibited.", "Any activity that harms platform stability or performance is prohibited.", "Any activity that compromises the privacy, systems, or rights of others is prohibited."] }] },
+      { title: "3. Usage Restrictions", blocks: [{ type: "paragraph", text: "Shared hosting, WordPress hosting, VPS, and dedicated services may be subject to reasonable technical limits and security controls." }, { type: "list", items: ["Excessive disk, inode, CPU, or abusive consumption may require limitation, suspension, or migration to a more suitable plan.", "Streaming, large-scale automation, denial-of-service attacks, unauthorized scanning, and similar high-risk activities are prohibited without prior written authorization.", "Hosting services may not be used primarily as external backup repositories unrelated to the hosted service itself."] }] },
+      { title: "4. Prohibited Content", blocks: [{ type: "paragraph", text: "Customers may not host, publish, distribute, or transmit content that is unlawful or that violates third-party rights." }, { type: "list", items: ["Copyright- or trademark-infringing material.", "Fraudulent, deceptive, defamatory, or illegal content.", "Pornographic or sexually explicit material.", "Malware, trojans, phishing kits, or code intended to damage or interfere with systems."] }] },
+      { title: "5. Email and Network Abuse", blocks: [{ type: "list", items: ["Spam, unsolicited bulk messaging, phishing, and deceptive commercial communications are prohibited.", "Bots or automation that generate abusive traffic or attacks against third-party services are prohibited.", "Scripts or tools intended to attack, scan, disrupt, or gain unauthorized access to third-party systems are prohibited."] }] },
+      { title: "6. Abuse and DMCA Procedure", blocks: [{ type: "paragraph", text: "We process abuse reports and valid DMCA notices in accordance with applicable law and our internal abuse handling procedures." }, { type: "list", items: ["Reported content may be suspended or removed without prior notice when necessary.", "Affected customers will be informed whenever reasonably possible.", "Customers may submit a lawful counter-notice where applicable."] }] },
+      { title: "7. Consequences of Non-Compliance", blocks: [{ type: "list", items: ["Temporary suspension.", "Permanent termination.", "Billing for exceptional costs caused by abuse.", "Legal action or cooperation with competent authorities when required."] }] },
+      { title: "8. Policy Updates", blocks: [{ type: "paragraph", text: "SN WHITE HOSTING may amend this policy at any time. Unless immediate changes are required for legal or security reasons, customers will be notified at least 15 days before the changes take effect." }] },
+    ],
+  },
+  es: {
+    effectiveDate: "21 de febrero de 2026",
+    sections: [
+      { title: "1. Finalidad", blocks: [{ type: "paragraph", text: "Esta Política de Uso Aceptable define los usos permitidos y prohibidos de nuestra infraestructura para mantener un entorno de hosting seguro, estable y conforme a la ley para todos los clientes." }] },
+      { title: "2. Principios Generales", blocks: [{ type: "paragraph", text: "Todos los servicios deben utilizarse de forma lícita, responsable y respetando los derechos, la privacidad y la seguridad de terceros." }, { type: "list", items: ["Queda prohibida toda conducta ilegal.", "Queda prohibida cualquier actividad que perjudique la estabilidad o el rendimiento de la plataforma.", "Queda prohibida cualquier actividad que comprometa la privacidad, los sistemas o los derechos de otras personas."] }] },
+      { title: "3. Restricciones de Uso", blocks: [{ type: "paragraph", text: "El hosting compartido, WordPress, VPS y los servicios dedicados pueden estar sujetos a límites técnicos razonables y controles de seguridad." }, { type: "list", items: ["El consumo excesivo de disco, inodos, CPU o recursos abusivos puede requerir limitación, suspensión o migración a un plan más adecuado.", "El streaming, la automatización a gran escala, los ataques de denegación de servicio, los escaneos no autorizados y actividades similares de alto riesgo están prohibidos sin autorización escrita previa.", "Los servicios de hosting no pueden usarse principalmente como repositorios externos de copias de seguridad ajenos al propio servicio alojado."] }] },
+      { title: "4. Contenido Prohibido", blocks: [{ type: "paragraph", text: "Los clientes no pueden alojar, publicar, distribuir ni transmitir contenido ilícito o que vulnere derechos de terceros." }, { type: "list", items: ["Material que infrinja derechos de autor o marcas.", "Contenido fraudulento, engañoso, difamatorio o ilegal.", "Material pornográfico o sexualmente explícito.", "Malware, troyanos, kits de phishing o código destinado a dañar o interferir con sistemas."] }] },
+      { title: "5. Abuso de Correo y Red", blocks: [{ type: "list", items: ["Se prohíben el spam, los envíos masivos no solicitados, el phishing y las comunicaciones comerciales engañosas.", "Se prohíben bots o automatizaciones que generen tráfico abusivo o ataques contra servicios de terceros.", "Se prohíben scripts o herramientas destinados a atacar, escanear, interrumpir o acceder sin autorización a sistemas de terceros."] }] },
+      { title: "6. Procedimiento de Abuso y DMCA", blocks: [{ type: "paragraph", text: "Tramitamos reportes de abuso y avisos DMCA válidos conforme a la legislación aplicable y a nuestros procedimientos internos." }, { type: "list", items: ["El contenido reportado podrá ser suspendido o retirado sin previo aviso cuando sea necesario.", "Los clientes afectados serán informados siempre que sea razonablemente posible.", "Cuando proceda, los clientes podrán presentar una contra-notificación válida."] }] },
+      { title: "7. Consecuencias del Incumplimiento", blocks: [{ type: "list", items: ["Suspensión temporal.", "Terminación permanente.", "Facturación de costes extraordinarios causados por el abuso.", "Acciones legales o cooperación con autoridades competentes cuando proceda."] }] },
+      { title: "8. Actualizaciones de la Política", blocks: [{ type: "paragraph", text: "SN WHITE HOSTING puede modificar esta política en cualquier momento. Salvo que se requieran cambios inmediatos por motivos legales o de seguridad, los clientes serán notificados con al menos 15 días de antelación antes de su entrada en vigor." }] },
+    ],
+  },
+  de: {
+    effectiveDate: "21. Februar 2026",
+    sections: [
+      { title: "1. Zweck", blocks: [{ type: "paragraph", text: "Diese Richtlinie zur zulässigen Nutzung definiert erlaubte und verbotene Nutzungen unserer Infrastruktur, um für alle Kunden eine sichere, stabile und rechtmäßige Hosting-Umgebung zu gewährleisten." }] },
+      { title: "2. Allgemeine Grundsätze", blocks: [{ type: "paragraph", text: "Alle Dienste müssen rechtmäßig, verantwortungsvoll und unter Achtung der Rechte, Privatsphäre und Sicherheit Dritter genutzt werden." }, { type: "list", items: ["Illegales Verhalten ist untersagt.", "Jede Aktivität, die Stabilität oder Leistung der Plattform beeinträchtigt, ist untersagt.", "Jede Aktivität, die Privatsphäre, Systeme oder Rechte anderer beeinträchtigt, ist untersagt."] }] },
+      { title: "3. Nutzungsbeschränkungen", blocks: [{ type: "paragraph", text: "Shared Hosting, WordPress-Hosting, VPS- und Dedicated-Dienste können angemessenen technischen Grenzen und Sicherheitskontrollen unterliegen." }, { type: "list", items: ["Übermäßiger Verbrauch von Speicherplatz, Inodes, CPU oder missbräuchlichen Ressourcen kann zu Beschränkung, Sperrung oder Migration auf einen geeigneteren Tarif führen.", "Streaming, großflächige Automatisierung, Denial-of-Service-Angriffe, unautorisierte Scans und ähnliche Hochrisikoaktivitäten sind ohne vorherige schriftliche Genehmigung untersagt.", "Hosting-Dienste dürfen nicht überwiegend als externe Backup-Ablage verwendet werden, die nichts mit dem gehosteten Dienst selbst zu tun hat."] }] },
+      { title: "4. Verbotene Inhalte", blocks: [{ type: "paragraph", text: "Kunden dürfen keine rechtswidrigen Inhalte oder Inhalte hosten, veröffentlichen, verbreiten oder übertragen, die Rechte Dritter verletzen." }, { type: "list", items: ["Urheber- oder markenrechtsverletzendes Material.", "Betrügerische, irreführende, verleumderische oder illegale Inhalte.", "Pornografisches oder sexuell explizites Material.", "Malware, Trojaner, Phishing-Kits oder Code, der Systeme schädigen oder stören soll."] }] },
+      { title: "5. E-Mail- und Netzwerkmissbrauch", blocks: [{ type: "list", items: ["Spam, unaufgeforderte Massenkommunikation, Phishing und irreführende kommerzielle Kommunikation sind untersagt.", "Bots oder Automatisierungen, die missbräuchlichen Datenverkehr oder Angriffe gegen Dienste Dritter erzeugen, sind untersagt.", "Skripte oder Werkzeuge zum Angriff, Scannen, Stören oder unbefugten Zugriff auf Systeme Dritter sind untersagt."] }] },
+      { title: "6. Abuse- und DMCA-Verfahren", blocks: [{ type: "paragraph", text: "Wir bearbeiten Abuse-Meldungen und gültige DMCA-Mitteilungen gemäß anwendbarem Recht und unseren internen Verfahren." }, { type: "list", items: ["Gemeldete Inhalte können bei Bedarf ohne vorherige Ankündigung gesperrt oder entfernt werden.", "Betroffene Kunden werden informiert, soweit dies vernünftigerweise möglich ist.", "Kunden können, sofern rechtlich vorgesehen, eine Gegendarstellung einreichen."] }] },
+      { title: "7. Folgen bei Verstößen", blocks: [{ type: "list", items: ["Vorübergehende Sperrung.", "Dauerhafte Kündigung.", "Berechnung außergewöhnlicher Kosten, die durch Missbrauch entstanden sind.", "Rechtliche Schritte oder Zusammenarbeit mit zuständigen Behörden, wenn erforderlich."] }] },
+      { title: "8. Richtlinienaktualisierungen", blocks: [{ type: "paragraph", text: "SN WHITE HOSTING kann diese Richtlinie jederzeit ändern. Sofern keine sofortigen Änderungen aus rechtlichen oder Sicherheitsgründen erforderlich sind, werden Kunden mindestens 15 Tage vor Inkrafttreten informiert." }] },
+    ],
+  },
+  nl: {
+    effectiveDate: "21 februari 2026",
+    sections: [
+      { title: "1. Doel", blocks: [{ type: "paragraph", text: "Dit beleid voor aanvaardbaar gebruik definieert toegestane en verboden toepassingen van onze infrastructuur om voor alle klanten een veilige, stabiele en wettige hostingomgeving te behouden." }] },
+      { title: "2. Algemene Beginselen", blocks: [{ type: "paragraph", text: "Alle diensten moeten wettig, verantwoord en met respect voor de rechten, privacy en veiligheid van derden worden gebruikt." }, { type: "list", items: ["Illegaal gedrag is verboden.", "Elke activiteit die de stabiliteit of prestaties van het platform schaadt, is verboden.", "Elke activiteit die de privacy, systemen of rechten van anderen in gevaar brengt, is verboden."] }] },
+      { title: "3. Gebruiksbeperkingen", blocks: [{ type: "paragraph", text: "Shared hosting, WordPress-hosting, VPS- en dedicated-diensten kunnen onderworpen zijn aan redelijke technische limieten en beveiligingscontroles." }, { type: "list", items: ["Overmatig gebruik van schijfruimte, inodes, CPU of andere misbruikende resources kan leiden tot beperking, opschorting of migratie naar een geschikter pakket.", "Streaming, grootschalige automatisering, denial-of-service-aanvallen, ongeautoriseerde scans en vergelijkbare activiteiten met hoog risico zijn verboden zonder voorafgaande schriftelijke toestemming.", "Hostingdiensten mogen niet hoofdzakelijk worden gebruikt als externe back-upopslag die geen verband houdt met de gehoste dienst zelf."] }] },
+      { title: "4. Verboden Inhoud", blocks: [{ type: "paragraph", text: "Klanten mogen geen onwettige inhoud hosten, publiceren, verspreiden of verzenden en ook geen inhoud die rechten van derden schendt." }, { type: "list", items: ["Materiaal dat inbreuk maakt op auteursrechten of handelsmerken.", "Frauduleuze, misleidende, lasterlijke of illegale inhoud.", "Pornografisch of seksueel expliciet materiaal.", "Malware, trojans, phishingkits of code bedoeld om systemen te beschadigen of te verstoren."] }] },
+      { title: "5. E-mail- en Netwerkmisbruik", blocks: [{ type: "list", items: ["Spam, ongevraagde bulkberichten, phishing en misleidende commerciële communicatie zijn verboden.", "Bots of automatisering die misbruikend verkeer of aanvallen op diensten van derden veroorzaken, zijn verboden.", "Scripts of tools die bedoeld zijn om systemen van derden aan te vallen, te scannen, te verstoren of ongeautoriseerd te benaderen, zijn verboden."] }] },
+      { title: "6. Abuse- en DMCA-procedure", blocks: [{ type: "paragraph", text: "Wij behandelen abuse-meldingen en geldige DMCA-kennisgevingen in overeenstemming met de toepasselijke wetgeving en onze interne procedures." }, { type: "list", items: ["Gemelde inhoud kan zonder voorafgaande kennisgeving worden opgeschort of verwijderd wanneer dat nodig is.", "Getroffen klanten worden waar redelijk mogelijk geïnformeerd.", "Klanten kunnen, indien van toepassing, een rechtsgeldige tegenmelding indienen."] }] },
+      { title: "7. Gevolgen van Niet-naleving", blocks: [{ type: "list", items: ["Tijdelijke opschorting.", "Permanente beëindiging.", "Facturering van buitengewone kosten veroorzaakt door misbruik.", "Juridische stappen of samenwerking met bevoegde autoriteiten indien vereist."] }] },
+      { title: "8. Beleidsupdates", blocks: [{ type: "paragraph", text: "SN WHITE HOSTING kan dit beleid op elk moment wijzigen. Tenzij onmiddellijke wijzigingen nodig zijn om juridische of veiligheidsredenen, worden klanten ten minste 15 dagen voor de ingangsdatum geïnformeerd." }] },
+    ],
+  },
+}
 
 export default function AcceptableUsePolicyPage() {
   const { t } = useLanguage()
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-primary/5 to-background">
-      <Header />
-      <div className="container max-w-7xl mx-auto py-16 md:py-24 px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 flex items-center gap-2">
-          <Link href="/">
-            <Button variant="outline" size="sm" className="gap-2">
-              <Home className="h-4 w-4" />
-              {t.legal.backToHome}
-            </Button>
-          </Link>
-        </div>
-
-        <div className="mb-16 text-center space-y-6">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 border border-primary/20">
-            <AlertCircle className="h-10 w-10 text-primary" />
-          </div>
-          <div className="space-y-3">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">{t.legal.aupTitle}</span>
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              {t.legal.aupSubtitle}
-            </p>
-          </div>
-        </div>
-
-        <div className="grid lg:grid-cols-[280px_1fr] gap-12">
-          <LegalSidebar currentPath="/acceptable-use-policy" />
-
-          <div className="lg:col-span-1">
-            <div className="prose prose-lg prose-neutral dark:prose-invert max-w-none">
-              <style jsx global>{`
-                .prose h2 {
-                  font-size: 2rem;
-                  font-weight: 700;
-                  margin-top: 3rem;
-                  margin-bottom: 1.5rem;
-                  color: hsl(var(--foreground));
-                  }
-                .prose h3 {
-                  font-size: 1.5rem;
-                  font-weight: 600;
-                  margin-top: 2rem;
-                  margin-bottom: 1rem;
-                  color: hsl(var(--primary));
-                }
-                .prose p {
-                  margin-bottom: 1.25rem;
-                  line-height: 1.8;
-                  color: hsl(var(--foreground));
-                }
-                .prose ul {
-                  margin-top: 1rem;
-                  margin-bottom: 1.5rem;
-                  padding-left: 1.5rem;
-                }
-                .prose li {
-                  margin-bottom: 0.75rem;
-                  color: hsl(var(--foreground));
-                }
-                .prose section {
-                  margin-bottom: 3rem;
-                }
-                .prose strong {
-                  color: hsl(var(--foreground));
-                  font-weight: 600;
-                }
-              `}</style>
-              <section className="mb-8">
-                <h2>1. Purpose</h2>
-                <p>
-                  This AUP sets forth the acceptable and prohibited uses of our services to ensure a secure, reliable, and lawful hosting environment.
-                </p>
-              </section>
-
-              <section className="mb-8">
-                <h2>2. General Principles</h2>
-                <p>
-                  Use of our services must be lawful, responsible, and respectful of third parties. Any use that may:
-                </p>
-                <ul>
-                  <li>Violate local, state, federal, or international laws.</li>
-                  <li>Harm the security, stability, or performance of our infrastructure.</li>
-                  <li>Compromise the privacy or rights of other users.</li>
-                </ul>
-                <p>is strictly prohibited.</p>
-              </section>
-
-              <section className="mb-8">
-                <h2>3. Usage Restrictions</h2>
-                
-                <h3>3.1 Shared Hosting and WordPress Hosting</h3>
-                <ul>
-                  <li>Excessive disk space or inode usage may result in temporary limitations or migration to a higher plan.</li>
-                  <li>Use of the service for video or audio streaming without prior authorization is prohibited.</li>
-                </ul>
-
-                <h3>3.2 VPS and Dedicated Servers</h3>
-                <ul>
-                  <li>The Client is responsible for the administration, security, and updates of their server unless managed services have been contracted.</li>
-                  <li>Using services to perform denial-of-service (DDoS) attacks, unauthorized network scans, or any other malicious activity is prohibited.</li>
-                </ul>
-
-                <h3>3.3 Prohibition on Using Hosting as a Backup Server</h3>
-                <ul>
-                  <li>The hosting service may not be used as a repository for external backups unrelated to the data hosted on the service itself.</li>
-                  <li>For external backups, SN WHITE HOSTING may provide a Storage Box under a separate contract.</li>
-                  <li>The Client may back up their own hosted data within the technical capabilities of the contracted plan.</li>
-                </ul>
-              </section>
-
-              <section className="mb-8">
-                <h2>4. Prohibited Content</h2>
-                <p>It is strictly forbidden to host, transmit, or distribute:</p>
-                <ul>
-                  <li>Material infringing copyrights or intellectual property rights.</li>
-                  <li>Illegal, defamatory, fraudulent, or misleading content.</li>
-                  <li>Pornographic or sexually explicit content, including but not limited to nudity, adult material, or any sexual activity.</li>
-                  <li>Malicious software, viruses, trojans, or any code designed to damage or interfere with systems or data.</li>
-                </ul>
-              </section>
-
-              <section className="mb-8">
-                <h2>5. Email Usage</h2>
-                <ul>
-                  <li>Sending spam, unsolicited bulk email, or phishing campaigns is prohibited.</li>
-                  <li>Email accounts must be used legitimately and in compliance with applicable commercial communication and anti-spam laws.</li>
-                </ul>
-              </section>
-
-              <section className="mb-8">
-                <h2>6. Activities Affecting Third Parties</h2>
-                <ul>
-                  <li>The use of scripts or applications to attack, scan, or interfere with third-party systems is prohibited.</li>
-                  <li>The use of bots or automation that generates abusive traffic to other websites without authorization is prohibited.</li>
-                </ul>
-              </section>
-
-              <section className="mb-8">
-                <h2>7. Abuse and DMCA Procedure</h2>
-                <ul>
-                  <li>SN WHITE HOSTING will comply with the Digital Millennium Copyright Act (DMCA) and process takedown notices in accordance with U.S. law.</li>
-                  <li>If we receive an abuse complaint or a valid copyright claim, the affected content may be suspended or removed without prior notice.</li>
-                  <li>The Client will be notified whenever possible and will have the right to submit a counter-notice under applicable legal terms.</li>
-                </ul>
-              </section>
-
-              <section className="mb-8">
-                <h2>8. Consequences of Non-Compliance</h2>
-                <p>Failure to comply with this AUP may result in:</p>
-                <ul>
-                  <li>Temporary suspension of the service.</li>
-                  <li>Permanent account termination.</li>
-                  <li>Legal action in case of unlawful activities.</li>
-                  <li>Billing for additional costs caused by service abuse.</li>
-                </ul>
-              </section>
-
-              <section className="mb-8">
-                <h2>9. Updates to the AUP</h2>
-                <p>
-                  SN WHITE HOSTING reserves the right to amend this policy at any time. The Client will be notified at least 15 days in advance before changes take effect, unless an immediate change is required for legal or security reasons.
-                </p>
-                <p className="text-sm text-muted-foreground mt-4">
-                  <strong>{t.legal.effectiveDateLabel}:</strong> February 21, 2026
-                </p>
-              </section>
-
-              <div className="mt-16 p-8 rounded-xl border-2 border-primary/20 bg-gradient-to-br from-card via-card to-primary/5">
-                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">{t.legal.contactUs}</h3>
-                <div className="space-y-4 text-base">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-medium text-foreground">SN SOLUTIONS LLC</p>
-                      <p className="text-muted-foreground">1209 Mountain Road Pl NE, Ste N</p>
-                      <p className="text-muted-foreground">Albuquerque, New Mexico, 87110, USA</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Mail className="h-5 w-5 text-primary flex-shrink-0" />
-                    <a href="mailto:legal@snwhitehosting.com" className="text-primary hover:underline">
-                      legal@snwhitehosting.com
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer />
-    </div>
-  )
+  return <LegalDocumentPage icon={AlertCircle} title={t.legal.aupTitle} subtitle={t.legal.aupSubtitle} currentPath="/acceptable-use-policy" content={localizedContent} />
 }

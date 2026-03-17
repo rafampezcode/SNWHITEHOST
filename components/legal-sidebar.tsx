@@ -91,13 +91,42 @@ const legalSections: LegalSection[] = [
   },
 ]
 
+const flatLegalLinks = legalSections.flatMap((section) => section.links)
+
 export function LegalSidebar({ currentPath }: LegalSidebarProps) {
   const { t } = useLanguage()
 
   return (
     <aside className="lg:col-span-1 lg:pr-0">
-      <div className="sticky top-20 space-y-6">
-        <div className="rounded-lg border border-border bg-card/50 backdrop-blur-sm p-6 shadow-xl">
+      <div className="lg:hidden sticky top-20 z-20 mb-6">
+        <div className="rounded-lg border border-border bg-card/95 p-4 shadow-lg backdrop-blur-sm">
+          <h2 className="mb-3 text-sm font-semibold text-foreground">{t.legal.documentation}</h2>
+          <div className="overflow-x-auto pb-1">
+            <nav className="flex min-w-max gap-2" aria-label={t.legal.documentation}>
+              {flatLegalLinks.map((link) => {
+                const isActive = currentPath === link.href
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`whitespace-nowrap rounded-full border px-3 py-2 text-sm transition-colors ${
+                      isActive
+                        ? "border-primary bg-primary text-primary-foreground"
+                        : "border-border bg-background text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                    }`}
+                  >
+                    {t.legal[link.nameKey as keyof typeof t.legal]}
+                  </Link>
+                )
+              })}
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden space-y-6 lg:block">
+        <div className="max-h-[calc(100vh-6rem)] overflow-y-auto rounded-lg border border-border bg-card/50 backdrop-blur-sm p-6 shadow-xl">
           <h2 className="text-lg font-semibold mb-4 text-foreground">{t.legal.documentation}</h2>
           <nav className="space-y-6">
             {legalSections.map((section, idx) => (

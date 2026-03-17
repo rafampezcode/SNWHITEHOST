@@ -1,147 +1,18 @@
 "use client"
 
-import { Shield, MapPin, Mail, Home } from "lucide-react"
-import { LegalSidebar } from "@/components/legal-sidebar"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
+import { Shield } from "lucide-react"
+import { LegalDocumentPage, type LocalizedLegalContent } from "@/components/legal-document-page"
 import { useLanguage } from "@/components/language-provider"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+
+const localizedContent: LocalizedLegalContent = {
+  en: { effectiveDate: "January 8, 2025", sections: [{ title: "1. Company Identification", blocks: [{ type: "list", items: ["Legal name: SN SOLUTIONS LLC.", "Trade name: SN WHITE HOSTING.", "EIN: 32-0817400.", "Registered address: 1209 Mountain Road Pl NE, Ste N, Albuquerque, New Mexico, 87110, USA."] }] }, { title: "2. Domain Services", blocks: [{ type: "paragraph", text: "SN WHITE HOSTING provides domain-related services as an independent hosting and domain provider working with different accredited registrars depending on the TLD and service involved." }] }, { title: "3. Contact Information", blocks: [{ type: "list", items: ["Official website: www.snwhitehosting.com.", "Support contact: support@snwhitehosting.com.", "Abuse contact: abuse@snwhitehosting.com.", "Legal contact: legal@snwhitehosting.com."] }] }, { title: "4. Transparency and Compliance", blocks: [{ type: "list", items: ["Domain operations are subject to ICANN policies and the rules of each applicable registry.", "Customers may be subject to registrar- or registry-specific obligations depending on the selected TLD.", "SN WHITE HOSTING aims to provide transparent information about the authorities and contractual framework applicable to each domain service."] }] }] },
+  es: { effectiveDate: "8 de enero de 2025", sections: [{ title: "1. Identificación de la Empresa", blocks: [{ type: "list", items: ["Denominación legal: SN SOLUTIONS LLC.", "Nombre comercial: SN WHITE HOSTING.", "EIN: 32-0817400.", "Domicilio registrado: 1209 Mountain Road Pl NE, Ste N, Albuquerque, New Mexico, 87110, USA."] }] }, { title: "2. Servicios de Dominios", blocks: [{ type: "paragraph", text: "SN WHITE HOSTING presta servicios relacionados con dominios como proveedor independiente de hosting y dominios, trabajando con distintos registradores acreditados según el TLD y el servicio implicado." }] }, { title: "3. Información de Contacto", blocks: [{ type: "list", items: ["Sitio web oficial: www.snwhitehosting.com.", "Contacto de soporte: support@snwhitehosting.com.", "Contacto de abusos: abuse@snwhitehosting.com.", "Contacto legal: legal@snwhitehosting.com."] }] }, { title: "4. Transparencia y Cumplimiento", blocks: [{ type: "list", items: ["Las operaciones de dominios están sujetas a las políticas de ICANN y a las reglas de cada registro aplicable.", "Los clientes pueden quedar sujetos a obligaciones específicas del registrador o del registro según el TLD seleccionado.", "SN WHITE HOSTING procura ofrecer información transparente sobre las autoridades y el marco contractual aplicable a cada servicio de dominio."] }] }] },
+  de: { effectiveDate: "8. Januar 2025", sections: [{ title: "1. Unternehmensidentifikation", blocks: [{ type: "list", items: ["Rechtlicher Name: SN SOLUTIONS LLC.", "Handelsname: SN WHITE HOSTING.", "EIN: 32-0817400.", "Registrierte Anschrift: 1209 Mountain Road Pl NE, Ste N, Albuquerque, New Mexico, 87110, USA."] }] }, { title: "2. Domain-Dienste", blocks: [{ type: "paragraph", text: "SN WHITE HOSTING erbringt domainbezogene Dienste als unabhängiger Hosting- und Domainanbieter und arbeitet je nach TLD und Dienst mit verschiedenen akkreditierten Registraren zusammen." }] }, { title: "3. Kontaktinformationen", blocks: [{ type: "list", items: ["Offizielle Website: www.snwhitehosting.com.", "Support-Kontakt: support@snwhitehosting.com.", "Abuse-Kontakt: abuse@snwhitehosting.com.", "Rechtskontakt: legal@snwhitehosting.com."] }] }, { title: "4. Transparenz und Compliance", blocks: [{ type: "list", items: ["Domainvorgänge unterliegen den ICANN-Richtlinien und den Regeln der jeweils zuständigen Registry.", "Je nach gewählter TLD können Kunden zusätzlichen registrar- oder registryspezifischen Pflichten unterliegen.", "SN WHITE HOSTING bemüht sich um transparente Informationen über die zuständigen Stellen und den vertraglichen Rahmen jedes Domain-Dienstes."] }] }] },
+  nl: { effectiveDate: "8 januari 2025", sections: [{ title: "1. Identificatie van de Onderneming", blocks: [{ type: "list", items: ["Juridische naam: SN SOLUTIONS LLC.", "Handelsnaam: SN WHITE HOSTING.", "EIN: 32-0817400.", "Geregistreerd adres: 1209 Mountain Road Pl NE, Ste N, Albuquerque, New Mexico, 87110, USA."] }] }, { title: "2. Domeindiensten", blocks: [{ type: "paragraph", text: "SN WHITE HOSTING levert domeingerelateerde diensten als onafhankelijke hosting- en domeinprovider en werkt afhankelijk van de TLD en de betrokken dienst samen met verschillende geaccrediteerde registrars." }] }, { title: "3. Contactinformatie", blocks: [{ type: "list", items: ["Officiële website: www.snwhitehosting.com.", "Supportcontact: support@snwhitehosting.com.", "Misbruikcontact: abuse@snwhitehosting.com.", "Juridisch contact: legal@snwhitehosting.com."] }] }, { title: "4. Transparantie en Compliance", blocks: [{ type: "list", items: ["Domeinactiviteiten zijn onderworpen aan ICANN-beleid en de regels van elke toepasselijke registry.", "Klanten kunnen afhankelijk van de gekozen TLD onderworpen zijn aan specifieke verplichtingen van registrar of registry.", "SN WHITE HOSTING streeft naar transparante informatie over de bevoegde instanties en het contractuele kader dat voor elke domeindienst geldt."] }] }] },
+}
 
 export default function RegistrarInformationPage() {
   const { t } = useLanguage()
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-primary/5 to-background">
-      <Header />
-      <div className="container max-w-7xl mx-auto py-16 md:py-24 px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 flex items-center gap-2">
-          <Link href="/">
-            <Button variant="outline" size="sm" className="gap-2">
-              <Home className="h-4 w-4" />
-              {t.legal.backToHome}
-            </Button>
-          </Link>
-        </div>
-
-        {/* Header */}
-        <div className="mb-16 text-center space-y-6">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 border border-primary/20">
-            <Shield className="h-10 w-10 text-primary" />
-          </div>
-          <div className="space-y-3">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-primary/80">{t.legal.registrarInfoTitle}</span>
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              {t.legal.registrarInfoSubtitle}
-            </p>
-          </div>
-        </div>
-
-        <div className="grid lg:grid-cols-[280px_1fr] gap-12">
-          <LegalSidebar currentPath="/registrar-information" />
-
-          <div className="lg:col-span-1">
-            <div className="prose prose-lg prose-neutral dark:prose-invert max-w-none ">
-              <style jsx global>{`
-                .prose h2 {
-                  font-size: 2rem;
-                  font-weight: 700;
-                  margin-top: 3rem;
-                  margin-bottom: 1.5rem;
-                  color: hsl(var(--foreground));
-                  }
-                .prose h3 {
-                  font-size: 1.5rem;
-                  font-weight: 600;
-                  margin-top: 2rem;
-                  margin-bottom: 1rem;
-                  color: hsl(var(--primary));
-                }
-                .prose p {
-                  margin-bottom: 1.25rem;
-                  line-height: 1.8;
-                  color: hsl(var(--foreground));
-                }
-                .prose ul {
-                  margin-top: 1rem;
-                  margin-bottom: 1.5rem;
-                  padding-left: 1.5rem;
-                }
-                .prose li {
-                  margin-bottom: 0.75rem;
-                  color: hsl(var(--foreground));
-                }
-                .prose section {
-                  margin-bottom: 3rem;
-                }
-                .prose strong {
-                  color: hsl(var(--foreground));
-                }
-              `}</style>
-              <section className="mb-8">
-                <h2>1. Company Identification</h2>
-                <ul>
-                  <li><strong>Legal Name:</strong> SN SOLUTIONS LLC</li>
-                  <li><strong>Trade Name:</strong> SN WHITE HOSTING™</li>
-                  <li><strong>Tax Identification (EIN):</strong> 32-0817400</li>
-                  <li><strong>Registered Address:</strong><br />1209 Mountain Road PL NE, STE N,<br />Albuquerque, New Mexico, 87110, USA</li>
-                </ul>
-              </section>
-
-              <section className="mb-8">
-                <h2>2. Domain Services</h2>
-                <p>
-                  SN WHITE HOSTING™ provides domain registration and management services as an independent hosting and domain service provider, working with different ICANN-accredited registrars depending on the chosen domain extension (TLD).
-                </p>
-              </section>
-
-              <section className="mb-8">
-                <h2>3. Contact Information</h2>
-                <ul>
-                  <li><strong>Official Website:</strong> <a href="https://www.snwhitehosting.com">www.snwhitehosting.com</a></li>
-                  <li><strong>General Support Contact:</strong> support@snwhitehosting.com</li>
-                  <li><strong>Abuse Contact:</strong> abuse@snwhitehosting.com</li>
-                </ul>
-              </section>
-
-              <section className="mb-8">
-                <h2>4. Transparency and Compliance</h2>
-                <ul>
-                  <li>All domain registrations are subject to ICANN policies and to the specific rules of each TLD registry.</li>
-                  <li>SN WHITE HOSTING™ operates with full transparency, ensuring that clients always know which authority governs their domain and under what conditions.</li>
-                </ul>
-                <p className="text-sm text-muted-foreground mt-4">
-                  <strong>{t.legal.effectiveDateLabel}:</strong> 01/08/2025
-                </p>
-              </section>
-
-              {/* Contact Section */}
-              <div className="mt-16 p-8 rounded-xl border-2 border-primary/20 bg-gradient-to-br from-card via-card to-primary/5">
-                <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">{t.legal.contactUs}</h3>
-                <div className="space-y-4 text-base">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-medium text-foreground">SN SOLUTIONS LLC</p>
-                      <p className="text-muted-foreground">1209 Mountain Road Pl NE, Ste N</p>
-                      <p className="text-muted-foreground">Albuquerque, New Mexico, 87110, USA</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Mail className="h-5 w-5 text-primary flex-shrink-0" />
-                    <a href="mailto:legal@snwhitehosting.com" className="text-primary hover:underline">
-                      legal@snwhitehosting.com
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer />
-      </div>
-      )
-      }
+  return <LegalDocumentPage icon={Shield} title={t.legal.registrarInfoTitle} subtitle={t.legal.registrarInfoSubtitle} currentPath="/registrar-information" content={localizedContent} />
+}

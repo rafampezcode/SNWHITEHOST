@@ -52,18 +52,20 @@ export async function POST(request: Request) {
         const snapshot = await getCurrentPageHtmlSnapshot(path, origin)
         const pageSections = extractPageSectionsFromHtml(snapshot.fullPageHtml)
         const textOverrides = buildTextOverridesFromSections(pageSections)
+        const existingContent = existing && typeof existing === "object" ? (existing as Record<string, unknown>) : {}
 
         await upsertContentEntry(path, {
-          title: "",
-          subtitle: "",
-          description: "",
-          plans: [],
-          features: [],
-          faqs: [],
-          benefits: [],
-          techSpecs: [],
+          title: existingContent.title ?? "",
+          subtitle: existingContent.subtitle ?? "",
+          description: existingContent.description ?? "",
+          plans: existingContent.plans ?? [],
+          features: existingContent.features ?? [],
+          faqs: existingContent.faqs ?? [],
+          benefits: existingContent.benefits ?? [],
+          techSpecs: existingContent.techSpecs ?? [],
           pageSections,
           textOverrides,
+          localized: existingContent.localized ?? {},
         })
 
         totalTexts += pageSections.reduce((sum, section) => sum + section.texts.length, 0)

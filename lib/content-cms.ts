@@ -2,6 +2,7 @@
 
 import { queryMysql } from "@/lib/mysql"
 import { normalizeCmsPath } from "@/lib/content-path"
+import type { Language } from "@/lib/translations"
 
 type ContentRow = {
   path_key: string
@@ -30,6 +31,36 @@ function parseContentValue(contentValue: ContentRow["content_value"]) {
   return contentValue
 }
 
+function resolveLocalizedContent(content: unknown, language: Language) {
+  if (!content || typeof content !== "object" || language === "en") {
+    return content
+  }
+
+  const source = content as Record<string, unknown>
+  const localizedMap =
+    source.localized && typeof source.localized === "object"
+      ? (source.localized as Record<string, unknown>)
+      : {}
+
+  const localizedEntry =
+    localizedMap[language] && typeof localizedMap[language] === "object"
+      ? (localizedMap[language] as Record<string, unknown>)
+      : null
+
+  if (!localizedEntry) {
+    return content
+  }
+
+  return {
+    ...source,
+    textOverrides:
+      localizedEntry.textOverrides && typeof localizedEntry.textOverrides === "object"
+        ? localizedEntry.textOverrides
+        : source.textOverrides,
+    pageSections: Array.isArray(localizedEntry.pageSections) ? localizedEntry.pageSections : source.pageSections,
+  }
+}
+
 export async function getContentByPath(path: string) {
   const pathKey = normalizePathKey(path)
 
@@ -46,6 +77,11 @@ export async function getContentByPath(path: string) {
   }
 
   return parseContentValue(rows[0].content_value)
+}
+
+export async function getContentByPathAndLanguage(path: string, language: Language) {
+  const content = await getContentByPath(path)
+  return resolveLocalizedContent(content, language)
 }
 
 export async function listContentEntries() {

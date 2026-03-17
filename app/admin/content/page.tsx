@@ -10,9 +10,82 @@ import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { normalizeCmsPath } from "@/lib/content-path"
 import { buildTextOverridesFromSections } from "@/lib/content-section-extractor"
-import type { CmsContent, ContentListItem } from "./_types"
+import type { Language } from "@/lib/translations"
+import type { CmsContent, CmsLocalizedContent, CmsPageSection, ContentListItem } from "./_types"
 import { createEmptyContent, normalizeContent } from "./_helpers"
 import { PageSectionsEditor } from "./_components/page-sections-editor"
+
+const editableLanguages: Language[] = ["en", "es", "de", "nl"]
+
+function clonePageSections(sections: CmsPageSection[]): CmsPageSection[] {
+  return sections.map((section) => ({
+    ...section,
+    texts: section.texts.map((text) => ({ ...text })),
+    newTexts: [...section.newTexts],
+  }))
+}
+
+function buildLocalizedEntryFromBase(sections: CmsPageSection[], existing?: CmsLocalizedContent): CmsLocalizedContent {
+  const baseSections = clonePageSections(sections)
+  const existingValuesBySource = new Map<string, string>()
+
+  for (const section of existing?.pageSections ?? []) {
+    for (const text of section.texts) {
+      existingValuesBySource.set(text.source, text.value)
+    }
+  }
+
+  const pageSections = baseSections.map((section, sectionIndex) => ({
+    ...section,
+    texts: section.texts.map((text) => ({
+      ...text,
+      value: existingValuesBySource.get(text.source) ?? text.source,
+    })),
+    newTexts: existing?.pageSections?.[sectionIndex]?.newTexts ? [...existing.pageSections[sectionIndex].newTexts] : [],
+  }))
+
+  return {
+    pageSections,
+    textOverrides: buildTextOverridesFromSections(pageSections),
+  }
+}
+
+function getLanguageContent(content: CmsContent, language: Language): CmsLocalizedContent {
+  if (language === "en") {
+    return {
+      pageSections: content.pageSections,
+      textOverrides: content.textOverrides,
+    }
+  }
+
+  return content.localized[language] ?? buildLocalizedEntryFromBase(content.pageSections)
+}
+
+function updateLanguageContent(content: CmsContent, language: Language, pageSections: CmsPageSection[]): CmsContent {
+  const nextTextOverrides = buildTextOverridesFromSections(pageSections)
+
+  if (language === "en") {
+    return {
+      ...content,
+      pageSections,
+      textOverrides: {
+        ...content.textOverrides,
+        ...nextTextOverrides,
+      },
+    }
+  }
+
+  return {
+    ...content,
+    localized: {
+      ...content.localized,
+      [language]: {
+        pageSections,
+        textOverrides: nextTextOverrides,
+      },
+    },
+  }
+}
 
 const suggestedPaths = [
   "/hosting/shared",
@@ -43,6 +116,7 @@ export default function AdminContentPage() {
   const [query, setQuery] = useState("")
   const [path, setPath] = useState("")
   const [content, setContent] = useState<CmsContent>(createEmptyContent())
+  const [selectedLanguage, setSelectedLanguage] = useState<Language>("en")
 
   const [loading, setLoading] = useState(false)
   const [saving, setSaving] = useState(false)
@@ -67,6 +141,11 @@ export default function AdminContentPage() {
   const itemByPath = useMemo(() => {
     return new Map(items.map((item) => [item.path, item]))
   }, [items])
+
+  const activeLanguageContent = useMemo(
+    () => getLanguageContent(content, selectedLanguage),
+    [content, selectedLanguage],
+  )
 
   const clearFlash = () => {
     setError("")
@@ -178,19 +257,26 @@ export default function AdminContentPage() {
 
       const data = await response.json()
       const pageSections = Array.isArray(data?.pageSections) ? data.pageSections : []
-      const textOverrides = buildTextOverridesFromSections(pageSections)
-
-      const merged = normalizeContent({
-        ...content,
-        pageSections,
-        textOverrides: {
-          ...content.textOverrides,
-          ...textOverrides,
-        },
-      })
+      const merged =
+        selectedLanguage === "en"
+          ? normalizeContent({
+              ...content,
+              pageSections,
+              textOverrides: {
+                ...content.textOverrides,
+                ...buildTextOverridesFromSections(pageSections),
+              },
+            })
+          : normalizeContent(
+              updateLanguageContent(
+                content,
+                selectedLanguage,
+                buildLocalizedEntryFromBase(pageSections, content.localized[selectedLanguage]).pageSections,
+              ),
+            )
 
       setContent(merged)
-      setSuccess(`Sincronizado: ${Number(data?.extractedTexts ?? 0)} textos detectados.`)
+      setSuccess(`Sincronizado (${selectedLanguage.toUpperCase()}): ${Number(data?.extractedTexts ?? 0)} textos detectados.`)
       setTimeout(() => setSuccess(""), 4000)
     } catch {
       setError("No se pudo sincronizar esta pagina.")
@@ -238,13 +324,18 @@ export default function AdminContentPage() {
       setSaving(true)
 
       const normalizedPath = parsePath(path)
-      const normalizedContent = normalizeContent({
-        ...content,
-        textOverrides: {
-          ...content.textOverrides,
-          ...buildTextOverridesFromSections(content.pageSections),
-        },
-      })
+      const contentToSave =
+        selectedLanguage === "en"
+          ? {
+              ...content,
+              textOverrides: {
+                ...content.textOverrides,
+                ...buildTextOverridesFromSections(content.pageSections),
+              },
+            }
+          : updateLanguageContent(content, selectedLanguage, activeLanguageContent.pageSections)
+
+      const normalizedContent = normalizeContent(contentToSave)
 
       const response = await fetch("/api/admin/content", {
         method: "POST",
@@ -258,7 +349,7 @@ export default function AdminContentPage() {
 
       setContent(normalizedContent)
       await loadItems()
-      setSuccess("Contenido guardado correctamente en base de datos.")
+      setSuccess(`Contenido guardado correctamente para ${selectedLanguage.toUpperCase()}.`)
       setTimeout(() => setSuccess(""), 4000)
     } catch {
       setError("No se pudo guardar el contenido de esta pagina.")
@@ -370,6 +461,27 @@ export default function AdminContentPage() {
               </div>
 
               <div className="flex flex-wrap gap-2">
+                {editableLanguages.map((language) => {
+                  const isActive = selectedLanguage === language
+
+                  return (
+                    <Button
+                      key={language}
+                      type="button"
+                      variant={isActive ? "default" : "outline"}
+                      onClick={() => setSelectedLanguage(language)}
+                    >
+                      {language.toUpperCase()}
+                    </Button>
+                  )
+                })}
+              </div>
+
+              <div className="rounded-md border border-border bg-muted/30 p-3 text-sm text-muted-foreground">
+                Estás editando la capa de idioma <strong>{selectedLanguage.toUpperCase()}</strong>. El inglés actúa como texto base; ES, DE y NL se guardan como overrides traducidos sobre ese contenido.
+              </div>
+
+              <div className="flex flex-wrap gap-2">
                 <Button variant="outline" onClick={syncCurrentPath} disabled={syncing || loading || !path.trim()}>
                   <RefreshCw className="mr-2 h-4 w-4" />
                   Sincronizar pagina
@@ -385,21 +497,13 @@ export default function AdminContentPage() {
               </div>
 
               <div className="rounded-md border border-border bg-muted/30 p-3 text-sm text-muted-foreground">
-                Flujo recomendado: 1) Seleccionar pagina, 2) Sincronizar pagina, 3) Editar textos por seccion, 4)
-                Guardar cambios.
+                Flujo recomendado: 1) Seleccionar pagina, 2) Elegir idioma, 3) Sincronizar pagina, 4) Editar textos por seccion, 5) Guardar cambios.
               </div>
 
               <PageSectionsEditor
-                sections={content.pageSections}
+                sections={activeLanguageContent.pageSections}
                 onChange={(pageSections) =>
-                  setContent((prev) => ({
-                    ...prev,
-                    pageSections,
-                    textOverrides: {
-                      ...prev.textOverrides,
-                      ...buildTextOverridesFromSections(pageSections),
-                    },
-                  }))
+                  setContent((prev) => updateLanguageContent(prev, selectedLanguage, pageSections))
                 }
               />
 

@@ -1,3 +1,5 @@
+import type { Language } from "@/lib/translations"
+
 export type ContentListItem = {
   path: string
   updatedAt: string
@@ -42,6 +44,11 @@ export type CmsPageSection = {
   newTexts: string[]
 }
 
+export type CmsLocalizedContent = {
+  textOverrides: Record<string, string>
+  pageSections: CmsPageSection[]
+}
+
 export type CmsContent = {
   title: string
   subtitle: string
@@ -53,4 +60,5 @@ export type CmsContent = {
   benefits: string[]
   techSpecs: CmsTechSpec[]
   pageSections: CmsPageSection[]
+  localized: Partial<Record<Exclude<Language, "en">, CmsLocalizedContent>>
 }

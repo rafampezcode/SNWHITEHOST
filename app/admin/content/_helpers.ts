@@ -1,4 +1,5 @@
-import type { CmsContent, CmsPageSection, CmsPlan } from "./_types"
+import type { Language } from "@/lib/translations"
+import type { CmsContent, CmsLocalizedContent, CmsPageSection, CmsPlan } from "./_types"
 
 export function parseNumber(value: unknown, fallback = 0): number {
   if (typeof value === "number" && Number.isFinite(value)) return value
@@ -34,7 +35,45 @@ export function createEmptyContent(): CmsContent {
     benefits: [""],
     techSpecs: [{ label: "", value: "" }],
     pageSections: [],
+    localized: {},
   }
+}
+
+function normalizeLocalizedEntry(input: unknown): CmsLocalizedContent {
+  const source = typeof input === "object" && input !== null ? (input as Record<string, unknown>) : {}
+
+  const textOverrides: Record<string, string> = {}
+  if (source.textOverrides && typeof source.textOverrides === "object") {
+    for (const [key, value] of Object.entries(source.textOverrides as Record<string, unknown>)) {
+      const cleanKey = key.trim()
+      if (!cleanKey || typeof value !== "string") continue
+      textOverrides[cleanKey] = value
+    }
+  }
+
+  return {
+    textOverrides,
+    pageSections: normalizePageSections(source.pageSections),
+  }
+}
+
+function normalizeLocalizedContent(input: unknown): CmsContent["localized"] {
+  const source = typeof input === "object" && input !== null ? (input as Record<string, unknown>) : {}
+  const localized: CmsContent["localized"] = {}
+  const languages: Array<Exclude<Language, "en">> = ["es", "de", "nl"]
+
+  for (const language of languages) {
+    if (!(language in source)) {
+      continue
+    }
+
+    const normalized = normalizeLocalizedEntry(source[language])
+    if (normalized.pageSections.length || Object.keys(normalized.textOverrides).length) {
+      localized[language] = normalized
+    }
+  }
+
+  return localized
 }
 
 function normalizePageSections(input: unknown): CmsPageSection[] {
@@ -160,6 +199,7 @@ export function normalizeContent(input: unknown): CmsContent {
     : []
 
   const pageSections = normalizePageSections(source.pageSections)
+  const localized = normalizeLocalizedContent(source.localized)
 
   return {
     title: typeof source.title === "string" ? source.title : "",
@@ -172,6 +212,7 @@ export function normalizeContent(input: unknown): CmsContent {
     benefits,
     techSpecs,
     pageSections,
+    localized,
   }
 }
 

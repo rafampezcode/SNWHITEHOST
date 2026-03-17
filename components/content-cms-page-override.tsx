@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, type ReactNode } from "react"
 import { usePathname } from "next/navigation"
+import { useLanguage } from "@/components/language-provider"
 
 type RuntimeSection = {
   id: string
@@ -132,6 +133,7 @@ function applyNewTextsToDocument(sections: RuntimeSection[]) {
 
 export function ContentCmsPageOverride({ children }: { children: ReactNode }) {
   const pathname = usePathname()
+  const { language } = useLanguage()
 
   const isSkippablePath = useMemo(() => {
     if (!pathname) {
@@ -152,7 +154,7 @@ export function ContentCmsPageOverride({ children }: { children: ReactNode }) {
 
     const loadAndApplyOverrides = async () => {
       try {
-        const response = await fetch(`/api/content?path=${encodeURIComponent(pathname)}`, {
+        const response = await fetch(`/api/content?path=${encodeURIComponent(pathname)}&lang=${encodeURIComponent(language)}`, {
           cache: "no-store",
         })
 
@@ -220,7 +222,7 @@ export function ContentCmsPageOverride({ children }: { children: ReactNode }) {
       disposed = true
       observer?.disconnect()
     }
-  }, [isSkippablePath, pathname])
+  }, [isSkippablePath, language, pathname])
 
   return <>{children}</>
 }
