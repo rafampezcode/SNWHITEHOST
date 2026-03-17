@@ -35,8 +35,6 @@ const legalSections: LegalSection[] = [
       { nameKey: "privacyPolicy", href: "/privacy-policy" },
       { nameKey: "cookiesPolicy", href: "/cookies-policy" },
       { nameKey: "dpa", href: "/data-processing-addendum" },
-      { nameKey: "dataSecurityBackup", href: "/data-security-and-backup-policy" },
-      { nameKey: "customerSecurityBestPractices", href: "/customer-security-best-practices-policy" },
     ],
   },
   {
@@ -49,7 +47,6 @@ const legalSections: LegalSection[] = [
       { nameKey: "aup", href: "/acceptable-use-policy" },
       { nameKey: "cancellationRefund", href: "/cancellation-and-refund-policy" },
       { nameKey: "hostingAgreement", href: "/hosting-agreement" },
-      { nameKey: "domainRegistration", href: "/domain-registration-policy" },
       { nameKey: "domainTransfer", href: "/domain-name-transfer-agreement" },
     ],
   },
@@ -66,11 +63,9 @@ const legalSections: LegalSection[] = [
     icon: "📑",
     titleKey: "policies",
     links: [
-      { nameKey: "abuseHandling", href: "/abuse-handling-policy" },
       { nameKey: "serviceContinuityContingency", href: "/service-continuity-and-contingency-plan" },
       { nameKey: "expiredDomain", href: "/expired-domain-recovery-policy" },
       { nameKey: "tldRegistration", href: "/tld-registration-policy" },
-      { nameKey: "domainDispute", href: "/domain-dispute-resolution-policy" },
       { nameKey: "companyPolicies", href: "/company-policies-overview" },
     ],
   },

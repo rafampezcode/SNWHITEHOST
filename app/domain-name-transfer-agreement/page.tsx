@@ -5,10 +5,194 @@ import { LegalDocumentPage, type LocalizedLegalContent } from "@/components/lega
 import { useLanguage } from "@/components/language-provider"
 
 const localizedContent: LocalizedLegalContent = {
-  en: { effectiveDate: "January 8, 2025", sections: [{ title: "1. Purpose of the Agreement", blocks: [{ type: "paragraph", text: "This agreement governs the transfer of domain names to or from SN WHITE HOSTING when we act directly or through associated accredited providers." }] }, { title: "2. Definitions", blocks: [{ type: "list", items: ["Client: the person or entity requesting the transfer.", "Losing registrar: the registrar from which the domain is transferred.", "Gaining registrar: the registrar to which the domain is transferred.", "Authorization code: the valid transfer code issued by the current registrar."] }] }, { title: "3. Transfer Requirements", blocks: [{ type: "list", items: ["The domain must be eligible under ICANN and registry rules.", "The registrant data must be accurate and up to date.", "The required authorization code and approvals must be provided.", "Any minimum age or lock restrictions must be satisfied before transfer." }] }, { title: "4. Transfer Process", blocks: [{ type: "list", ordered: true, items: ["The customer submits the transfer request.", "The customer provides required authorizations and confirmations.", "SN WHITE HOSTING submits the transfer to the gaining registrar.", "The losing registrar processes approval or denial within the applicable timeframe.", "If approved, the domain is transferred according to the relevant registry rules."] }] }, { title: "5. Denial Reasons", blocks: [{ type: "list", items: ["Transfer lock or dispute status.", "Incorrect or outdated registrant information.", "Missing approvals or authorization code.", "Failure to meet ICANN or registry requirements."] }] }, { title: "6. Fees and Liability", blocks: [{ type: "paragraph", text: "Transfer fees, if any, are disclosed before the transfer request is processed. SN WHITE HOSTING is not responsible for delays or failures caused by incorrect customer information, losing registrar actions, or factors outside our reasonable control." }] }, { title: "7. Amendments", blocks: [{ type: "paragraph", text: "This agreement may be updated with prior notice before material changes become effective." }] }] },
-  es: { effectiveDate: "8 de enero de 2025", sections: [{ title: "1. Finalidad del Acuerdo", blocks: [{ type: "paragraph", text: "Este acuerdo regula la transferencia de nombres de dominio hacia o desde SN WHITE HOSTING cuando actuamos directamente o mediante proveedores acreditados asociados." }] }, { title: "2. Definiciones", blocks: [{ type: "list", items: ["Cliente: la persona o entidad que solicita la transferencia.", "Registrador saliente: el registrador desde el que se transfiere el dominio.", "Registrador entrante: el registrador al que se transfiere el dominio.", "Código de autorización: el código de transferencia válido emitido por el registrador actual."] }] }, { title: "3. Requisitos de Transferencia", blocks: [{ type: "list", items: ["El dominio debe ser elegible conforme a las normas de ICANN y del registro.", "Los datos del titular deben ser exactos y estar actualizados.", "Deben aportarse el código de autorización y las aprobaciones necesarias.", "Deben cumplirse las restricciones de antigüedad mínima o bloqueo antes de la transferencia."] }] }, { title: "4. Proceso de Transferencia", blocks: [{ type: "list", ordered: true, items: ["El cliente presenta la solicitud de transferencia.", "El cliente aporta las autorizaciones y confirmaciones requeridas.", "SN WHITE HOSTING envía la transferencia al registrador entrante.", "El registrador saliente procesa la aprobación o denegación dentro del plazo aplicable.", "Si se aprueba, el dominio se transfiere conforme a las reglas del registro correspondiente."] }] }, { title: "5. Motivos de Denegación", blocks: [{ type: "list", items: ["Bloqueo de transferencia o situación de disputa.", "Información del titular incorrecta o desactualizada.", "Falta de aprobaciones o del código de autorización.", "Incumplimiento de requisitos de ICANN o del registro."] }] }, { title: "6. Tarifas y Responsabilidad", blocks: [{ type: "paragraph", text: "Las tarifas de transferencia, si las hubiera, se informan antes de tramitar la solicitud. SN WHITE HOSTING no es responsable de retrasos o fallos causados por información incorrecta del cliente, actuaciones del registrador saliente o factores fuera de nuestro control razonable." }] }, { title: "7. Modificaciones", blocks: [{ type: "paragraph", text: "Este acuerdo puede actualizarse con aviso previo antes de que los cambios materiales entren en vigor." }] }] },
-  de: { effectiveDate: "8. Januar 2025", sections: [{ title: "1. Zweck der Vereinbarung", blocks: [{ type: "paragraph", text: "Diese Vereinbarung regelt die Übertragung von Domainnamen zu oder von SN WHITE HOSTING, wenn wir direkt oder über verbundene akkreditierte Anbieter handeln." }] }, { title: "2. Definitionen", blocks: [{ type: "list", items: ["Kunde: die Person oder das Unternehmen, das den Transfer beantragt.", "Abgebender Registrar: der Registrar, von dem die Domain übertragen wird.", "Aufnehmender Registrar: der Registrar, zu dem die Domain übertragen wird.", "Autorisierungscode: der gültige Transfercode des aktuellen Registrars."] }] }, { title: "3. Transferanforderungen", blocks: [{ type: "list", items: ["Die Domain muss nach ICANN- und Registry-Regeln übertragbar sein.", "Die Registrantendaten müssen korrekt und aktuell sein.", "Erforderliche Autorisierungscodes und Freigaben müssen vorliegen.", "Mindestalter oder Sperrfristen müssen vor dem Transfer erfüllt sein."] }] }, { title: "4. Transferprozess", blocks: [{ type: "list", ordered: true, items: ["Der Kunde reicht den Transferantrag ein.", "Der Kunde stellt erforderliche Autorisierungen und Bestätigungen bereit.", "SN WHITE HOSTING übermittelt den Transfer an den aufnehmenden Registrar.", "Der abgebende Registrar bearbeitet Genehmigung oder Ablehnung innerhalb des anwendbaren Zeitrahmens.", "Bei Genehmigung wird die Domain gemäß den Regeln der jeweiligen Registry übertragen."] }] }, { title: "5. Gründe für Ablehnung", blocks: [{ type: "list", items: ["Transfersperre oder Streitstatus.", "Unrichtige oder veraltete Registrantendaten.", "Fehlende Genehmigungen oder fehlender Autorisierungscode.", "Nichterfüllung von ICANN- oder Registry-Anforderungen."] }] }, { title: "6. Gebühren und Haftung", blocks: [{ type: "paragraph", text: "Transfergebühren werden vor Bearbeitung des Antrags offengelegt. SN WHITE HOSTING haftet nicht für Verzögerungen oder Fehlschläge aufgrund falscher Kundendaten, Handlungen des abgebenden Registrars oder Faktoren außerhalb unserer angemessenen Kontrolle." }] }, { title: "7. Änderungen", blocks: [{ type: "paragraph", text: "Diese Vereinbarung kann mit vorheriger Ankündigung aktualisiert werden, bevor wesentliche Änderungen wirksam werden." }] }] },
-  nl: { effectiveDate: "8 januari 2025", sections: [{ title: "1. Doel van de Overeenkomst", blocks: [{ type: "paragraph", text: "Deze overeenkomst regelt de overdracht van domeinnamen naar of van SN WHITE HOSTING wanneer wij direct of via geassocieerde geaccrediteerde providers handelen." }] }, { title: "2. Definities", blocks: [{ type: "list", items: ["Klant: de persoon of entiteit die de overdracht aanvraagt.", "Verliezende registrar: de registrar waarvan het domein wordt overgedragen.", "Verkrijgende registrar: de registrar waarnaar het domein wordt overgedragen.", "Autorisatiecode: de geldige overdrachtscode die is afgegeven door de huidige registrar."] }] }, { title: "3. Vereisten voor Overdracht", blocks: [{ type: "list", items: ["Het domein moet overdraagbaar zijn volgens ICANN- en registryregels.", "De gegevens van de registrant moeten correct en actueel zijn.", "De vereiste autorisatiecode en goedkeuringen moeten worden verstrekt.", "Eventuele minimumleeftijd of lockbeperkingen moeten vóór de overdracht zijn vervuld."] }] }, { title: "4. Overdrachtsproces", blocks: [{ type: "list", ordered: true, items: ["De klant dient het overdrachtsverzoek in.", "De klant verstrekt de vereiste autorisaties en bevestigingen.", "SN WHITE HOSTING dient de overdracht in bij de verkrijgende registrar.", "De verliezende registrar verwerkt goedkeuring of afwijzing binnen de toepasselijke termijn.", "Indien goedgekeurd, wordt het domein overgedragen volgens de regels van de betreffende registry."] }] }, { title: "5. Redenen voor Afwijzing", blocks: [{ type: "list", items: ["Transferlock of geschilstatus.", "Onjuiste of verouderde registrantgegevens.", "Ontbrekende goedkeuringen of autorisatiecode.", "Niet voldoen aan ICANN- of registryvereisten."] }] }, { title: "6. Kosten en Aansprakelijkheid", blocks: [{ type: "paragraph", text: "Overdrachtskosten worden, indien van toepassing, bekendgemaakt voordat het verzoek wordt verwerkt. SN WHITE HOSTING is niet verantwoordelijk voor vertragingen of mislukkingen veroorzaakt door onjuiste klantinformatie, handelingen van de verliezende registrar of factoren buiten onze redelijke controle." }] }, { title: "7. Wijzigingen", blocks: [{ type: "paragraph", text: "Deze overeenkomst kan met voorafgaande kennisgeving worden bijgewerkt voordat materiële wijzigingen van kracht worden." }] }] },
+  en: {
+    effectiveDate: "January 8, 2025",
+    sections: [
+      {
+        title: "1. Purpose of the Agreement",
+        blocks: [
+          { type: "paragraph", text: "This agreement governs the transfer of domain names to or from SN WHITE HOSTING when we act directly or through associated accredited providers." },
+        ],
+      },
+      {
+        title: "2. Definitions",
+        blocks: [
+          { type: "list", items: ["Client: the person or entity requesting the transfer.", "Losing registrar: the registrar from which the domain is transferred.", "Gaining registrar: the registrar to which the domain is transferred.", "Authorization code: the valid transfer code issued by the current registrar."] },
+        ],
+      },
+      {
+        title: "3. Transfer Requirements",
+        blocks: [
+          { type: "list", items: ["The domain must be eligible under ICANN and registry rules.", "The registrant data must be accurate and up to date.", "The required authorization code and approvals must be provided.", "Any minimum age or lock restrictions must be satisfied before transfer."] },
+        ],
+      },
+      {
+        title: "4. Transfer Process",
+        blocks: [
+          { type: "list", items: ["1. The customer submits the transfer request.", "2. The customer provides required authorizations and confirmations.", "3. SN WHITE HOSTING submits the transfer to the gaining registrar.", "4. The losing registrar processes approval or denial within the applicable timeframe.", "5. If approved, the domain is transferred according to the relevant registry rules."] },
+        ],
+      },
+      {
+        title: "5. Denial Reasons",
+        blocks: [
+          { type: "list", items: ["Transfer lock or dispute status.", "Incorrect or outdated registrant information.", "Missing approvals or authorization code.", "Failure to meet ICANN or registry requirements."] },
+        ],
+      },
+      {
+        title: "6. Fees and Liability",
+        blocks: [
+          { type: "paragraph", text: "Transfer fees, if any, are disclosed before the transfer request is processed. SN WHITE HOSTING is not responsible for delays or failures caused by incorrect customer information, losing registrar actions, or factors outside our reasonable control." },
+        ],
+      },
+      {
+        title: "7. Amendments",
+        blocks: [
+          { type: "paragraph", text: "This agreement may be updated with prior notice before material changes become effective." },
+        ],
+      },
+    ],
+  },
+  es: {
+    effectiveDate: "8 de enero de 2025",
+    sections: [
+      {
+        title: "1. Finalidad del Acuerdo",
+        blocks: [
+          { type: "paragraph", text: "Este acuerdo regula la transferencia de nombres de dominio hacia o desde SN WHITE HOSTING cuando actuamos directamente o mediante proveedores acreditados asociados." },
+        ],
+      },
+      {
+        title: "2. Definiciones",
+        blocks: [
+          { type: "list", items: ["Cliente: la persona o entidad que solicita la transferencia.", "Registrador saliente: el registrador desde el que se transfiere el dominio.", "Registrador entrante: el registrador al que se transfiere el dominio.", "Código de autorización: el código de transferencia válido emitido por el registrador actual."] },
+        ],
+      },
+      {
+        title: "3. Requisitos de Transferencia",
+        blocks: [
+          { type: "list", items: ["El dominio debe ser elegible conforme a las normas de ICANN y del registro.", "Los datos del titular deben ser exactos y estar actualizados.", "Deben aportarse el código de autorización y las aprobaciones necesarias.", "Deben cumplirse las restricciones de antigüedad mínima o bloqueo antes de la transferencia."] },
+        ],
+      },
+      {
+        title: "4. Proceso de Transferencia",
+        blocks: [
+          { type: "list", items: ["1. El cliente presenta la solicitud de transferencia.", "2. El cliente aporta las autorizaciones y confirmaciones requeridas.", "3. SN WHITE HOSTING envía la transferencia al registrador entrante.", "4. El registrador saliente procesa la aprobación o denegación dentro del plazo aplicable.", "5. Si se aprueba, el dominio se transfiere conforme a las reglas del registro correspondiente."] },
+        ],
+      },
+      {
+        title: "5. Motivos de Denegación",
+        blocks: [
+          { type: "list", items: ["Bloqueo de transferencia o situación de disputa.", "Información del titular incorrecta o desactualizada.", "Falta de aprobaciones o del código de autorización.", "Incumplimiento de requisitos de ICANN o del registro."] },
+        ],
+      },
+      {
+        title: "6. Tarifas y Responsabilidad",
+        blocks: [
+          { type: "paragraph", text: "Las tarifas de transferencia, si las hubiera, se informan antes de tramitar la solicitud. SN WHITE HOSTING no es responsable de retrasos o fallos causados por información incorrecta del cliente, actuaciones del registrador saliente o factores fuera de nuestro control razonable." },
+        ],
+      },
+      {
+        title: "7. Modificaciones",
+        blocks: [
+          { type: "paragraph", text: "Este acuerdo puede actualizarse con aviso previo antes de que los cambios materiales entren en vigor." },
+        ],
+      },
+    ],
+  },
+  de: {
+    effectiveDate: "8. Januar 2025",
+    sections: [
+      {
+        title: "1. Zweck der Vereinbarung",
+        blocks: [
+          { type: "paragraph", text: "Diese Vereinbarung regelt die Übertragung von Domainnamen zu oder von SN WHITE HOSTING, wenn wir direkt oder über verbundene akkreditierte Anbieter handeln." },
+        ],
+      },
+      {
+        title: "2. Definitionen",
+        blocks: [
+          { type: "list", items: ["Kunde: die Person oder das Unternehmen, das den Transfer beantragt.", "Abgebender Registrar: der Registrar, von dem die Domain übertragen wird.", "Aufnehmender Registrar: der Registrar, zu dem die Domain übertragen wird.", "Autorisierungscode: der gültige Transfercode des aktuellen Registrars."] },
+        ],
+      },
+      {
+        title: "3. Transferanforderungen",
+        blocks: [
+          { type: "list", items: ["Die Domain muss nach ICANN- und Registry-Regeln übertragbar sein.", "Die Registrantendaten müssen korrekt und aktuell sein.", "Erforderliche Autorisierungscodes und Freigaben müssen vorliegen.", "Mindestalter oder Sperrfristen müssen vor dem Transfer erfüllt sein."] },
+        ],
+      },
+      {
+        title: "4. Transferprozess",
+        blocks: [
+          { type: "list", items: ["1. Der Kunde reicht den Transferantrag ein.", "2. Der Kunde stellt erforderliche Autorisierungen und Bestätigungen bereit.", "3. SN WHITE HOSTING übermittelt den Transfer an den aufnehmenden Registrar.", "4. Der abgebende Registrar bearbeitet Genehmigung oder Ablehnung innerhalb des anwendbaren Zeitrahmens.", "5. Bei Genehmigung wird die Domain gemäß den Regeln der jeweiligen Registry übertragen."] },
+        ],
+      },
+      {
+        title: "5. Gründe für Ablehnung",
+        blocks: [
+          { type: "list", items: ["Transfersperre oder Streitstatus.", "Unrichtige oder veraltete Registrantendaten.", "Fehlende Genehmigungen oder fehlender Autorisierungscode.", "Nichterfüllung von ICANN- oder Registry-Anforderungen."] },
+        ],
+      },
+      {
+        title: "6. Gebühren und Haftung",
+        blocks: [
+          { type: "paragraph", text: "Transfergebühren werden vor Bearbeitung des Antrags offengelegt. SN WHITE HOSTING haftet nicht für Verzögerungen oder Fehlschläge aufgrund falscher Kundendaten, Handlungen des abgebenden Registrars oder Faktoren außerhalb unserer angemessenen Kontrolle." },
+        ],
+      },
+      {
+        title: "7. Änderungen",
+        blocks: [
+          { type: "paragraph", text: "Diese Vereinbarung kann mit vorheriger Ankündigung aktualisiert werden, bevor wesentliche Änderungen wirksam werden." },
+        ],
+      },
+    ],
+  },
+  nl: {
+    effectiveDate: "8 januari 2025",
+    sections: [
+      {
+        title: "1. Doel van de Overeenkomst",
+        blocks: [
+          { type: "paragraph", text: "Deze overeenkomst regelt de overdracht van domeinnamen naar of van SN WHITE HOSTING wanneer wij direct of via geassocieerde geaccrediteerde providers handelen." },
+        ],
+      },
+      {
+        title: "2. Definities",
+        blocks: [
+          { type: "list", items: ["Klant: de persoon of entiteit die de overdracht aanvraagt.", "Verliezende registrar: de registrar waarvan het domein wordt overgedragen.", "Verkrijgende registrar: de registrar waarnaar het domein wordt overgedragen.", "Autorisatiecode: de geldige overdrachtscode die is afgegeven door de huidige registrar."] },
+        ],
+      },
+      {
+        title: "3. Vereisten voor Overdracht",
+        blocks: [
+          { type: "list", items: ["Het domein moet overdraagbaar zijn volgens ICANN- en registryregels.", "De gegevens van de registrant moeten correct en actueel zijn.", "De vereiste autorisatiecode en goedkeuringen moeten worden verstrekt.", "Eventuele minimumleeftijd of lockbeperkingen moeten vóór de overdracht zijn vervuld."] },
+        ],
+      },
+      {
+        title: "4. Overdrachtsproces",
+        blocks: [
+          { type: "list", items: ["1. De klant dient het overdrachtsverzoek in.", "2. De klant verstrekt de vereiste autorisaties en bevestigingen.", "3. SN WHITE HOSTING dient de overdracht in bij de verkrijgende registrar.", "4. De verliezende registrar verwerkt goedkeuring of afwijzing binnen de toepasselijke termijn.", "5. Indien goedgekeurd, wordt het domein overgedragen volgens de regels van de betreffende registry."] },
+        ],
+      },
+      {
+        title: "5. Redenen voor Afwijzing",
+        blocks: [
+          { type: "list", items: ["Transferlock of geschilstatus.", "Onjuiste of verouderde registrantgegevens.", "Ontbrekende goedkeuringen of autorisatiecode.", "Niet voldoen aan ICANN- of registryvereisten."] },
+        ],
+      },
+      {
+        title: "6. Kosten en Aansprakelijkheid",
+        blocks: [
+          { type: "paragraph", text: "Overdrachtskosten worden, indien van toepassing, bekendgemaakt voordat het verzoek wordt verwerkt. SN WHITE HOSTING is niet verantwoordelijk voor vertragingen of mislukkingen veroorzaakt door onjuiste klantinformatie, handelingen van de verliezende registrar of factoren buiten onze redelijke controle." },
+        ],
+      },
+      {
+        title: "7. Wijzigingen",
+        blocks: [
+          { type: "paragraph", text: "Deze overeenkomst kan met voorafgaande kennisgeving worden bijgewerkt voordat materiële wijzigingen van kracht worden." },
+        ],
+      },
+    ],
+  },
 }
 
 export default function DomainNameTransferAgreementPage() {
